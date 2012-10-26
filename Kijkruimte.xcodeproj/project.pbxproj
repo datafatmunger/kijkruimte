@@ -30,6 +30,7 @@
 		31AD0A8D1638424F000CFD7B /* KijkruimteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 31AD0A8C1638424F000CFD7B /* KijkruimteTests.m */; };
 		31B4ECB4163A7D9F00BB5A31 /* KRTrackDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B4ECB3163A7D9F00BB5A31 /* KRTrackDetail.m */; };
 		31B4ECB6163A82AF00BB5A31 /* SCGetTrackDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B4ECB5163A82AF00BB5A31 /* SCGetTrackDetail.m */; };
+		31E05000163AE7F30044F0F8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31E04FFF163AE7F30044F0F8 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,7 @@
 		31B4ECB2163A7D9F00BB5A31 /* KRTrackDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRTrackDetail.h; sourceTree = "<group>"; };
 		31B4ECB3163A7D9F00BB5A31 /* KRTrackDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRTrackDetail.m; sourceTree = "<group>"; };
 		31B4ECB5163A82AF00BB5A31 /* SCGetTrackDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCGetTrackDetail.m; sourceTree = "<group>"; };
+		31E04FFF163AE7F30044F0F8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31E05000163AE7F30044F0F8 /* CoreLocation.framework in Frameworks */,
 				31948B84163ABB8F002B85BD /* AVFoundation.framework in Frameworks */,
 				31AD0A5C1638424F000CFD7B /* UIKit.framework in Frameworks */,
 				31AD0A5E1638424F000CFD7B /* Foundation.framework in Frameworks */,
@@ -134,6 +137,7 @@
 		31AD0A4C1638424F000CFD7B = {
 			isa = PBXGroup;
 			children = (
+				31E04FFF163AE7F30044F0F8 /* CoreLocation.framework */,
 				31948B83163ABB8F002B85BD /* AVFoundation.framework */,
 				31AD0A611638424F000CFD7B /* Kijkruimte */,
 				31AD0A851638424F000CFD7B /* KijkruimteTests */,

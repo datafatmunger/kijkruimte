@@ -21,6 +21,10 @@
     [super viewDidLoad];
     
     _tracks = [NSMutableDictionary dictionary];
+    
+    _locationManager = [[CLLocationManager alloc] init];
+    _locationManager.delegate = self;
+    [_locationManager startUpdatingLocation];
 
 	SCGetUserTracks *tracksAPI = [[SCGetUserTracks alloc] init];
     tracksAPI.delegate = self;
@@ -65,5 +69,20 @@
 -(void)handleGetDetailError:(NSString*)message {
     NSLog(@"ERROR: %@", message);
 }
+
+#pragma mark -
+#pragma mark SCGetUserTracksDelegate
+
+-(void)locationManager:(CLLocationManager *)manager
+   didUpdateToLocation:(CLLocation *)newLocation
+          fromLocation:(CLLocation *)oldLocation {
+    NSLog(@"Location: %f, %f", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
+}
+
+-(void)locationManager:(CLLocationManager *)manager
+      didFailWithError:(NSError *)error {
+    NSLog(@"%@", [error localizedDescription]);
+}
+
 
 @end
