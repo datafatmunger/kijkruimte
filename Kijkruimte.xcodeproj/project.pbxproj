@@ -1,0 +1,516 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3108FE57163844C500A3D243 /* SCGetUserTracks.m in Sources */ = {isa = PBXBuildFile; fileRef = 3108FE56163844C500A3D243 /* SCGetUserTracks.m */; };
+		3108FE5E1638451300A3D243 /* SCServiceAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 3108FE5D1638451300A3D243 /* SCServiceAPI.m */; };
+		3108FE5F1638454400A3D243 /* SCServiceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 31AD0A9716384273000CFD7B /* SCServiceRequest.m */; };
+		3108FE691638460E00A3D243 /* KRTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 3108FE681638460E00A3D243 /* KRTrack.m */; };
+		31AD0A5C1638424F000CFD7B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31AD0A5B1638424F000CFD7B /* UIKit.framework */; };
+		31AD0A5E1638424F000CFD7B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31AD0A5D1638424F000CFD7B /* Foundation.framework */; };
+		31AD0A601638424F000CFD7B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31AD0A5F1638424F000CFD7B /* CoreGraphics.framework */; };
+		31AD0A661638424F000CFD7B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 31AD0A641638424F000CFD7B /* InfoPlist.strings */; };
+		31AD0A681638424F000CFD7B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 31AD0A671638424F000CFD7B /* main.m */; };
+		31AD0A6C1638424F000CFD7B /* KRAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 31AD0A6B1638424F000CFD7B /* KRAppDelegate.m */; };
+		31AD0A6E1638424F000CFD7B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 31AD0A6D1638424F000CFD7B /* Default.png */; };
+		31AD0A701638424F000CFD7B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 31AD0A6F1638424F000CFD7B /* Default@2x.png */; };
+		31AD0A721638424F000CFD7B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 31AD0A711638424F000CFD7B /* Default-568h@2x.png */; };
+		31AD0A751638424F000CFD7B /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31AD0A731638424F000CFD7B /* MainStoryboard.storyboard */; };
+		31AD0A781638424F000CFD7B /* KRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31AD0A771638424F000CFD7B /* KRViewController.m */; };
+		31AD0A801638424F000CFD7B /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31AD0A7F1638424F000CFD7B /* SenTestingKit.framework */; };
+		31AD0A811638424F000CFD7B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31AD0A5B1638424F000CFD7B /* UIKit.framework */; };
+		31AD0A821638424F000CFD7B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31AD0A5D1638424F000CFD7B /* Foundation.framework */; };
+		31AD0A8A1638424F000CFD7B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 31AD0A881638424F000CFD7B /* InfoPlist.strings */; };
+		31AD0A8D1638424F000CFD7B /* KijkruimteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 31AD0A8C1638424F000CFD7B /* KijkruimteTests.m */; };
+		31B4ECB4163A7D9F00BB5A31 /* KRTrackDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B4ECB3163A7D9F00BB5A31 /* KRTrackDetail.m */; };
+		31B4ECB6163A82AF00BB5A31 /* SCGetTrackDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B4ECB5163A82AF00BB5A31 /* SCGetTrackDetail.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		31AD0A831638424F000CFD7B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 31AD0A4E1638424F000CFD7B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 31AD0A561638424F000CFD7B;
+			remoteInfo = Kijkruimte;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3108FE55163844C500A3D243 /* SCGetUserTracks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCGetUserTracks.h; sourceTree = "<group>"; };
+		3108FE56163844C500A3D243 /* SCGetUserTracks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCGetUserTracks.m; sourceTree = "<group>"; };
+		3108FE5C1638451300A3D243 /* SCServiceAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCServiceAPI.h; sourceTree = "<group>"; };
+		3108FE5D1638451300A3D243 /* SCServiceAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCServiceAPI.m; sourceTree = "<group>"; };
+		3108FE671638460E00A3D243 /* KRTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRTrack.h; sourceTree = "<group>"; };
+		3108FE681638460E00A3D243 /* KRTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRTrack.m; sourceTree = "<group>"; };
+		31AD0A571638424F000CFD7B /* Kijkruimte.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kijkruimte.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		31AD0A5B1638424F000CFD7B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		31AD0A5D1638424F000CFD7B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		31AD0A5F1638424F000CFD7B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		31AD0A631638424F000CFD7B /* Kijkruimte-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Kijkruimte-Info.plist"; sourceTree = "<group>"; };
+		31AD0A651638424F000CFD7B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		31AD0A671638424F000CFD7B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		31AD0A691638424F000CFD7B /* Kijkruimte-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Kijkruimte-Prefix.pch"; sourceTree = "<group>"; };
+		31AD0A6A1638424F000CFD7B /* KRAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KRAppDelegate.h; sourceTree = "<group>"; };
+		31AD0A6B1638424F000CFD7B /* KRAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KRAppDelegate.m; sourceTree = "<group>"; };
+		31AD0A6D1638424F000CFD7B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		31AD0A6F1638424F000CFD7B /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		31AD0A711638424F000CFD7B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		31AD0A741638424F000CFD7B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		31AD0A761638424F000CFD7B /* KRViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KRViewController.h; sourceTree = "<group>"; };
+		31AD0A771638424F000CFD7B /* KRViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KRViewController.m; sourceTree = "<group>"; };
+		31AD0A7E1638424F000CFD7B /* KijkruimteTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KijkruimteTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		31AD0A7F1638424F000CFD7B /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		31AD0A871638424F000CFD7B /* KijkruimteTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KijkruimteTests-Info.plist"; sourceTree = "<group>"; };
+		31AD0A891638424F000CFD7B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		31AD0A8B1638424F000CFD7B /* KijkruimteTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KijkruimteTests.h; sourceTree = "<group>"; };
+		31AD0A8C1638424F000CFD7B /* KijkruimteTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KijkruimteTests.m; sourceTree = "<group>"; };
+		31AD0A9616384273000CFD7B /* SCServiceRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCServiceRequest.h; sourceTree = "<group>"; };
+		31AD0A9716384273000CFD7B /* SCServiceRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCServiceRequest.m; sourceTree = "<group>"; };
+		31B4ECAF163A799A00BB5A31 /* SCGetTrackDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCGetTrackDetail.h; sourceTree = "<group>"; };
+		31B4ECB2163A7D9F00BB5A31 /* KRTrackDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRTrackDetail.h; sourceTree = "<group>"; };
+		31B4ECB3163A7D9F00BB5A31 /* KRTrackDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRTrackDetail.m; sourceTree = "<group>"; };
+		31B4ECB5163A82AF00BB5A31 /* SCGetTrackDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCGetTrackDetail.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		31AD0A541638424F000CFD7B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				31AD0A5C1638424F000CFD7B /* UIKit.framework in Frameworks */,
+				31AD0A5E1638424F000CFD7B /* Foundation.framework in Frameworks */,
+				31AD0A601638424F000CFD7B /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		31AD0A7A1638424F000CFD7B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				31AD0A801638424F000CFD7B /* SenTestingKit.framework in Frameworks */,
+				31AD0A811638424F000CFD7B /* UIKit.framework in Frameworks */,
+				31AD0A821638424F000CFD7B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3108FE54163843FC00A3D243 /* SoundCloud */ = {
+			isa = PBXGroup;
+			children = (
+				3108FE5C1638451300A3D243 /* SCServiceAPI.h */,
+				3108FE5D1638451300A3D243 /* SCServiceAPI.m */,
+				31AD0A9616384273000CFD7B /* SCServiceRequest.h */,
+				31AD0A9716384273000CFD7B /* SCServiceRequest.m */,
+				3108FE55163844C500A3D243 /* SCGetUserTracks.h */,
+				3108FE56163844C500A3D243 /* SCGetUserTracks.m */,
+				31B4ECAF163A799A00BB5A31 /* SCGetTrackDetail.h */,
+				31B4ECB5163A82AF00BB5A31 /* SCGetTrackDetail.m */,
+			);
+			name = SoundCloud;
+			sourceTree = "<group>";
+		};
+		3108FE66163845FC00A3D243 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3108FE671638460E00A3D243 /* KRTrack.h */,
+				3108FE681638460E00A3D243 /* KRTrack.m */,
+				31B4ECB2163A7D9F00BB5A31 /* KRTrackDetail.h */,
+				31B4ECB3163A7D9F00BB5A31 /* KRTrackDetail.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		31AD0A4C1638424F000CFD7B = {
+			isa = PBXGroup;
+			children = (
+				31AD0A611638424F000CFD7B /* Kijkruimte */,
+				31AD0A851638424F000CFD7B /* KijkruimteTests */,
+				31AD0A5A1638424F000CFD7B /* Frameworks */,
+				31AD0A581638424F000CFD7B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		31AD0A581638424F000CFD7B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				31AD0A571638424F000CFD7B /* Kijkruimte.app */,
+				31AD0A7E1638424F000CFD7B /* KijkruimteTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		31AD0A5A1638424F000CFD7B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				31AD0A5B1638424F000CFD7B /* UIKit.framework */,
+				31AD0A5D1638424F000CFD7B /* Foundation.framework */,
+				31AD0A5F1638424F000CFD7B /* CoreGraphics.framework */,
+				31AD0A7F1638424F000CFD7B /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		31AD0A611638424F000CFD7B /* Kijkruimte */ = {
+			isa = PBXGroup;
+			children = (
+				3108FE66163845FC00A3D243 /* Models */,
+				3108FE54163843FC00A3D243 /* SoundCloud */,
+				31AD0A6A1638424F000CFD7B /* KRAppDelegate.h */,
+				31AD0A6B1638424F000CFD7B /* KRAppDelegate.m */,
+				31AD0A731638424F000CFD7B /* MainStoryboard.storyboard */,
+				31AD0A761638424F000CFD7B /* KRViewController.h */,
+				31AD0A771638424F000CFD7B /* KRViewController.m */,
+				31AD0A621638424F000CFD7B /* Supporting Files */,
+			);
+			path = Kijkruimte;
+			sourceTree = "<group>";
+		};
+		31AD0A621638424F000CFD7B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				31AD0A631638424F000CFD7B /* Kijkruimte-Info.plist */,
+				31AD0A641638424F000CFD7B /* InfoPlist.strings */,
+				31AD0A671638424F000CFD7B /* main.m */,
+				31AD0A691638424F000CFD7B /* Kijkruimte-Prefix.pch */,
+				31AD0A6D1638424F000CFD7B /* Default.png */,
+				31AD0A6F1638424F000CFD7B /* Default@2x.png */,
+				31AD0A711638424F000CFD7B /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		31AD0A851638424F000CFD7B /* KijkruimteTests */ = {
+			isa = PBXGroup;
+			children = (
+				31AD0A8B1638424F000CFD7B /* KijkruimteTests.h */,
+				31AD0A8C1638424F000CFD7B /* KijkruimteTests.m */,
+				31AD0A861638424F000CFD7B /* Supporting Files */,
+			);
+			path = KijkruimteTests;
+			sourceTree = "<group>";
+		};
+		31AD0A861638424F000CFD7B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				31AD0A871638424F000CFD7B /* KijkruimteTests-Info.plist */,
+				31AD0A881638424F000CFD7B /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		31AD0A561638424F000CFD7B /* Kijkruimte */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 31AD0A901638424F000CFD7B /* Build configuration list for PBXNativeTarget "Kijkruimte" */;
+			buildPhases = (
+				31AD0A531638424F000CFD7B /* Sources */,
+				31AD0A541638424F000CFD7B /* Frameworks */,
+				31AD0A551638424F000CFD7B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Kijkruimte;
+			productName = Kijkruimte;
+			productReference = 31AD0A571638424F000CFD7B /* Kijkruimte.app */;
+			productType = "com.apple.product-type.application";
+		};
+		31AD0A7D1638424F000CFD7B /* KijkruimteTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 31AD0A931638424F000CFD7B /* Build configuration list for PBXNativeTarget "KijkruimteTests" */;
+			buildPhases = (
+				31AD0A791638424F000CFD7B /* Sources */,
+				31AD0A7A1638424F000CFD7B /* Frameworks */,
+				31AD0A7B1638424F000CFD7B /* Resources */,
+				31AD0A7C1638424F000CFD7B /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				31AD0A841638424F000CFD7B /* PBXTargetDependency */,
+			);
+			name = KijkruimteTests;
+			productName = KijkruimteTests;
+			productReference = 31AD0A7E1638424F000CFD7B /* KijkruimteTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		31AD0A4E1638424F000CFD7B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = KR;
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = Hipstart;
+			};
+			buildConfigurationList = 31AD0A511638424F000CFD7B /* Build configuration list for PBXProject "Kijkruimte" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 31AD0A4C1638424F000CFD7B;
+			productRefGroup = 31AD0A581638424F000CFD7B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				31AD0A561638424F000CFD7B /* Kijkruimte */,
+				31AD0A7D1638424F000CFD7B /* KijkruimteTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		31AD0A551638424F000CFD7B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				31AD0A661638424F000CFD7B /* InfoPlist.strings in Resources */,
+				31AD0A6E1638424F000CFD7B /* Default.png in Resources */,
+				31AD0A701638424F000CFD7B /* Default@2x.png in Resources */,
+				31AD0A721638424F000CFD7B /* Default-568h@2x.png in Resources */,
+				31AD0A751638424F000CFD7B /* MainStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		31AD0A7B1638424F000CFD7B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				31AD0A8A1638424F000CFD7B /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		31AD0A7C1638424F000CFD7B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		31AD0A531638424F000CFD7B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3108FE5F1638454400A3D243 /* SCServiceRequest.m in Sources */,
+				31AD0A681638424F000CFD7B /* main.m in Sources */,
+				31AD0A6C1638424F000CFD7B /* KRAppDelegate.m in Sources */,
+				31AD0A781638424F000CFD7B /* KRViewController.m in Sources */,
+				3108FE57163844C500A3D243 /* SCGetUserTracks.m in Sources */,
+				3108FE5E1638451300A3D243 /* SCServiceAPI.m in Sources */,
+				3108FE691638460E00A3D243 /* KRTrack.m in Sources */,
+				31B4ECB4163A7D9F00BB5A31 /* KRTrackDetail.m in Sources */,
+				31B4ECB6163A82AF00BB5A31 /* SCGetTrackDetail.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		31AD0A791638424F000CFD7B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				31AD0A8D1638424F000CFD7B /* KijkruimteTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		31AD0A841638424F000CFD7B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 31AD0A561638424F000CFD7B /* Kijkruimte */;
+			targetProxy = 31AD0A831638424F000CFD7B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		31AD0A641638424F000CFD7B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				31AD0A651638424F000CFD7B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		31AD0A731638424F000CFD7B /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				31AD0A741638424F000CFD7B /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+		31AD0A881638424F000CFD7B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				31AD0A891638424F000CFD7B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		31AD0A8E1638424F000CFD7B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		31AD0A8F1638424F000CFD7B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		31AD0A911638424F000CFD7B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Kijkruimte/Kijkruimte-Prefix.pch";
+				INFOPLIST_FILE = "Kijkruimte/Kijkruimte-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		31AD0A921638424F000CFD7B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Kijkruimte/Kijkruimte-Prefix.pch";
+				INFOPLIST_FILE = "Kijkruimte/Kijkruimte-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		31AD0A941638424F000CFD7B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Kijkruimte.app/Kijkruimte";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Kijkruimte/Kijkruimte-Prefix.pch";
+				INFOPLIST_FILE = "KijkruimteTests/KijkruimteTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		31AD0A951638424F000CFD7B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Kijkruimte.app/Kijkruimte";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Kijkruimte/Kijkruimte-Prefix.pch";
+				INFOPLIST_FILE = "KijkruimteTests/KijkruimteTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		31AD0A511638424F000CFD7B /* Build configuration list for PBXProject "Kijkruimte" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				31AD0A8E1638424F000CFD7B /* Debug */,
+				31AD0A8F1638424F000CFD7B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		31AD0A901638424F000CFD7B /* Build configuration list for PBXNativeTarget "Kijkruimte" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				31AD0A911638424F000CFD7B /* Debug */,
+				31AD0A921638424F000CFD7B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		31AD0A931638424F000CFD7B /* Build configuration list for PBXNativeTarget "KijkruimteTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				31AD0A941638424F000CFD7B /* Debug */,
+				31AD0A951638424F000CFD7B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 31AD0A4E1638424F000CFD7B /* Project object */;
+}
