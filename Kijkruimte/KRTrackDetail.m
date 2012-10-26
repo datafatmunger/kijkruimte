@@ -11,11 +11,13 @@
 @implementation KRTrackDetail
 
 @synthesize streamUrl;
+@synthesize trackId;
 
 -(id)initWithDictionary:(NSDictionary*)dictionary {
     self = [self init];
     if (self) {
-        streamUrl = [dictionary objectForKey:@"streamUrl"];
+        trackId = [dictionary objectForKey:@"id"];
+        streamUrl = [dictionary objectForKey:@"stream_url"];
     }
     return self;
 }

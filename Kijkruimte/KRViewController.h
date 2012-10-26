@@ -14,6 +14,8 @@
 SCGetUserTracksDelegate,
 SCGetTrackDetailDelegate> {
     
+    NSMutableDictionary *_tracks;
+
 }
 
 @end

@@ -7,10 +7,11 @@
 //
 
 #import "KRTrack.h"
+#import "SCServiceRequest.h"
 
 @interface KRTrack (Private)
 
--(NSNumber*)getNumber:(NSString*)tag;
+-(float)getNumber:(NSString*)tag;
 
 @end
 
@@ -20,6 +21,7 @@
 @synthesize uri;
 @synthesize lat;
 @synthesize lng;
+@synthesize audioPlayer;
 
 -(id)initWithDictionary:(NSDictionary*)dictionary {
     self = [self init];
@@ -27,20 +29,20 @@
         trackId = [dictionary objectForKey:@"id"];
         uri = [dictionary objectForKey:@"uri"];
         
-        NSString *tagList = [dictionary objectForKey:@"taglist"];
+        NSString *tagList = [dictionary objectForKey:@"tag_list"];
         NSArray *tags = [tagList componentsSeparatedByString:@" "];
         for(NSString *tag in tags) {
             if([tag rangeOfString:@"lat"].location != NSNotFound)
-                self.lat = [self getNumber:tag];
+                lat = [NSNumber numberWithFloat:[self getNumber:tag]];
             else if([tag rangeOfString:@"lon"].location != NSNotFound)
-                self.lng = [self getNumber:tag];
+                lng = [NSNumber numberWithFloat:[self getNumber:tag]];
 
         }
     }
     return self;
 }
 
--(NSNumber*)getNumber:(NSString *)tag {
+-(float)getNumber:(NSString*)tag {
     NSMutableString *numberStr = [NSMutableString
                                   stringWithCapacity:tag.length];
     
@@ -58,10 +60,41 @@
     
     NSLog(@"%@", numberStr);
     
-    NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
-    [f setNumberStyle:NSNumberFormatterDecimalStyle];
-    NSNumber *number = [f numberFromString:numberStr];
-    return number;
+    return [numberStr floatValue];
+}
+
+-(void)createPlayer:(KRTrackDetail*)detail {
+    
+    NSString* resourcePath = [NSString stringWithFormat:@"%@?client_id=%@", detail.streamUrl, kSCClientId];
+    NSURL *originalUrl = [NSURL URLWithString:resourcePath];
+    
+    NSData *data = nil;
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:originalUrl
+                                                           cachePolicy:NSURLRequestReloadIgnoringCacheData
+                                                       timeoutInterval:10];
+    NSURLResponse *response;
+    NSError *error;
+    data = [NSURLConnection sendSynchronousRequest:request
+                                 returningResponse:&response
+                                             error:&error];
+    NSURL *redirectURL = [response URL];
+    NSLog(@"Playing: %@", [redirectURL absoluteString]);
+    
+    NSData *songFile = [[NSData alloc] initWithContentsOfURL:redirectURL
+                                                     options:NSDataReadingMappedIfSafe
+                                                       error:&error];
+    NSLog(@"got some data: %d", [songFile length]);
+    
+    audioPlayer = [[AVAudioPlayer alloc] initWithData:songFile error:&error];
+    audioPlayer.numberOfLoops = 0;
+    audioPlayer.volume = 1.0f;
+    
+}
+
+-(void)start {
+    if(nil != audioPlayer)
+        [audioPlayer play];
 }
 
 @end

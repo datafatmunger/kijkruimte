@@ -26,8 +26,7 @@
 # pragma SCGetUserTracksDelegate
 
 -(void)handleResponse:(id)obj {
-    KRTrackDetail *detail = [[KRTrackDetail alloc] init];
-    detail.streamUrl = [obj objectForKey:@"stream_url"];
+    KRTrackDetail *detail = [[KRTrackDetail alloc] initWithDictionary:obj];
     [_delegate handleDetail:detail];
 }
 

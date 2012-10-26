@@ -11,6 +11,7 @@
 		3108FE5E1638451300A3D243 /* SCServiceAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 3108FE5D1638451300A3D243 /* SCServiceAPI.m */; };
 		3108FE5F1638454400A3D243 /* SCServiceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 31AD0A9716384273000CFD7B /* SCServiceRequest.m */; };
 		3108FE691638460E00A3D243 /* KRTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 3108FE681638460E00A3D243 /* KRTrack.m */; };
+		31948B84163ABB8F002B85BD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31948B83163ABB8F002B85BD /* AVFoundation.framework */; };
 		31AD0A5C1638424F000CFD7B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31AD0A5B1638424F000CFD7B /* UIKit.framework */; };
 		31AD0A5E1638424F000CFD7B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31AD0A5D1638424F000CFD7B /* Foundation.framework */; };
 		31AD0A601638424F000CFD7B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31AD0A5F1638424F000CFD7B /* CoreGraphics.framework */; };
@@ -48,6 +49,7 @@
 		3108FE5D1638451300A3D243 /* SCServiceAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCServiceAPI.m; sourceTree = "<group>"; };
 		3108FE671638460E00A3D243 /* KRTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRTrack.h; sourceTree = "<group>"; };
 		3108FE681638460E00A3D243 /* KRTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRTrack.m; sourceTree = "<group>"; };
+		31948B83163ABB8F002B85BD /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		31AD0A571638424F000CFD7B /* Kijkruimte.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kijkruimte.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31AD0A5B1638424F000CFD7B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		31AD0A5D1638424F000CFD7B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -83,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31948B84163ABB8F002B85BD /* AVFoundation.framework in Frameworks */,
 				31AD0A5C1638424F000CFD7B /* UIKit.framework in Frameworks */,
 				31AD0A5E1638424F000CFD7B /* Foundation.framework in Frameworks */,
 				31AD0A601638424F000CFD7B /* CoreGraphics.framework in Frameworks */,
@@ -131,6 +134,7 @@
 		31AD0A4C1638424F000CFD7B = {
 			isa = PBXGroup;
 			children = (
+				31948B83163ABB8F002B85BD /* AVFoundation.framework */,
 				31AD0A611638424F000CFD7B /* Kijkruimte */,
 				31AD0A851638424F000CFD7B /* KijkruimteTests */,
 				31AD0A5A1638424F000CFD7B /* Frameworks */,

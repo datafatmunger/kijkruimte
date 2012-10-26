@@ -114,7 +114,8 @@ didReceiveResponse:(NSURLResponse *)response {
                   options:NSJSONReadingMutableContainers
                   error:&error];
         NSString *response = [NSString stringWithUTF8String:[_receivedData bytes]];
-        NSLog(@"%@", response);
+        if(nil != response)
+            NSLog(@"%@", response);
         if(obj)
             [_delegate handleResponse:obj];
         else {

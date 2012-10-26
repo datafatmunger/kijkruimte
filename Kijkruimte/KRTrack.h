@@ -6,21 +6,30 @@
 //  Copyright (c) 2012 Hipstart. All rights reserved.
 //
 
+#import <AVFoundation/AVFoundation.h>
 #import <Foundation/Foundation.h>
 
+#import "KRTrackDetail.h"
+
 @interface KRTrack : NSObject {
-    NSString *trackId;
+    NSNumber *trackId;
     NSString *uri;
     NSNumber *lat;
     NSNumber *lng;
+    
+    AVAudioPlayer *audioPlayer;
+    
 }
 
-@property(nonatomic,strong)NSString *trackId;
+@property(nonatomic,strong)NSNumber *trackId;
 @property(nonatomic,strong)NSString *uri;
 @property(nonatomic,strong)NSNumber *lat;
 @property(nonatomic,strong)NSNumber *lng;
+@property(nonatomic,strong)AVAudioPlayer *audioPlayer;
 
 -(id)initWithDictionary:(NSDictionary*)dictionary;
+-(void)createPlayer:(KRTrackDetail*)detail;
+-(void)start;
 
 
 @end

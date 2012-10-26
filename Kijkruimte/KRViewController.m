@@ -6,6 +6,8 @@
 //  Copyright (c) 2012 Hipstart. All rights reserved.
 //
 
+#import <AVFoundation/AVFoundation.h>
+
 #import "KRTrackDetail.h"
 #import "KRViewController.h"
 
@@ -17,9 +19,13 @@
 
 -(void)viewDidLoad {
     [super viewDidLoad];
+    
+    _tracks = [NSMutableDictionary dictionary];
+
 	SCGetUserTracks *tracksAPI = [[SCGetUserTracks alloc] init];
     tracksAPI.delegate = self;
     [tracksAPI getTracks:@"kijkruimte"];
+    
 }
 
 -(void)didReceiveMemoryWarning {
@@ -35,8 +41,11 @@
     detailAPI.delegate = self;
     for(KRTrack *track in tracks) {
         NSLog(@"TRACK URI: %@", track.uri);
-        [detailAPI getTrackDetail:track.trackId];
+        
+        [_tracks setObject:track forKey:track.trackId];
+        [detailAPI getTrackDetail:[NSString stringWithFormat:@"%d", [track.trackId intValue]]];
     }
+
 }
 
 -(void)handleGetTracksError:(NSString*)message {
@@ -48,6 +57,9 @@
 
 -(void)handleDetail:(KRTrackDetail*)detail {
     NSLog(@"STREAM URL: %@", detail.streamUrl);
+    KRTrack *track = [_tracks objectForKey:detail.trackId];
+    [track createPlayer:detail];
+    [track start];
 }
 
 -(void)handleGetDetailError:(NSString*)message {
