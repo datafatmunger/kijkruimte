@@ -14,10 +14,17 @@
 @interface KRViewController : UIViewController <
 CLLocationManagerDelegate,
 SCGetUserTracksDelegate,
-SCGetTrackDetailDelegate> {
+SCGetTrackDetailDelegate,
+UITableViewDataSource,
+UITableViewDelegate> {
     
     CLLocationManager *_locationManager;
     NSMutableDictionary *_tracks;
+    
+    IBOutlet UITableView *_tableView;
+    IBOutlet UIActivityIndicatorView *_actView;
+    
+    NSInteger _detailCount;
 
 }
 

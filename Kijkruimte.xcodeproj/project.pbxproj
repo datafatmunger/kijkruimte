@@ -11,6 +11,7 @@
 		3108FE5E1638451300A3D243 /* SCServiceAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 3108FE5D1638451300A3D243 /* SCServiceAPI.m */; };
 		3108FE5F1638454400A3D243 /* SCServiceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 31AD0A9716384273000CFD7B /* SCServiceRequest.m */; };
 		3108FE691638460E00A3D243 /* KRTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 3108FE681638460E00A3D243 /* KRTrack.m */; };
+		3139D204163C1DC700DD77ED /* KRTrackCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3139D203163C1DC700DD77ED /* KRTrackCell.m */; };
 		31948B84163ABB8F002B85BD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31948B83163ABB8F002B85BD /* AVFoundation.framework */; };
 		31AD0A5C1638424F000CFD7B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31AD0A5B1638424F000CFD7B /* UIKit.framework */; };
 		31AD0A5E1638424F000CFD7B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31AD0A5D1638424F000CFD7B /* Foundation.framework */; };
@@ -50,6 +51,8 @@
 		3108FE5D1638451300A3D243 /* SCServiceAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCServiceAPI.m; sourceTree = "<group>"; };
 		3108FE671638460E00A3D243 /* KRTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRTrack.h; sourceTree = "<group>"; };
 		3108FE681638460E00A3D243 /* KRTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRTrack.m; sourceTree = "<group>"; };
+		3139D202163C1DC700DD77ED /* KRTrackCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRTrackCell.h; sourceTree = "<group>"; };
+		3139D203163C1DC700DD77ED /* KRTrackCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRTrackCell.m; sourceTree = "<group>"; };
 		31948B83163ABB8F002B85BD /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		31AD0A571638424F000CFD7B /* Kijkruimte.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kijkruimte.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31AD0A5B1638424F000CFD7B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -177,6 +180,8 @@
 				31AD0A761638424F000CFD7B /* KRViewController.h */,
 				31AD0A771638424F000CFD7B /* KRViewController.m */,
 				31AD0A621638424F000CFD7B /* Supporting Files */,
+				3139D202163C1DC700DD77ED /* KRTrackCell.h */,
+				3139D203163C1DC700DD77ED /* KRTrackCell.m */,
 			);
 			path = Kijkruimte;
 			sourceTree = "<group>";
@@ -334,6 +339,7 @@
 				3108FE691638460E00A3D243 /* KRTrack.m in Sources */,
 				31B4ECB4163A7D9F00BB5A31 /* KRTrackDetail.m in Sources */,
 				31B4ECB6163A82AF00BB5A31 /* SCGetTrackDetail.m in Sources */,
+				3139D204163C1DC700DD77ED /* KRTrackCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

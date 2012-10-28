@@ -7,29 +7,31 @@
 //
 
 #import <AVFoundation/AVFoundation.h>
+#import <CoreLocation/CoreLocation.h>
 #import <Foundation/Foundation.h>
 
 #import "KRTrackDetail.h"
 
-@interface KRTrack : NSObject {
+@interface KRTrack : NSObject <NSURLConnectionDataDelegate> {
     NSNumber *trackId;
     NSString *uri;
-    NSNumber *lat;
-    NSNumber *lng;
+    NSString *title;
+    CLLocation *location;
     
     AVAudioPlayer *audioPlayer;
+    
+    NSMutableData *_audioData;
     
 }
 
 @property(nonatomic,strong)NSNumber *trackId;
 @property(nonatomic,strong)NSString *uri;
-@property(nonatomic,strong)NSNumber *lat;
-@property(nonatomic,strong)NSNumber *lng;
+@property(nonatomic,strong)NSString *title;
+@property(nonatomic,strong)CLLocation *location;
 @property(nonatomic,strong)AVAudioPlayer *audioPlayer;
 
 -(id)initWithDictionary:(NSDictionary*)dictionary;
--(void)createPlayer:(KRTrackDetail*)detail;
--(void)start;
+-(void)getData:(KRTrackDetail*)detail;
 
 
 @end
