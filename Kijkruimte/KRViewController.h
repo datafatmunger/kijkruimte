@@ -6,25 +6,27 @@
 //  Copyright (c) 2012 Hipstart. All rights reserved.
 //
 
-#import <CoreLocation/CoreLocation.h>
+#import <MapKit/MapKit.h>
 #import <UIKit/UIKit.h>
+#import "KRTrack.h"
 #import "SCGetUserTracks.h"
 #import "SCGetTrackDetail.h"
 
 @interface KRViewController : UIViewController <
-CLLocationManagerDelegate,
+MKMapViewDelegate,
 SCGetUserTracksDelegate,
 SCGetTrackDetailDelegate,
+KRTrackDelegate,
 UITableViewDataSource,
 UITableViewDelegate> {
     
-    CLLocationManager *_locationManager;
     NSMutableDictionary *_tracks;
     
-    IBOutlet UITableView *_tableView;
+    IBOutlet MKMapView *_mapView;
     IBOutlet UIActivityIndicatorView *_actView;
     
-    NSInteger _detailCount;
+    NSInteger _loadCount;
+    CLLocation *_currentLocation;
 
 }
 

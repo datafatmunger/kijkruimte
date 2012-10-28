@@ -17,21 +17,24 @@
 
 @implementation KRTrack
 
-@synthesize location;
-@synthesize trackId;
-@synthesize uri;
-@synthesize title;
-@synthesize audioPlayer;
+@synthesize location = _location;
+@synthesize trackId = _trackId;
+@synthesize uri = _uri;
+@synthesize title = _title;
+@synthesize audioPlayer = _audioPlayer;
+@synthesize pin = _pin;
+@synthesize delegate = _delegate;
 
 -(id)initWithDictionary:(NSDictionary*)dictionary {
     self = [self init];
     if (self) {
-        audioPlayer = nil;
+        _pin = nil;
+        _audioPlayer = nil;
         _audioData = [[NSMutableData alloc] init];
         
-        trackId = [dictionary objectForKey:@"id"];
-        uri = [dictionary objectForKey:@"uri"];
-        title = [dictionary objectForKey:@"title"];
+        _trackId = [dictionary objectForKey:@"id"];
+        _uri = [dictionary objectForKey:@"uri"];
+        _title = [dictionary objectForKey:@"title"];
         
         NSString *tagList = [dictionary objectForKey:@"tag_list"];
         NSArray *tags = [tagList componentsSeparatedByString:@" "];
@@ -45,7 +48,7 @@
             } else if([tag rangeOfString:@"lon"].location != NSNotFound)
                 lng = [self getNumber:tag];
         }
-        location = [[CLLocation alloc] initWithLatitude:lat longitude:lng];
+        _location = [[CLLocation alloc] initWithLatitude:lat longitude:lng];
     }
     return self;
 }
@@ -70,7 +73,7 @@
 }
 
 -(NSString*)getFilename {
-    NSString *filename = [NSString stringWithFormat:@"%d.mp3", [trackId intValue]];
+    NSString *filename = [NSString stringWithFormat:@"%d.mp3", [_trackId intValue]];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *songFile = [documentsDirectory stringByAppendingPathComponent:filename];
@@ -81,10 +84,8 @@
     
     //Check the cache - JBG
     NSString *songFile = [self getFilename];
-    NSLog(@"Song file is: %@", songFile);
     
     if(![[NSFileManager defaultManager] fileExistsAtPath:songFile]) {
-        NSLog(@"Needs to GET file from soundcloud");
         NSString* resourcePath = [NSString stringWithFormat:@"%@?client_id=%@", detail.streamUrl, kSCClientId];
         NSURL *originalUrl = [NSURL URLWithString:resourcePath];
         
@@ -94,7 +95,6 @@
         [NSURLConnection connectionWithRequest:request
                                       delegate:self];
     } else {
-        NSLog(@"Track coming from CACHE");
         _audioData = [NSData dataWithContentsOfFile:songFile];
         [self createPlayer];
     }
@@ -102,23 +102,19 @@
 
 -(void)createPlayer {
     NSError *error;
-    audioPlayer = [[AVAudioPlayer alloc] initWithData:_audioData error:&error];
-    audioPlayer.numberOfLoops = -1;
-    audioPlayer.volume = 1.0f;
+    _audioPlayer = [[AVAudioPlayer alloc] initWithData:_audioData error:&error];
+    _audioPlayer.numberOfLoops = -1;
+    _audioPlayer.volume = 1.0f;
+    
+    [_delegate trackDataLoaded:_trackId];
 }
 
 #pragma mark - 
 #pragma mark NSURLConnectionDataDelegate
 
 - (void)connection:(NSURLConnection *)connection
-didReceiveResponse:(NSURLResponse *)response {
-    NSLog(@"SOUND DATA RESPONSE RECEIVED: %d", [((NSHTTPURLResponse *)response) statusCode]);
-}
-
-- (void)connection:(NSURLConnection *)connection
     didReceiveData:(NSData *)data {
     [_audioData appendData:data];
-    NSLog(@"Got some audio data. . .");
 }
 
 - (void)connection:(NSURLConnection *)connection

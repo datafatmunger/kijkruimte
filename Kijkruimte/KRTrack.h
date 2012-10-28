@@ -10,17 +10,26 @@
 #import <CoreLocation/CoreLocation.h>
 #import <Foundation/Foundation.h>
 
+#import "KRMapPin.h"
 #import "KRTrackDetail.h"
 
+@protocol KRTrackDelegate <NSObject>
+
+-(void)trackDataLoaded:(NSNumber*)trackId;
+
+@end
+
 @interface KRTrack : NSObject <NSURLConnectionDataDelegate> {
-    NSNumber *trackId;
-    NSString *uri;
-    NSString *title;
-    CLLocation *location;
+    NSNumber *_trackId;
+    NSString *_uri;
+    NSString *_title;
+    CLLocation *_location;
     
-    AVAudioPlayer *audioPlayer;
-    
+    AVAudioPlayer *_audioPlayer;
+    KRMapPin *_pin;
     NSMutableData *_audioData;
+    
+    id<KRTrackDelegate> _delegate;
     
 }
 
@@ -29,6 +38,8 @@
 @property(nonatomic,strong)NSString *title;
 @property(nonatomic,strong)CLLocation *location;
 @property(nonatomic,strong)AVAudioPlayer *audioPlayer;
+@property(nonatomic,strong)KRMapPin *pin;
+@property(nonatomic,strong)id<KRTrackDelegate> delegate;
 
 -(id)initWithDictionary:(NSDictionary*)dictionary;
 -(void)getData:(KRTrackDetail*)detail;

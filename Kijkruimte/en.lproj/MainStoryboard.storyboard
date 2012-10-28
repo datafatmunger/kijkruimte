@@ -12,66 +12,27 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="sBG-87-LKH">
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="KRTrackCell" id="WXM-sH-D6U" customClass="KRTrackCell">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y5k-ej-INB">
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                                <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0bq-j3-PMP">
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="42" id="Ehh-ep-Reb"/>
-                                                        <constraint firstAttribute="height" constant="21" id="XQA-6Y-KMY"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                        <constraints>
-                                            <constraint firstItem="Y5k-ej-INB" firstAttribute="leading" secondItem="WXM-sH-D6U" secondAttribute="leading" constant="20" type="default" id="EXC-sw-Rud"/>
-                                            <constraint firstItem="0bq-j3-PMP" firstAttribute="baseline" secondItem="Y5k-ej-INB" secondAttribute="baseline" type="default" id="Qfu-vJ-Kof"/>
-                                            <constraint firstItem="0bq-j3-PMP" firstAttribute="top" secondItem="WXM-sH-D6U" secondAttribute="top" constant="10" id="vKw-xr-SOW"/>
-                                            <constraint firstAttribute="trailing" secondItem="0bq-j3-PMP" secondAttribute="trailing" constant="20" type="default" id="xZ3-Fr-5fd"/>
-                                        </constraints>
-                                        <connections>
-                                            <outlet property="name" destination="Y5k-ej-INB" id="7ea-oW-omc"/>
-                                            <outlet property="volume" destination="0bq-j3-PMP" id="e5c-aF-xTb"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tay-Eg-iP9">
                                 <connections>
-                                    <outlet property="dataSource" destination="2" id="0cU-lU-tB2"/>
-                                    <outlet property="delegate" destination="2" id="f23-Jh-6zh"/>
+                                    <outlet property="delegate" destination="2" id="GdW-og-Xkq"/>
                                 </connections>
-                            </tableView>
+                            </mapView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="HYq-n0-2Ww"/>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="sBG-87-LKH" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="0bh-le-5wr"/>
                             <constraint firstItem="HYq-n0-2Ww" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="8ba-Nn-7Zc"/>
-                            <constraint firstItem="HYq-n0-2Ww" firstAttribute="centerY" secondItem="sBG-87-LKH" secondAttribute="centerY" type="default" id="9N9-7g-bpq"/>
-                            <constraint firstItem="sBG-87-LKH" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="NLV-qn-hfv"/>
+                            <constraint firstItem="tay-Eg-iP9" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="Bp0-4G-ld1"/>
+                            <constraint firstItem="tay-Eg-iP9" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="DLe-8k-iB8"/>
+                            <constraint firstItem="tay-Eg-iP9" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="H7r-r2-1fJ"/>
                             <constraint firstItem="HYq-n0-2Ww" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="NOd-mW-q05"/>
-                            <constraint firstItem="sBG-87-LKH" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="NU4-6B-6Um"/>
-                            <constraint firstItem="sBG-87-LKH" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="q9T-rt-Hhj"/>
+                            <constraint firstItem="HYq-n0-2Ww" firstAttribute="centerY" secondItem="tay-Eg-iP9" secondAttribute="centerY" type="default" id="R8N-YU-f8I"/>
+                            <constraint firstItem="tay-Eg-iP9" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="rNR-bq-aUm"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="_actView" destination="HYq-n0-2Ww" id="cFS-Xv-cpr"/>
-                        <outlet property="_tableView" destination="sBG-87-LKH" id="2oH-SZ-TlG"/>
+                        <outlet property="_mapView" destination="tay-Eg-iP9" id="mQn-Qr-h4c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
@@ -79,18 +40,11 @@
         </scene>
     </scenes>
     <classes>
-        <class className="KRTrackCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/KRTrackCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="name" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="volume" candidateClass="UILabel"/>
-            </relationships>
-        </class>
         <class className="KRViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/KRViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="_actView" candidateClass="UIActivityIndicatorView"/>
-                <relationship kind="outlet" name="_tableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="_mapView" candidateClass="MKMapView"/>
             </relationships>
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
