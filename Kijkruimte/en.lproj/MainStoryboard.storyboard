@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="12B19" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="12B19" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
     </dependencies>
@@ -12,26 +12,48 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tay-Eg-iP9">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" id="tay-Eg-iP9">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                                 <connections>
                                     <outlet property="delegate" destination="2" id="GdW-og-Xkq"/>
                                 </connections>
                             </mapView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="HYq-n0-2Ww"/>
+                            <view contentMode="scaleToFill" id="5wI-UU-KCa">
+                                <rect key="frame" x="0.0" y="546" width="320" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="achtergrond-btn@2x.png" id="AcU-MY-Ho7">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Xhc-l1-QCn">
+                                        <rect key="frame" x="0.0" y="-4" width="320" height="76"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Button" image="btn-start-passive.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="start" destination="2" eventType="touchUpInside" id="WPl-oz-aew"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" animating="YES" style="gray" id="HYq-n0-2Ww">
+                                <rect key="frame" x="0.0" y="264" width="320" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="HYq-n0-2Ww" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="8ba-Nn-7Zc"/>
-                            <constraint firstItem="tay-Eg-iP9" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="Bp0-4G-ld1"/>
-                            <constraint firstItem="tay-Eg-iP9" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="DLe-8k-iB8"/>
-                            <constraint firstItem="tay-Eg-iP9" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="H7r-r2-1fJ"/>
-                            <constraint firstItem="HYq-n0-2Ww" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="NOd-mW-q05"/>
-                            <constraint firstItem="HYq-n0-2Ww" firstAttribute="centerY" secondItem="tay-Eg-iP9" secondAttribute="centerY" type="default" id="R8N-YU-f8I"/>
-                            <constraint firstItem="tay-Eg-iP9" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="rNR-bq-aUm"/>
-                        </constraints>
                     </view>
                     <connections>
                         <outlet property="_actView" destination="HYq-n0-2Ww" id="cFS-Xv-cpr"/>
+                        <outlet property="_button" destination="Xhc-l1-QCn" id="05z-OL-5SA"/>
+                        <outlet property="_controls" destination="5wI-UU-KCa" id="SWD-g2-xx9"/>
                         <outlet property="_mapView" destination="tay-Eg-iP9" id="mQn-Qr-h4c"/>
                     </connections>
                 </viewController>
@@ -39,16 +61,20 @@
             </objects>
         </scene>
     </scenes>
+    <resources>
+        <image name="achtergrond-btn@2x.png" width="640" height="153"/>
+        <image name="btn-start-passive.png" width="320" height="77"/>
+    </resources>
     <classes>
         <class className="KRViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/KRViewController.h"/>
             <relationships>
+                <relationship kind="action" name="start"/>
                 <relationship kind="outlet" name="_actView" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="_button" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="_controls" candidateClass="UIView"/>
                 <relationship kind="outlet" name="_mapView" candidateClass="MKMapView"/>
             </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

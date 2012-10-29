@@ -24,6 +24,7 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     
+    _isRunning = NO;
     _loadCount = 0;
     _tracks = [NSMutableDictionary dictionary];
 
@@ -44,9 +45,6 @@
 	region.center = _currentLocation.coordinate;
     _mapView.region = region;
     
-    //MKMapPoint points[3] = {{52.392692,4.908496}, {52.389593,4.91694}, {52.384721,4.906726}};
-    //MKPolygon *polygon = [MKPolygon polygonWithPoints:points count:3];
-    
     MKMapPoint points[3];
     CLLocationCoordinate2D c1 = {52.392692,4.908496};
     points[0] = MKMapPointForCoordinate(c1);
@@ -57,6 +55,30 @@
     
     MKPolygon *polygon = [MKPolygon polygonWithPoints:points count:3];
     [_mapView addOverlay:polygon];
+    
+    [_button setImage:[UIImage imageNamed:@"btn-start-pressed"]
+             forState:UIControlStateHighlighted];
+    
+    _locationManager = [[CLLocationManager alloc] init];
+    _locationManager.delegate = self;
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    NSLog(@"Screen height: %f", screenRect.size.height);
+    [UIView animateWithDuration:0.5
+                          delay:1.0
+                        options: UIViewAnimationCurveEaseOut
+                     animations:^{
+                         _controls.frame = CGRectMake(_controls.frame.origin.x,
+                                                      screenRect.size.height - _controls.frame.size.height - [[UIApplication sharedApplication] statusBarFrame].size.height,
+                                                      _controls.frame.size.width,
+                                                      _controls.frame.size.height);
+
+                     } 
+                     completion:^(BOOL finished){
+                         NSLog(@"Done!");
+                     }];
 }
 
 -(void)didReceiveMemoryWarning {
@@ -74,6 +96,8 @@
 }
 
 -(void)updateTracks:(CLLocation*)location {
+    if(!_isRunning) return;
+    
     for(int i = 0; i < [_tracks count]; i++) {
         KRTrack *track = [[_tracks allValues] objectAtIndex:i];
         
@@ -89,7 +113,7 @@
         double volume = 0.0;
         if(distance <= 100 && distance != 0.0) {
             volume = (log(distance/100) * -1)/4;
-            NSLog(@"track is playing, volume is: %f", volume);
+            volume = volume > 1.0 ? 1.0 : volume;
             track.audioPlayer.volume = volume;
             if(track.audioPlayer != nil && ![track.audioPlayer isPlaying]) {
                 [track.audioPlayer play];
@@ -114,6 +138,33 @@
             }
         }
         track.pin.subtitle = [NSString stringWithFormat:@"Volume: %f", volume];
+    }
+}
+
+-(IBAction)start {
+    NSLog(@"Start and Stop");
+
+    _isRunning = !_isRunning;
+
+    if(_isRunning) {
+        [_locationManager startUpdatingLocation];
+        [_button setImage:[UIImage imageNamed:@"btn-stop-passive"]
+                 forState:UIControlStateNormal];
+        [_button setImage:[UIImage imageNamed:@"btn-stop-pressed"]
+                 forState:UIControlStateHighlighted];
+        
+    } else {
+        [_locationManager stopUpdatingLocation];
+        for(KRTrack *track in _tracks.allValues) {
+            [track.audioPlayer stop];
+            track.pin.isPlaying = NO;
+            [_mapView removeAnnotation:track.pin];
+            [_mapView addAnnotation:track.pin];
+        }
+        [_button setImage:[UIImage imageNamed:@"btn-start-passive"]
+                 forState:UIControlStateNormal];
+        [_button setImage:[UIImage imageNamed:@"btn-start-pressed"]
+                 forState:UIControlStateHighlighted];
     }
 }
 
@@ -182,13 +233,6 @@
     return newAnnotation;
 }
 
--(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
-    //CLLocation *newLocation = userLocation.location;
-    // For testing only (location of Kijkruimte) - JBG
-    _currentLocation = [[CLLocation alloc] initWithLatitude:52.388 longitude:4.909006];
-    [self updateTracks:_currentLocation];
-}
-
 -(MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay {
     MKPolygonView *polygonView = [[MKPolygonView alloc] initWithPolygon:overlay];
     polygonView.fillColor = [[UIColor redColor] colorWithAlphaComponent:0.2];
@@ -204,6 +248,24 @@
     [self updateTracks:_currentLocation];
     if(++_loadCount >= [_tracks count])
         [_actView stopAnimating];
+}
+
+
+#pragma mark -
+#pragma mark CLLocationManagerDelegate
+
+-(void)locationManager:(CLLocationManager *)manager
+   didUpdateToLocation:(CLLocation *)newLocation
+          fromLocation:(CLLocation *)oldLocation {
+    //_currentLocation = newLocation;
+    // For testing only (location of Kijkruimte) - JBG
+    [self updateTracks:_currentLocation];
+    NSLog(@"LOCATION!!!!");
+}
+
+-(void)locationManager:(CLLocationManager *)manager
+      didFailWithError:(NSError *)error {
+    NSLog(@"%@", [error localizedDescription]);
 }
 
 
