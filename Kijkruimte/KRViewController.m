@@ -9,7 +9,6 @@
 #import <AVFoundation/AVFoundation.h>
 #import <math.h>
 #import "KRMapPin.h"
-#import "KRTrackCell.h"
 #import "KRTrackDetail.h"
 #import "KRViewController.h"
 
@@ -111,7 +110,7 @@
         NSLog(@"You are %fm from sound: %@", distance, track.trackId);
         
         double volume = 0.0;
-        if(distance <= 100 && distance != 0.0) {
+        if(distance <= 100 && distance > 0.0) {
             volume = (log(distance/100) * -1)/4;
             volume = volume > 1.0 ? 1.0 : volume;
             track.audioPlayer.volume = volume;
@@ -132,9 +131,11 @@
             }
         } else {
             track.audioPlayer.volume = volume;
-            if(track.audioPlayer != nil && [track.audioPlayer isPlaying]) {
-                [track.audioPlayer stop];
+            if(track.pin.isPlaying != NO) {
+                //[track.audioPlayer stop];
                 track.pin.isPlaying = NO;
+                [_mapView removeAnnotation:track.pin];
+                [_mapView addAnnotation:track.pin];
             }
         }
         track.pin.subtitle = [NSString stringWithFormat:@"Volume: %f", volume];
@@ -257,7 +258,7 @@
 -(void)locationManager:(CLLocationManager *)manager
    didUpdateToLocation:(CLLocation *)newLocation
           fromLocation:(CLLocation *)oldLocation {
-    //_currentLocation = newLocation;
+    _currentLocation = newLocation;
     // For testing only (location of Kijkruimte) - JBG
     [self updateTracks:_currentLocation];
     NSLog(@"LOCATION!!!!");

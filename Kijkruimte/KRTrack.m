@@ -87,12 +87,13 @@
     
     if(![[NSFileManager defaultManager] fileExistsAtPath:songFile]) {
         NSString* resourcePath = [NSString stringWithFormat:@"%@?client_id=%@", detail.streamUrl, kSCClientId];
+        NSLog(@"REQUEST URL: %@", resourcePath);
         NSURL *originalUrl = [NSURL URLWithString:resourcePath];
         
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:originalUrl
-                                                               cachePolicy:NSURLRequestReloadIgnoringCacheData
-                                                           timeoutInterval:10];
-        [NSURLConnection connectionWithRequest:request
+        _request = [NSMutableURLRequest requestWithURL:originalUrl
+                                           cachePolicy:NSURLRequestReloadIgnoringCacheData
+                                       timeoutInterval:10];
+        [NSURLConnection connectionWithRequest:_request
                                       delegate:self];
     } else {
         _audioData = [NSData dataWithContentsOfFile:songFile];
@@ -119,13 +120,23 @@
 
 - (void)connection:(NSURLConnection *)connection
   didFailWithError:(NSError *)error {
-    NSLog(@"Request FAILED: %@", [error localizedDescription]);
+    NSLog(@"Request FAILED: %@, %@",
+          [error localizedDescription],
+          [[_request URL] absoluteString]);
+    
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     [self createPlayer];
     NSString *songFile = [self getFilename];
     [_audioData writeToFile:songFile atomically:YES];
+}
+
+-(NSURLRequest*)connection:(NSURLConnection*)inConnection
+           willSendRequest:(NSURLRequest*)inRequest
+          redirectResponse:(NSURLResponse*)inRedirectResponse {
+    NSLog(@"REDIRECT: %@", [[inRequest URL] absoluteString]);
+    return inRequest;
 }
 
 @end

@@ -11,7 +11,6 @@
 		3108FE5E1638451300A3D243 /* SCServiceAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 3108FE5D1638451300A3D243 /* SCServiceAPI.m */; };
 		3108FE5F1638454400A3D243 /* SCServiceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 31AD0A9716384273000CFD7B /* SCServiceRequest.m */; };
 		3108FE691638460E00A3D243 /* KRTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 3108FE681638460E00A3D243 /* KRTrack.m */; };
-		3139D204163C1DC700DD77ED /* KRTrackCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3139D203163C1DC700DD77ED /* KRTrackCell.m */; };
 		313E3C62163D96EB000165B7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 313E3C61163D96EB000165B7 /* MapKit.framework */; };
 		313E3C8E163D9B89000165B7 /* KRMapPin.m in Sources */ = {isa = PBXBuildFile; fileRef = 313E3C8D163D9B89000165B7 /* KRMapPin.m */; };
 		31948B84163ABB8F002B85BD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31948B83163ABB8F002B85BD /* AVFoundation.framework */; };
@@ -62,8 +61,6 @@
 		3108FE5D1638451300A3D243 /* SCServiceAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCServiceAPI.m; sourceTree = "<group>"; };
 		3108FE671638460E00A3D243 /* KRTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRTrack.h; sourceTree = "<group>"; };
 		3108FE681638460E00A3D243 /* KRTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRTrack.m; sourceTree = "<group>"; };
-		3139D202163C1DC700DD77ED /* KRTrackCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRTrackCell.h; sourceTree = "<group>"; };
-		3139D203163C1DC700DD77ED /* KRTrackCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRTrackCell.m; sourceTree = "<group>"; };
 		313E3C61163D96EB000165B7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		313E3C8C163D9B89000165B7 /* KRMapPin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRMapPin.h; sourceTree = "<group>"; };
 		313E3C8D163D9B89000165B7 /* KRMapPin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRMapPin.m; sourceTree = "<group>"; };
@@ -206,8 +203,6 @@
 				31AD0A761638424F000CFD7B /* KRViewController.h */,
 				31AD0A771638424F000CFD7B /* KRViewController.m */,
 				31AD0A621638424F000CFD7B /* Supporting Files */,
-				3139D202163C1DC700DD77ED /* KRTrackCell.h */,
-				3139D203163C1DC700DD77ED /* KRTrackCell.m */,
 				313E3C8C163D9B89000165B7 /* KRMapPin.h */,
 				313E3C8D163D9B89000165B7 /* KRMapPin.m */,
 			);
@@ -392,7 +387,6 @@
 				3108FE691638460E00A3D243 /* KRTrack.m in Sources */,
 				31B4ECB4163A7D9F00BB5A31 /* KRTrackDetail.m in Sources */,
 				31B4ECB6163A82AF00BB5A31 /* SCGetTrackDetail.m in Sources */,
-				3139D204163C1DC700DD77ED /* KRTrackCell.m in Sources */,
 				313E3C8E163D9B89000165B7 /* KRMapPin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -506,10 +500,12 @@
 		31AD0A921638424F000CFD7B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: James Graves";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Kijkruimte/Kijkruimte-Prefix.pch";
 				INFOPLIST_FILE = "Kijkruimte/Kijkruimte-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "51CE03A6-69EF-4DDE-B906-CC4816285DE8";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
