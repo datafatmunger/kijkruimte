@@ -16,10 +16,14 @@
 @protocol KRTrackDelegate <NSObject>
 
 -(void)trackDataLoaded:(NSNumber*)trackId;
+-(void)trackDataError:(NSString*)message;
 
 @end
 
-@interface KRTrack : NSObject <NSURLConnectionDataDelegate> {
+@interface KRTrack : NSObject <
+AVAudioPlayerDelegate,
+NSURLConnectionDataDelegate
+> {
     NSNumber *_trackId;
     NSString *_uri;
     NSString *_title;

@@ -42,6 +42,9 @@
 		31E4D642163F067B00A05763 /* btn-start-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 31E4D63E163F067B00A05763 /* btn-start-pressed.png */; };
 		31E4D643163F067B00A05763 /* btn-stop-passive.png in Resources */ = {isa = PBXBuildFile; fileRef = 31E4D63F163F067B00A05763 /* btn-stop-passive.png */; };
 		31E4D644163F067B00A05763 /* btn-stop-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 31E4D640163F067B00A05763 /* btn-stop-pressed.png */; };
+		31E6D2C91648487700BACF3F /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E6D2C61648487700BACF3F /* AsyncSocket.m */; };
+		31E6D2CA1648487700BACF3F /* CRVStompClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E6D2C81648487700BACF3F /* CRVStompClient.m */; };
+		31E6D2CC1648489F00BACF3F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31E6D2CB1648489F00BACF3F /* CFNetwork.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +106,11 @@
 		31E4D63E163F067B00A05763 /* btn-start-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-start-pressed.png"; sourceTree = "<group>"; };
 		31E4D63F163F067B00A05763 /* btn-stop-passive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-stop-passive.png"; sourceTree = "<group>"; };
 		31E4D640163F067B00A05763 /* btn-stop-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-stop-pressed.png"; sourceTree = "<group>"; };
+		31E6D2C51648487700BACF3F /* AsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncSocket.h; sourceTree = "<group>"; };
+		31E6D2C61648487700BACF3F /* AsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncSocket.m; sourceTree = "<group>"; };
+		31E6D2C71648487700BACF3F /* CRVStompClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRVStompClient.h; sourceTree = "<group>"; };
+		31E6D2C81648487700BACF3F /* CRVStompClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRVStompClient.m; sourceTree = "<group>"; };
+		31E6D2CB1648489F00BACF3F /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31E6D2CC1648489F00BACF3F /* CFNetwork.framework in Frameworks */,
 				313E3C62163D96EB000165B7 /* MapKit.framework in Frameworks */,
 				31E05000163AE7F30044F0F8 /* CoreLocation.framework in Frameworks */,
 				31948B84163ABB8F002B85BD /* AVFoundation.framework in Frameworks */,
@@ -161,6 +170,7 @@
 		31AD0A4C1638424F000CFD7B = {
 			isa = PBXGroup;
 			children = (
+				31E6D2CB1648489F00BACF3F /* CFNetwork.framework */,
 				313E3C61163D96EB000165B7 /* MapKit.framework */,
 				31E04FFF163AE7F30044F0F8 /* CoreLocation.framework */,
 				31948B83163ABB8F002B85BD /* AVFoundation.framework */,
@@ -194,6 +204,7 @@
 		31AD0A611638424F000CFD7B /* Kijkruimte */ = {
 			isa = PBXGroup;
 			children = (
+				31E6D2C31648485400BACF3F /* Stomp */,
 				31E4D632163F02E300A05763 /* Assets */,
 				3108FE66163845FC00A3D243 /* Models */,
 				3108FE54163843FC00A3D243 /* SoundCloud */,
@@ -256,6 +267,17 @@
 				31E4D637163F02F700A05763 /* btn-stop-pressed@2x.png */,
 			);
 			name = Assets;
+			sourceTree = "<group>";
+		};
+		31E6D2C31648485400BACF3F /* Stomp */ = {
+			isa = PBXGroup;
+			children = (
+				31E6D2C51648487700BACF3F /* AsyncSocket.h */,
+				31E6D2C61648487700BACF3F /* AsyncSocket.m */,
+				31E6D2C71648487700BACF3F /* CRVStompClient.h */,
+				31E6D2C81648487700BACF3F /* CRVStompClient.m */,
+			);
+			name = Stomp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -388,6 +410,8 @@
 				31B4ECB4163A7D9F00BB5A31 /* KRTrackDetail.m in Sources */,
 				31B4ECB6163A82AF00BB5A31 /* SCGetTrackDetail.m in Sources */,
 				313E3C8E163D9B89000165B7 /* KRMapPin.m in Sources */,
+				31E6D2C91648487700BACF3F /* AsyncSocket.m in Sources */,
+				31E6D2CA1648487700BACF3F /* CRVStompClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,7 +497,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: James Graves";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -481,6 +505,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "51CE03A6-69EF-4DDE-B906-CC4816285DE8";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -489,10 +514,12 @@
 		31AD0A911638424F000CFD7B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: James Graves (2HT3MF53VM)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Kijkruimte/Kijkruimte-Prefix.pch";
 				INFOPLIST_FILE = "Kijkruimte/Kijkruimte-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FC59EEF9-025B-44B5-9941-F9CFEC02B9D4";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;

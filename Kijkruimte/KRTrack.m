@@ -92,7 +92,7 @@
         
         _request = [NSMutableURLRequest requestWithURL:originalUrl
                                            cachePolicy:NSURLRequestReloadIgnoringCacheData
-                                       timeoutInterval:10];
+                                       timeoutInterval:600];
         [NSURLConnection connectionWithRequest:_request
                                       delegate:self];
     } else {
@@ -106,6 +106,7 @@
     _audioPlayer = [[AVAudioPlayer alloc] initWithData:_audioData error:&error];
     _audioPlayer.numberOfLoops = -1;
     _audioPlayer.volume = 1.0f;
+    _audioPlayer.delegate = self;
     
     [_delegate trackDataLoaded:_trackId];
 }
@@ -123,7 +124,7 @@
     NSLog(@"Request FAILED: %@, %@",
           [error localizedDescription],
           [[_request URL] absoluteString]);
-    
+    [_delegate trackDataError:@"FAILED to download audio."];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
@@ -137,6 +138,18 @@
           redirectResponse:(NSURLResponse*)inRedirectResponse {
     NSLog(@"REDIRECT: %@", [[inRequest URL] absoluteString]);
     return inRequest;
+}
+
+#pragma mark -
+#pragma mark AVAudioPlayerDelegate
+
+-(void)audioPlayerBeginInterruption:(AVAudioPlayer*)player {
+    [player stop];
+    
+}
+
+-(void)audioPlayerEndInterruption:(AVAudioPlayer*)player {
+    [player play];
 }
 
 @end

@@ -20,12 +20,88 @@
 
 @implementation KRViewController
 
+- (NSString *)generateUuidString {
+    // create a new UUID which you own
+    CFUUIDRef uuid = CFUUIDCreate(kCFAllocatorDefault);
+    // create a new CFStringRef (toll-free bridged to NSString)
+    // that you own
+    NSString *uuidString = (NSString *)CFBridgingRelease(CFUUIDCreateString(kCFAllocatorDefault, uuid));
+    return uuidString;
+}
+
+-(double)randomDoubleBetween:(double)smallNumber and:(double)bigNumber {
+    float diff = bigNumber - smallNumber;
+    return (((double) (arc4random() % ((unsigned)RAND_MAX + 1)) / RAND_MAX) * diff) + smallNumber;
+}
+
+-(void)testModeUpdate {
+    
+    double randLat = [self randomDoubleBetween:52.385059 and:52.391187];
+    double randLng = [self randomDoubleBetween:4.906275 and:4.914773];
+    
+    _currentLocation = [[CLLocation alloc] initWithLatitude:randLat longitude:randLng];
+    [_messageLabel setText:[NSString stringWithFormat:@"You are too far away! Using random location: %f, %f",
+                            _currentLocation.coordinate.latitude,
+                            _currentLocation.coordinate.longitude]];
+    
+    _messageView.hidden = NO;
+    [self updateTracks:_currentLocation];
+    
+}
+
+-(void)testMode {
+    NSLog(@"Enabling test function.");
+    [_locationManager stopUpdatingLocation];
+    [self testModeUpdate];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:5.0
+                                              target:self
+                                            selector:@selector(testModeUpdate)
+                                            userInfo:nil
+                                             repeats:YES];
+}
+
+-(void)broadcastTrack:(NSNumber*)trackId
+             location:(CLLocation*)location
+        trackLocation:(CLLocation*)trackLocation
+               volume:(double)volume {
+    NSDictionary *message = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:
+                                                                 trackId,
+                                                                 [NSNumber numberWithDouble:location.coordinate.latitude],
+                                                                 [NSNumber numberWithDouble:location.coordinate.longitude],
+                                                                 [NSNumber numberWithDouble:trackLocation.coordinate.latitude],
+                                                                 [NSNumber numberWithDouble:trackLocation.coordinate.longitude],
+                                                                 [NSNumber numberWithDouble:volume],
+                                                                 _guid,
+                                                                 nil]
+                                                        forKeys:[NSArray arrayWithObjects:
+                                                                 @"trackId",
+                                                                 @"latitude",
+                                                                 @"longitude",
+                                                                 @"trackLatitude",
+                                                                 @"trackLongitude",
+                                                                 @"volume",
+                                                                 @"guid",
+                                                                 nil]];
+    NSError *error = nil;
+    NSData *messageJSON = [NSJSONSerialization dataWithJSONObject:message
+                                                          options:0
+                                                            error:&error];
+    if(!error) {
+        NSString* messageStr = [[NSString alloc] initWithData:messageJSON
+                                                     encoding:NSUTF8StringEncoding];
+        [_stompClient sendMessage:messageStr toDestination:@"/topic/listeners"];
+    } else {
+        NSLog(@"%@", [error localizedDescription]);
+    }
+}
+
 -(void)viewDidLoad {
     [super viewDidLoad];
     
     _isRunning = NO;
     _loadCount = 0;
     _tracks = [NSMutableDictionary dictionary];
+    _guid = [self generateUuidString];
 
 	SCGetUserTracks *tracksAPI = [[SCGetUserTracks alloc] init];
     tracksAPI.delegate = self;
@@ -60,6 +136,7 @@
     
     _locationManager = [[CLLocationManager alloc] init];
     _locationManager.delegate = self;
+
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -110,7 +187,7 @@
         NSLog(@"You are %fm from sound: %@", distance, track.trackId);
         
         double volume = 0.0;
-        if(distance <= 100 && distance > 0.0) {
+        if(distance <= 100.0f && distance > 0.0f) {
             volume = (log(distance/100) * -1)/4;
             volume = volume > 1.0 ? 1.0 : volume;
             track.audioPlayer.volume = volume;
@@ -120,7 +197,7 @@
                 [_mapView removeAnnotation:track.pin];
                 [_mapView addAnnotation:track.pin];
             }
-        } else if(distance == 0.0) {
+        } else if(distance <= 0.0f) {
             volume = 1.0;
             track.audioPlayer.volume = volume;
             if(track.audioPlayer != nil && ![track.audioPlayer isPlaying]) {
@@ -138,7 +215,12 @@
                 [_mapView addAnnotation:track.pin];
             }
         }
+        [self broadcastTrack:track.trackId
+                    location:location
+               trackLocation:track.location
+                      volume:volume];
         track.pin.subtitle = [NSString stringWithFormat:@"Volume: %f", volume];
+        [_mapView setNeedsDisplay];
     }
 }
 
@@ -148,6 +230,13 @@
     _isRunning = !_isRunning;
 
     if(_isRunning) {
+        _currentLocation = [[CLLocation alloc] initWithLatitude:52.388 longitude:4.909006];
+        _stompClient = [[CRVStompClient alloc] initWithHost:@"ec2-54-246-42-89.eu-west-1.compute.amazonaws.com"
+                                                       port:61613
+                                                      login:@"guest"
+                                                   passcode:@"guest"
+                                                   delegate:self];
+        [_stompClient connect];
         [_locationManager startUpdatingLocation];
         [_button setImage:[UIImage imageNamed:@"btn-stop-passive"]
                  forState:UIControlStateNormal];
@@ -155,6 +244,7 @@
                  forState:UIControlStateHighlighted];
         
     } else {
+        [_stompClient disconnect];
         [_locationManager stopUpdatingLocation];
         for(KRTrack *track in _tracks.allValues) {
             [track.audioPlayer stop];
@@ -166,6 +256,17 @@
                  forState:UIControlStateNormal];
         [_button setImage:[UIImage imageNamed:@"btn-start-pressed"]
                  forState:UIControlStateHighlighted];
+        if(_loadCount == _tracks.count)
+            _messageView.hidden = YES;
+        [_timer invalidate];
+        
+        for(int i = 0; i < [_tracks count]; i++) {
+            KRTrack *track = [[_tracks allValues] objectAtIndex:i];
+            [self broadcastTrack:track.trackId
+                        location:_currentLocation
+                   trackLocation:track.location
+                          volume:0.0f];
+        }
     }
 }
 
@@ -190,11 +291,14 @@
         track.pin = mp;
         [_mapView addAnnotation:track.pin];
     }
+    [_messageLabel setText:[NSString stringWithFormat:@"Loading...%d of %d", _loadCount, tracks.count]];
 
 }
 
 -(void)handleGetTracksError:(NSString*)message {
     NSLog(@"ERROR: %@", message);
+    [_actView stopAnimating];
+    [_messageLabel setText:@"FAILED to connect to SoundCloud!"];
 }
 
 #pragma mark -
@@ -208,6 +312,8 @@
 
 -(void)handleGetDetailError:(NSString*)message {
     NSLog(@"ERROR: %@", message);
+    [_actView stopAnimating];
+    [_messageLabel setText:@"FAILED to connect to SoundCloud!"];
 }
 
 #pragma mark -
@@ -221,13 +327,13 @@
             newAnnotation = [[MKPinAnnotationView alloc] initWithAnnotation:annotation
                                                             reuseIdentifier:@"GreenPin"];
             newAnnotation.pinColor = MKPinAnnotationColorGreen;
-            newAnnotation.animatesDrop = YES;
+            //newAnnotation.animatesDrop = YES;
             newAnnotation.canShowCallout = YES;
         } else {
             newAnnotation = [[MKPinAnnotationView alloc] initWithAnnotation:annotation
                                                             reuseIdentifier:@"RedPin"];
             newAnnotation.pinColor = MKPinAnnotationColorRed;
-            newAnnotation.animatesDrop = YES;
+            //newAnnotation.animatesDrop = YES;
             newAnnotation.canShowCallout = YES;
         }
     }
@@ -247,10 +353,17 @@
 
 -(void)trackDataLoaded:(NSNumber*)trackId {
     [self updateTracks:_currentLocation];
-    if(++_loadCount >= [_tracks count])
+    if(++_loadCount >= [_tracks count]) {
         [_actView stopAnimating];
+        _messageView.hidden = YES;
+    }
+    [_messageLabel setText:[NSString stringWithFormat:@"Loading...%d of %d", _loadCount, _tracks.count]];
 }
 
+-(void)trackDataError:(NSString*)message {
+    [_actView stopAnimating];
+    [_messageLabel setText:message];
+}
 
 #pragma mark -
 #pragma mark CLLocationManagerDelegate
@@ -258,10 +371,15 @@
 -(void)locationManager:(CLLocationManager *)manager
    didUpdateToLocation:(CLLocation *)newLocation
           fromLocation:(CLLocation *)oldLocation {
-    _currentLocation = newLocation;
-    // For testing only (location of Kijkruimte) - JBG
-    [self updateTracks:_currentLocation];
-    NSLog(@"LOCATION!!!!");
+    CLLocationDistance distance = [newLocation distanceFromLocation:_currentLocation];
+    if(distance > 3000) {
+        [self testMode];
+    } else {
+        _currentLocation = newLocation;
+        // For testing only (location of Kijkruimte) - JBG
+        [self updateTracks:_currentLocation];
+        NSLog(@"LOCATION!!!!");
+    }
 }
 
 -(void)locationManager:(CLLocationManager *)manager
@@ -269,5 +387,22 @@
     NSLog(@"%@", [error localizedDescription]);
 }
 
+#pragma mark -
+#pragma mark CRVStompClientDelegate
+
+-(void)stompClientDidConnect:(CRVStompClient *)stompService {
+    NSLog(@"stompServiceDidConnect");
+
+}
+
+-(void)stompClient:(CRVStompClient *)stompService
+    messageReceived:(NSString *)body
+         withHeader:(NSDictionary *)messageHeader {
+}
+
+- (void)stompClientDidDisconnect:(CRVStompClient *)stompService {
+    NSLog(@"stompServiceDidDisconnect");
+    [_stompClient connect];
+}
 
 @end
