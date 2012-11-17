@@ -8,7 +8,7 @@
 
 #import "SCServiceRequest.h"
 
-NSString *kSCClientId = @"e23538a05aaedb1af2e1b6b6ce613f8c";
+NSString *kSCClientId = @"50ec847d33865167c22cf865c3160819";
 NSString *kSCServiceAPIURL = @"http://api.soundcloud.com/";
 
 @implementation SCServiceRequest
