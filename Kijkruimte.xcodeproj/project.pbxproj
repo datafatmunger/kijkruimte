@@ -20,9 +20,6 @@
 		31AD0A661638424F000CFD7B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 31AD0A641638424F000CFD7B /* InfoPlist.strings */; };
 		31AD0A681638424F000CFD7B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 31AD0A671638424F000CFD7B /* main.m */; };
 		31AD0A6C1638424F000CFD7B /* KRAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 31AD0A6B1638424F000CFD7B /* KRAppDelegate.m */; };
-		31AD0A6E1638424F000CFD7B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 31AD0A6D1638424F000CFD7B /* Default.png */; };
-		31AD0A701638424F000CFD7B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 31AD0A6F1638424F000CFD7B /* Default@2x.png */; };
-		31AD0A721638424F000CFD7B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 31AD0A711638424F000CFD7B /* Default-568h@2x.png */; };
 		31AD0A751638424F000CFD7B /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31AD0A731638424F000CFD7B /* MainStoryboard.storyboard */; };
 		31AD0A781638424F000CFD7B /* KRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31AD0A771638424F000CFD7B /* KRViewController.m */; };
 		31AD0A801638424F000CFD7B /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31AD0A7F1638424F000CFD7B /* SenTestingKit.framework */; };
@@ -45,6 +42,11 @@
 		31E6D2C91648487700BACF3F /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E6D2C61648487700BACF3F /* AsyncSocket.m */; };
 		31E6D2CA1648487700BACF3F /* CRVStompClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E6D2C81648487700BACF3F /* CRVStompClient.m */; };
 		31E6D2CC1648489F00BACF3F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31E6D2CB1648489F00BACF3F /* CFNetwork.framework */; };
+		A9C96C6E1657DC690073C214 /* icon57.png in Resources */ = {isa = PBXBuildFile; fileRef = A9C96C6D1657DC690073C214 /* icon57.png */; };
+		A9C96C701657DC6C0073C214 /* icon114.png in Resources */ = {isa = PBXBuildFile; fileRef = A9C96C6F1657DC6C0073C214 /* icon114.png */; };
+		A9C96C831657E4C10073C214 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9C96C7D1657E4880073C214 /* Default-568h@2x.png */; };
+		A9C96C841657E4C10073C214 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = A9C96C7E1657E4880073C214 /* Default.png */; };
+		A9C96C851657E4C10073C214 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9C96C7F1657E4880073C214 /* Default@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +113,11 @@
 		31E6D2C71648487700BACF3F /* CRVStompClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRVStompClient.h; sourceTree = "<group>"; };
 		31E6D2C81648487700BACF3F /* CRVStompClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRVStompClient.m; sourceTree = "<group>"; };
 		31E6D2CB1648489F00BACF3F /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		A9C96C6D1657DC690073C214 /* icon57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon57.png; sourceTree = "<group>"; };
+		A9C96C6F1657DC6C0073C214 /* icon114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon114.png; sourceTree = "<group>"; };
+		A9C96C7D1657E4880073C214 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		A9C96C7E1657E4880073C214 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		A9C96C7F1657E4880073C214 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +177,11 @@
 		31AD0A4C1638424F000CFD7B = {
 			isa = PBXGroup;
 			children = (
+				A9C96C7D1657E4880073C214 /* Default-568h@2x.png */,
+				A9C96C7E1657E4880073C214 /* Default.png */,
+				A9C96C7F1657E4880073C214 /* Default@2x.png */,
+				A9C96C6F1657DC6C0073C214 /* icon114.png */,
+				A9C96C6D1657DC690073C214 /* icon57.png */,
 				31E6D2CB1648489F00BACF3F /* CFNetwork.framework */,
 				313E3C61163D96EB000165B7 /* MapKit.framework */,
 				31E04FFF163AE7F30044F0F8 /* CoreLocation.framework */,
@@ -352,10 +364,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9C96C831657E4C10073C214 /* Default-568h@2x.png in Resources */,
+				A9C96C841657E4C10073C214 /* Default.png in Resources */,
+				A9C96C851657E4C10073C214 /* Default@2x.png in Resources */,
 				31AD0A661638424F000CFD7B /* InfoPlist.strings in Resources */,
-				31AD0A6E1638424F000CFD7B /* Default.png in Resources */,
-				31AD0A701638424F000CFD7B /* Default@2x.png in Resources */,
-				31AD0A721638424F000CFD7B /* Default-568h@2x.png in Resources */,
 				31AD0A751638424F000CFD7B /* MainStoryboard.storyboard in Resources */,
 				31E4D638163F02F700A05763 /* achtergrond-btn@2x.png in Resources */,
 				31E4D639163F02F700A05763 /* btn-start-passive@2x.png in Resources */,
@@ -366,6 +378,8 @@
 				31E4D642163F067B00A05763 /* btn-start-pressed.png in Resources */,
 				31E4D643163F067B00A05763 /* btn-stop-passive.png in Resources */,
 				31E4D644163F067B00A05763 /* btn-stop-pressed.png in Resources */,
+				A9C96C6E1657DC690073C214 /* icon57.png in Resources */,
+				A9C96C701657DC6C0073C214 /* icon114.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -514,12 +528,13 @@
 		31AD0A911638424F000CFD7B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: James Graves (2HT3MF53VM)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Klasien van de Zandschulp (2U5PP7ARKJ)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Kijkruimte/Kijkruimte-Prefix.pch";
 				INFOPLIST_FILE = "Kijkruimte/Kijkruimte-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FC59EEF9-025B-44B5-9941-F9CFEC02B9D4";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3F229F16-FD87-4556-8B94-CBA38E40EAF9";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -527,12 +542,13 @@
 		31AD0A921638424F000CFD7B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: James Graves";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Klasien van de Zandschulp";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Kijkruimte/Kijkruimte-Prefix.pch";
 				INFOPLIST_FILE = "Kijkruimte/Kijkruimte-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "96B9FDBC-B028-4E26-AB9D-1FD69206EA61";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "99016547-7853-47D3-A15F-EDD5281F906D";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
