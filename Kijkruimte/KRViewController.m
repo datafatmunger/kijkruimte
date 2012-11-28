@@ -20,7 +20,7 @@
 
 @implementation KRViewController
 
-- (NSString *)generateUuidString {
+- (NSString*)generateUuidString {
     // create a new UUID which you own
     CFUUIDRef uuid = CFUUIDCreate(kCFAllocatorDefault);
     // create a new CFStringRef (toll-free bridged to NSString)
@@ -85,17 +85,7 @@
                                                                  @"volume",
                                                                  @"guid",
                                                                  nil]];
-    NSError *error = nil;
-    NSData *messageJSON = [NSJSONSerialization dataWithJSONObject:message
-                                                          options:0
-                                                            error:&error];
-    if(!error) {
-        NSString* messageStr = [[NSString alloc] initWithData:messageJSON
-                                                     encoding:NSUTF8StringEncoding];
-        [_stompClient sendMessage:messageStr toDestination:@"/topic/listeners"];
-    } else {
-        NSLog(@"%@", [error localizedDescription]);
-    }
+    [_broadcaster broadcastTrack:message];
 }
 
 -(void)viewDidLoad {
@@ -124,15 +114,6 @@
     _mapView.region = region;
     
     MKMapPoint points[33];
-
-//    CLLocationCoordinate2D c1 = {52.392692,4.908496};
-//    points[0] = MKMapPointForCoordinate(c1);
-//    CLLocationCoordinate2D c2 = {52.389593,4.91694};
-//    points[1] = MKMapPointForCoordinate(c2);
-//    CLLocationCoordinate2D c3 = {52.384721,4.906726};
-//    points[2] = MKMapPointForCoordinate(c3);
-    
-    
     
     CLLocationCoordinate2D c1 = {52.38293430636731, 4.9022626876831055};
     points[0] = MKMapPointForCoordinate(c1);
@@ -209,6 +190,8 @@
     
     _locationManager = [[CLLocationManager alloc] init];
     _locationManager.delegate = self;
+    
+    _broadcaster = [[KRBroadcaster alloc] init];
 
 }
 
@@ -305,12 +288,6 @@
 
     if(_isRunning) {
         _currentLocation = [[CLLocation alloc] initWithLatitude:52.388 longitude:4.909006];
-        _stompClient = [[CRVStompClient alloc] initWithHost:@"ec2-54-246-42-89.eu-west-1.compute.amazonaws.com"
-                                                       port:61613
-                                                      login:@"guest"
-                                                   passcode:@"guest"
-                                                   delegate:self];
-        [_stompClient connect];
         [_locationManager startUpdatingLocation];
         [_button setImage:[UIImage imageNamed:@"btn-stop-passive"]
                  forState:UIControlStateNormal];
@@ -318,7 +295,6 @@
                  forState:UIControlStateHighlighted];
         
     } else {
-        [_stompClient disconnect];
         [_locationManager stopUpdatingLocation];
         for(KRTrack *track in _tracks.allValues) {
             [track.audioPlayer stop];
@@ -460,24 +436,6 @@
 -(void)locationManager:(CLLocationManager *)manager
       didFailWithError:(NSError *)error {
     NSLog(@"%@", [error localizedDescription]);
-}
-
-#pragma mark -
-#pragma mark CRVStompClientDelegate
-
--(void)stompClientDidConnect:(CRVStompClient *)stompService {
-    NSLog(@"stompServiceDidConnect");
-
-}
-
--(void)stompClient:(CRVStompClient *)stompService
-    messageReceived:(NSString *)body
-         withHeader:(NSDictionary *)messageHeader {
-}
-
-- (void)stompClientDidDisconnect:(CRVStompClient *)stompService {
-    NSLog(@"stompServiceDidDisconnect");
-    [_stompClient connect];
 }
 
 @end

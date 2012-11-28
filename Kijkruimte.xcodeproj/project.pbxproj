@@ -13,6 +13,7 @@
 		3108FE691638460E00A3D243 /* KRTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 3108FE681638460E00A3D243 /* KRTrack.m */; };
 		313E3C62163D96EB000165B7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 313E3C61163D96EB000165B7 /* MapKit.framework */; };
 		313E3C8E163D9B89000165B7 /* KRMapPin.m in Sources */ = {isa = PBXBuildFile; fileRef = 313E3C8D163D9B89000165B7 /* KRMapPin.m */; };
+		3160FB3D1664001100CD7C72 /* KRBroadcaster.m in Sources */ = {isa = PBXBuildFile; fileRef = 3160FB3C1664001100CD7C72 /* KRBroadcaster.m */; };
 		31948B84163ABB8F002B85BD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31948B83163ABB8F002B85BD /* AVFoundation.framework */; };
 		31AD0A5C1638424F000CFD7B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31AD0A5B1638424F000CFD7B /* UIKit.framework */; };
 		31AD0A5E1638424F000CFD7B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31AD0A5D1638424F000CFD7B /* Foundation.framework */; };
@@ -42,8 +43,6 @@
 		31E4D642163F067B00A05763 /* btn-start-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 31E4D63E163F067B00A05763 /* btn-start-pressed.png */; };
 		31E4D643163F067B00A05763 /* btn-stop-passive.png in Resources */ = {isa = PBXBuildFile; fileRef = 31E4D63F163F067B00A05763 /* btn-stop-passive.png */; };
 		31E4D644163F067B00A05763 /* btn-stop-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 31E4D640163F067B00A05763 /* btn-stop-pressed.png */; };
-		31E6D2C91648487700BACF3F /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E6D2C61648487700BACF3F /* AsyncSocket.m */; };
-		31E6D2CA1648487700BACF3F /* CRVStompClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E6D2C81648487700BACF3F /* CRVStompClient.m */; };
 		31E6D2CC1648489F00BACF3F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31E6D2CB1648489F00BACF3F /* CFNetwork.framework */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +66,8 @@
 		313E3C61163D96EB000165B7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		313E3C8C163D9B89000165B7 /* KRMapPin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRMapPin.h; sourceTree = "<group>"; };
 		313E3C8D163D9B89000165B7 /* KRMapPin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRMapPin.m; sourceTree = "<group>"; };
+		3160FB3B1664001100CD7C72 /* KRBroadcaster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRBroadcaster.h; sourceTree = "<group>"; };
+		3160FB3C1664001100CD7C72 /* KRBroadcaster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRBroadcaster.m; sourceTree = "<group>"; };
 		31948B83163ABB8F002B85BD /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		31AD0A571638424F000CFD7B /* Kijkruimte.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kijkruimte.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31AD0A5B1638424F000CFD7B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -106,10 +107,6 @@
 		31E4D63E163F067B00A05763 /* btn-start-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-start-pressed.png"; sourceTree = "<group>"; };
 		31E4D63F163F067B00A05763 /* btn-stop-passive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-stop-passive.png"; sourceTree = "<group>"; };
 		31E4D640163F067B00A05763 /* btn-stop-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-stop-pressed.png"; sourceTree = "<group>"; };
-		31E6D2C51648487700BACF3F /* AsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncSocket.h; sourceTree = "<group>"; };
-		31E6D2C61648487700BACF3F /* AsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncSocket.m; sourceTree = "<group>"; };
-		31E6D2C71648487700BACF3F /* CRVStompClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRVStompClient.h; sourceTree = "<group>"; };
-		31E6D2C81648487700BACF3F /* CRVStompClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRVStompClient.m; sourceTree = "<group>"; };
 		31E6D2CB1648489F00BACF3F /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -204,7 +201,6 @@
 		31AD0A611638424F000CFD7B /* Kijkruimte */ = {
 			isa = PBXGroup;
 			children = (
-				31E6D2C31648485400BACF3F /* Stomp */,
 				31E4D632163F02E300A05763 /* Assets */,
 				3108FE66163845FC00A3D243 /* Models */,
 				3108FE54163843FC00A3D243 /* SoundCloud */,
@@ -216,6 +212,8 @@
 				31AD0A621638424F000CFD7B /* Supporting Files */,
 				313E3C8C163D9B89000165B7 /* KRMapPin.h */,
 				313E3C8D163D9B89000165B7 /* KRMapPin.m */,
+				3160FB3B1664001100CD7C72 /* KRBroadcaster.h */,
+				3160FB3C1664001100CD7C72 /* KRBroadcaster.m */,
 			);
 			path = Kijkruimte;
 			sourceTree = "<group>";
@@ -267,17 +265,6 @@
 				31E4D637163F02F700A05763 /* btn-stop-pressed@2x.png */,
 			);
 			name = Assets;
-			sourceTree = "<group>";
-		};
-		31E6D2C31648485400BACF3F /* Stomp */ = {
-			isa = PBXGroup;
-			children = (
-				31E6D2C51648487700BACF3F /* AsyncSocket.h */,
-				31E6D2C61648487700BACF3F /* AsyncSocket.m */,
-				31E6D2C71648487700BACF3F /* CRVStompClient.h */,
-				31E6D2C81648487700BACF3F /* CRVStompClient.m */,
-			);
-			name = Stomp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -410,8 +397,7 @@
 				31B4ECB4163A7D9F00BB5A31 /* KRTrackDetail.m in Sources */,
 				31B4ECB6163A82AF00BB5A31 /* SCGetTrackDetail.m in Sources */,
 				313E3C8E163D9B89000165B7 /* KRMapPin.m in Sources */,
-				31E6D2C91648487700BACF3F /* AsyncSocket.m in Sources */,
-				31E6D2CA1648487700BACF3F /* CRVStompClient.m in Sources */,
+				3160FB3D1664001100CD7C72 /* KRBroadcaster.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

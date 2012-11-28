@@ -9,14 +9,13 @@
 
 #import <MapKit/MapKit.h>
 #import <UIKit/UIKit.h>
-#import "CRVStompClient.h"
+#import "KRBroadcaster.h"
 #import "KRTrack.h"
 #import "SCGetUserTracks.h"
 #import "SCGetTrackDetail.h"
 
 @interface KRViewController : UIViewController <
 CLLocationManagerDelegate,
-CRVStompClientDelegate,
 MKMapViewDelegate,
 SCGetUserTracksDelegate,
 SCGetTrackDetailDelegate,
@@ -40,8 +39,9 @@ UITableViewDelegate> {
     BOOL _isRunning;
     NSString *_guid;
     
-    CRVStompClient *_stompClient;
     NSTimer *_timer;
+    
+    KRBroadcaster *_broadcaster;
 
 }
 
