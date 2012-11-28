@@ -250,8 +250,8 @@
             if(track.audioPlayer != nil && ![track.audioPlayer isPlaying]) {
                 [track.audioPlayer play];
                 track.pin.isPlaying = YES;
-                [_mapView removeAnnotation:track.pin];
-                [_mapView addAnnotation:track.pin];
+//                [_mapView removeAnnotation:track.pin];
+//                [_mapView addAnnotation:track.pin];
             }
         } else if(distance <= 0.0f) {
             volume = 1.0;
@@ -259,16 +259,16 @@
             if(track.audioPlayer != nil && ![track.audioPlayer isPlaying]) {
                 [track.audioPlayer play];
                 track.pin.isPlaying = YES;
-                [_mapView removeAnnotation:track.pin];
-                [_mapView addAnnotation:track.pin];
+//                [_mapView removeAnnotation:track.pin];
+//                [_mapView addAnnotation:track.pin];
             }
         } else {
             track.audioPlayer.volume = volume;
             if(track.pin.isPlaying != NO) {
                 //[track.audioPlayer stop];
                 track.pin.isPlaying = NO;
-                [_mapView removeAnnotation:track.pin];
-                [_mapView addAnnotation:track.pin];
+//                [_mapView removeAnnotation:track.pin];
+//                [_mapView addAnnotation:track.pin];
             }
         }
         [self broadcastTrack:track.trackId
@@ -299,8 +299,8 @@
         for(KRTrack *track in _tracks.allValues) {
             [track.audioPlayer stop];
             track.pin.isPlaying = NO;
-            [_mapView removeAnnotation:track.pin];
-            [_mapView addAnnotation:track.pin];
+//            [_mapView removeAnnotation:track.pin];
+//            [_mapView addAnnotation:track.pin];
         }
         [_button setImage:[UIImage imageNamed:@"btn-start-passive"]
                  forState:UIControlStateNormal];
@@ -340,7 +340,7 @@
                                                       title:track.title
                                                    subtitle:[NSString stringWithFormat:@"Volume: %f", 0.0]];
         track.pin = mp;
-        [_mapView addAnnotation:track.pin];
+//        [_mapView addAnnotation:track.pin];
     }
     [_messageLabel setText:[NSString stringWithFormat:@"Loading...%d of %d", _loadCount, tracks.count]];
 
@@ -370,26 +370,26 @@
 #pragma mark -
 #pragma mark MKMapKitDelegate
 
--(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>) annotation {
-    MKPinAnnotationView *newAnnotation = nil;
-    if([annotation isKindOfClass:[KRMapPin class]]) {
-        KRMapPin *pin = (KRMapPin*)annotation;
-        if(pin.isPlaying) {
-            newAnnotation = [[MKPinAnnotationView alloc] initWithAnnotation:annotation
-                                                            reuseIdentifier:@"GreenPin"];
-            newAnnotation.pinColor = MKPinAnnotationColorGreen;
-            //newAnnotation.animatesDrop = YES;
-            newAnnotation.canShowCallout = YES;
-        } else {
-            newAnnotation = [[MKPinAnnotationView alloc] initWithAnnotation:annotation
-                                                            reuseIdentifier:@"RedPin"];
-            newAnnotation.pinColor = MKPinAnnotationColorRed;
-            //newAnnotation.animatesDrop = YES;
-            newAnnotation.canShowCallout = YES;
-        }
-    }
-    return newAnnotation;
-}
+//-(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>) annotation {
+//    MKPinAnnotationView *newAnnotation = nil;
+//    if([annotation isKindOfClass:[KRMapPin class]]) {
+//        KRMapPin *pin = (KRMapPin*)annotation;
+//        if(pin.isPlaying) {
+//            newAnnotation = [[MKPinAnnotationView alloc] initWithAnnotation:annotation
+//                                                            reuseIdentifier:@"GreenPin"];
+//            newAnnotation.pinColor = MKPinAnnotationColorGreen;
+//            //newAnnotation.animatesDrop = YES;
+//            newAnnotation.canShowCallout = YES;
+//        } else {
+//            newAnnotation = [[MKPinAnnotationView alloc] initWithAnnotation:annotation
+//                                                            reuseIdentifier:@"RedPin"];
+//            newAnnotation.pinColor = MKPinAnnotationColorRed;
+//            //newAnnotation.animatesDrop = YES;
+//            newAnnotation.canShowCallout = YES;
+//        }
+//    }
+//    return newAnnotation;
+//}
 
 -(MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay {
     MKPolygonView *polygonView = [[MKPolygonView alloc] initWithPolygon:overlay];
