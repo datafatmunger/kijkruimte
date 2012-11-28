@@ -11,6 +11,15 @@
 		3108FE5E1638451300A3D243 /* SCServiceAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 3108FE5D1638451300A3D243 /* SCServiceAPI.m */; };
 		3108FE5F1638454400A3D243 /* SCServiceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 31AD0A9716384273000CFD7B /* SCServiceRequest.m */; };
 		3108FE691638460E00A3D243 /* KRTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 3108FE681638460E00A3D243 /* KRTrack.m */; };
+		313B4C03166658AC001B78DF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 313B4BF9166658AC001B78DF /* Default-568h@2x.png */; };
+		313B4C04166658AC001B78DF /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 313B4BFA166658AC001B78DF /* Default.png */; };
+		313B4C05166658AC001B78DF /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 313B4BFB166658AC001B78DF /* Default@2x.png */; };
+		313B4C06166658AC001B78DF /* icon29.png in Resources */ = {isa = PBXBuildFile; fileRef = 313B4BFC166658AC001B78DF /* icon29.png */; };
+		313B4C07166658AC001B78DF /* icon57.png in Resources */ = {isa = PBXBuildFile; fileRef = 313B4BFD166658AC001B78DF /* icon57.png */; };
+		313B4C08166658AC001B78DF /* icon72.png in Resources */ = {isa = PBXBuildFile; fileRef = 313B4BFE166658AC001B78DF /* icon72.png */; };
+		313B4C09166658AC001B78DF /* icon114.png in Resources */ = {isa = PBXBuildFile; fileRef = 313B4BFF166658AC001B78DF /* icon114.png */; };
+		313B4C0A166658AC001B78DF /* icon512.png in Resources */ = {isa = PBXBuildFile; fileRef = 313B4C00166658AC001B78DF /* icon512.png */; };
+		313B4C0B166658AC001B78DF /* icon1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 313B4C01166658AC001B78DF /* icon1024.png */; };
 		313E3C62163D96EB000165B7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 313E3C61163D96EB000165B7 /* MapKit.framework */; };
 		313E3C8E163D9B89000165B7 /* KRMapPin.m in Sources */ = {isa = PBXBuildFile; fileRef = 313E3C8D163D9B89000165B7 /* KRMapPin.m */; };
 		3160FB3D1664001100CD7C72 /* KRBroadcaster.m in Sources */ = {isa = PBXBuildFile; fileRef = 3160FB3C1664001100CD7C72 /* KRBroadcaster.m */; };
@@ -41,11 +50,6 @@
 		31E4D643163F067B00A05763 /* btn-stop-passive.png in Resources */ = {isa = PBXBuildFile; fileRef = 31E4D63F163F067B00A05763 /* btn-stop-passive.png */; };
 		31E4D644163F067B00A05763 /* btn-stop-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 31E4D640163F067B00A05763 /* btn-stop-pressed.png */; };
 		31E6D2CC1648489F00BACF3F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31E6D2CB1648489F00BACF3F /* CFNetwork.framework */; };
-		A9C96C6E1657DC690073C214 /* icon57.png in Resources */ = {isa = PBXBuildFile; fileRef = A9C96C6D1657DC690073C214 /* icon57.png */; };
-		A9C96C701657DC6C0073C214 /* icon114.png in Resources */ = {isa = PBXBuildFile; fileRef = A9C96C6F1657DC6C0073C214 /* icon114.png */; };
-		A9C96C831657E4C10073C214 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9C96C7D1657E4880073C214 /* Default-568h@2x.png */; };
-		A9C96C841657E4C10073C214 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = A9C96C7E1657E4880073C214 /* Default.png */; };
-		A9C96C851657E4C10073C214 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9C96C7F1657E4880073C214 /* Default@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +69,15 @@
 		3108FE5D1638451300A3D243 /* SCServiceAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCServiceAPI.m; sourceTree = "<group>"; };
 		3108FE671638460E00A3D243 /* KRTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRTrack.h; sourceTree = "<group>"; };
 		3108FE681638460E00A3D243 /* KRTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRTrack.m; sourceTree = "<group>"; };
+		313B4BF9166658AC001B78DF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		313B4BFA166658AC001B78DF /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		313B4BFB166658AC001B78DF /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		313B4BFC166658AC001B78DF /* icon29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon29.png; sourceTree = "<group>"; };
+		313B4BFD166658AC001B78DF /* icon57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon57.png; sourceTree = "<group>"; };
+		313B4BFE166658AC001B78DF /* icon72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon72.png; sourceTree = "<group>"; };
+		313B4BFF166658AC001B78DF /* icon114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon114.png; sourceTree = "<group>"; };
+		313B4C00166658AC001B78DF /* icon512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon512.png; sourceTree = "<group>"; };
+		313B4C01166658AC001B78DF /* icon1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon1024.png; sourceTree = "<group>"; };
 		313E3C61163D96EB000165B7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		313E3C8C163D9B89000165B7 /* KRMapPin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRMapPin.h; sourceTree = "<group>"; };
 		313E3C8D163D9B89000165B7 /* KRMapPin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRMapPin.m; sourceTree = "<group>"; };
@@ -110,11 +123,6 @@
 		31E4D63F163F067B00A05763 /* btn-stop-passive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-stop-passive.png"; sourceTree = "<group>"; };
 		31E4D640163F067B00A05763 /* btn-stop-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-stop-pressed.png"; sourceTree = "<group>"; };
 		31E6D2CB1648489F00BACF3F /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		A9C96C6D1657DC690073C214 /* icon57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon57.png; sourceTree = "<group>"; };
-		A9C96C6F1657DC6C0073C214 /* icon114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon114.png; sourceTree = "<group>"; };
-		A9C96C7D1657E4880073C214 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		A9C96C7E1657E4880073C214 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		A9C96C7F1657E4880073C214 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,11 +182,15 @@
 		31AD0A4C1638424F000CFD7B = {
 			isa = PBXGroup;
 			children = (
-				A9C96C7D1657E4880073C214 /* Default-568h@2x.png */,
-				A9C96C7E1657E4880073C214 /* Default.png */,
-				A9C96C7F1657E4880073C214 /* Default@2x.png */,
-				A9C96C6F1657DC6C0073C214 /* icon114.png */,
-				A9C96C6D1657DC690073C214 /* icon57.png */,
+				313B4BF9166658AC001B78DF /* Default-568h@2x.png */,
+				313B4BFA166658AC001B78DF /* Default.png */,
+				313B4BFB166658AC001B78DF /* Default@2x.png */,
+				313B4BFC166658AC001B78DF /* icon29.png */,
+				313B4BFD166658AC001B78DF /* icon57.png */,
+				313B4BFE166658AC001B78DF /* icon72.png */,
+				313B4BFF166658AC001B78DF /* icon114.png */,
+				313B4C00166658AC001B78DF /* icon512.png */,
+				313B4C01166658AC001B78DF /* icon1024.png */,
 				31E6D2CB1648489F00BACF3F /* CFNetwork.framework */,
 				313E3C61163D96EB000165B7 /* MapKit.framework */,
 				31E04FFF163AE7F30044F0F8 /* CoreLocation.framework */,
@@ -351,9 +363,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9C96C831657E4C10073C214 /* Default-568h@2x.png in Resources */,
-				A9C96C841657E4C10073C214 /* Default.png in Resources */,
-				A9C96C851657E4C10073C214 /* Default@2x.png in Resources */,
 				31AD0A661638424F000CFD7B /* InfoPlist.strings in Resources */,
 				31AD0A751638424F000CFD7B /* MainStoryboard.storyboard in Resources */,
 				31E4D638163F02F700A05763 /* achtergrond-btn@2x.png in Resources */,
@@ -365,8 +374,15 @@
 				31E4D642163F067B00A05763 /* btn-start-pressed.png in Resources */,
 				31E4D643163F067B00A05763 /* btn-stop-passive.png in Resources */,
 				31E4D644163F067B00A05763 /* btn-stop-pressed.png in Resources */,
-				A9C96C6E1657DC690073C214 /* icon57.png in Resources */,
-				A9C96C701657DC6C0073C214 /* icon114.png in Resources */,
+				313B4C03166658AC001B78DF /* Default-568h@2x.png in Resources */,
+				313B4C04166658AC001B78DF /* Default.png in Resources */,
+				313B4C05166658AC001B78DF /* Default@2x.png in Resources */,
+				313B4C06166658AC001B78DF /* icon29.png in Resources */,
+				313B4C07166658AC001B78DF /* icon57.png in Resources */,
+				313B4C08166658AC001B78DF /* icon72.png in Resources */,
+				313B4C09166658AC001B78DF /* icon114.png in Resources */,
+				313B4C0A166658AC001B78DF /* icon512.png in Resources */,
+				313B4C0B166658AC001B78DF /* icon1024.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,7 +536,7 @@
 				INFOPLIST_FILE = "Kijkruimte/Kijkruimte-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3F229F16-FD87-4556-8B94-CBA38E40EAF9";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7D2F4777-B064-4035-8EC9-8973153BC6AD";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -534,7 +550,7 @@
 				INFOPLIST_FILE = "Kijkruimte/Kijkruimte-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "99016547-7853-47D3-A15F-EDD5281F906D";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "91F88DD3-0A58-42BD-A708-9B95052235C9";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
