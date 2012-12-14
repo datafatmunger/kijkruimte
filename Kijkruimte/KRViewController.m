@@ -422,15 +422,15 @@
 -(void)locationManager:(CLLocationManager *)manager
    didUpdateToLocation:(CLLocation *)newLocation
           fromLocation:(CLLocation *)oldLocation {
-    CLLocationDistance distance = [newLocation distanceFromLocation:_currentLocation];
-    if(distance > 3000) {
+//    CLLocationDistance distance = [newLocation distanceFromLocation:_currentLocation];
+//    if(distance > 3000) {
         [self testMode];
-    } else {
-        _currentLocation = newLocation;
-        // For testing only (location of Kijkruimte) - JBG
-        [self updateTracks:_currentLocation];
-        NSLog(@"LOCATION!!!!");
-    }
+//    } else {
+//        _currentLocation = newLocation;
+//        // For testing only (location of Kijkruimte) - JBG
+//        [self updateTracks:_currentLocation];
+//        NSLog(@"LOCATION!!!!");
+//    }
 }
 
 -(void)locationManager:(CLLocationManager *)manager

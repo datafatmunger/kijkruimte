@@ -35,4 +35,9 @@
                                   delegate:self];
 }
 
+- (void)connection:(NSURLConnection *)connection
+  didFailWithError:(NSError *)error {
+    NSLog(@"REQUEST FAILED: %@", [error localizedDescription]);
+}
+
 @end
