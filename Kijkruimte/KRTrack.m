@@ -98,6 +98,7 @@
     } else {
         _audioData = [NSData dataWithContentsOfFile:songFile];
         [self createPlayer];
+        _audioData = nil;
     }
 }
 
@@ -135,6 +136,7 @@
     [self createPlayer];
     NSString *songFile = [self getFilename];
     [_audioData writeToFile:songFile atomically:YES];
+    _audioData = nil;
 }
 
 -(NSURLRequest*)connection:(NSURLConnection*)inConnection
