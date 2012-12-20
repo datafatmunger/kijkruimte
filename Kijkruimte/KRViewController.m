@@ -14,79 +14,22 @@
 
 #define MAP_ZOOM_LEVEL 0.01
 
-@interface KRViewController ()
+@interface KRViewController (Private)
+
+-(NSString*)generateUuidString;
+-(void)getTracks;
+-(double)randomDoubleBetween:(double)smallNumber and:(double)bigNumber;
+-(void)testModeUpdate;
+-(void)testMode;
+-(void)broadcastTrack:(NSNumber*)trackId
+             location:(CLLocation*)location
+        trackLocation:(CLLocation*)trackLocation
+         playPosition:(NSTimeInterval)playPosition
+               volume:(double)volume;
 
 @end
 
 @implementation KRViewController
-
-- (NSString*)generateUuidString {
-    // create a new UUID which you own
-    CFUUIDRef uuid = CFUUIDCreate(kCFAllocatorDefault);
-    // create a new CFStringRef (toll-free bridged to NSString)
-    // that you own
-    NSString *uuidString = (NSString *)CFBridgingRelease(CFUUIDCreateString(kCFAllocatorDefault, uuid));
-    return uuidString;
-}
-
--(double)randomDoubleBetween:(double)smallNumber and:(double)bigNumber {
-    float diff = bigNumber - smallNumber;
-    return (((double) (arc4random() % ((unsigned)RAND_MAX + 1)) / RAND_MAX) * diff) + smallNumber;
-}
-
--(void)testModeUpdate {
-    
-    double randLat = [self randomDoubleBetween:52.385059 and:52.391187];
-    double randLng = [self randomDoubleBetween:4.906275 and:4.914773];
-    
-    _currentLocation = [[CLLocation alloc] initWithLatitude:randLat longitude:randLng];
-    [_messageLabel setText:[NSString stringWithFormat:@"You are too far away! Using random location: %f, %f",
-                            _currentLocation.coordinate.latitude,
-                            _currentLocation.coordinate.longitude]];
-    
-    _messageView.hidden = NO;
-    [self updateTracks:_currentLocation];
-    
-}
-
--(void)testMode {
-    NSLog(@"Enabling test function.");
-    [_locationManager stopUpdatingLocation];
-    [self testModeUpdate];
-    _timer = [NSTimer scheduledTimerWithTimeInterval:5.0
-                                              target:self
-                                            selector:@selector(testModeUpdate)
-                                            userInfo:nil
-                                             repeats:YES];
-}
-
--(void)broadcastTrack:(NSNumber*)trackId
-             location:(CLLocation*)location
-        trackLocation:(CLLocation*)trackLocation
-        playPosition:(NSTimeInterval)playPosition
-               volume:(double)volume {
-    NSDictionary *message = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:
-                                                                 trackId,
-                                                                 [NSNumber numberWithDouble:location.coordinate.latitude],
-                                                                 [NSNumber numberWithDouble:location.coordinate.longitude],
-                                                                 [NSNumber numberWithDouble:trackLocation.coordinate.latitude],
-                                                                 [NSNumber numberWithDouble:trackLocation.coordinate.longitude],
-                                                                 [NSNumber numberWithDouble:playPosition],
-                                                                 [NSNumber numberWithDouble:volume],
-                                                                 _guid,
-                                                                 nil]
-                                                        forKeys:[NSArray arrayWithObjects:
-                                                                 @"trackId",
-                                                                 @"latitude",
-                                                                 @"longitude",
-                                                                 @"trackLatitude",
-                                                                 @"trackLongitude",
-                                                                 @"playPosition",
-                                                                 @"volume",
-                                                                 @"guid",
-                                                                 nil]];
-    [_broadcaster broadcastTrack:message];
-}
 
 -(void)viewDidLoad {
     [super viewDidLoad];
@@ -96,9 +39,7 @@
     _tracks = [NSMutableDictionary dictionary];
     _guid = [self generateUuidString];
 
-	SCGetUserTracks *tracksAPI = [[SCGetUserTracks alloc] init];
-    tracksAPI.delegate = self;
-    [tracksAPI getTracks:@"kijkruimte"];
+    [self getTracks];
     
     double x1 = 100.0, y1 = 50.0, x2 = 250.0, y2 = 70.0;
     
@@ -342,14 +283,14 @@
         track.pin = mp;
 //        [_mapView addAnnotation:track.pin];
     }
-    [_messageLabel setText:[NSString stringWithFormat:@"Loading...%d of %d", _loadCount, tracks.count]];
+    [_messageLabel setText:[NSString stringWithFormat:@"Loading audio...%d of %d", _loadCount, tracks.count]];
 
 }
 
 -(void)handleGetTracksError:(NSString*)message {
     NSLog(@"ERROR: %@", message);
     [_actView stopAnimating];
-    [_messageLabel setText:@"FAILED to connect to SoundCloud!"];
+    [_messageLabel setText:@"FAILED to connect to SoundCloud! (Tap to retry)"];
 }
 
 #pragma mark -
@@ -364,7 +305,7 @@
 -(void)handleGetDetailError:(NSString*)message {
     NSLog(@"ERROR: %@", message);
     [_actView stopAnimating];
-    [_messageLabel setText:@"FAILED to connect to SoundCloud!"];
+    [_messageLabel setText:@"FAILED to connect to SoundCloud! (Tap to retry)"];
 }
 
 #pragma mark -
@@ -413,7 +354,8 @@
 
 -(void)trackDataError:(NSString*)message {
     [_actView stopAnimating];
-    [_messageLabel setText:message];
+    NSString *instructions = [NSString stringWithFormat:@"%@ (Tap to retry)", message];
+    [_messageLabel setText:instructions];
 }
 
 #pragma mark -
@@ -422,20 +364,105 @@
 -(void)locationManager:(CLLocationManager *)manager
    didUpdateToLocation:(CLLocation *)newLocation
           fromLocation:(CLLocation *)oldLocation {
-//    CLLocationDistance distance = [newLocation distanceFromLocation:_currentLocation];
-//    if(distance > 3000) {
+    CLLocationDistance distance = [newLocation distanceFromLocation:_currentLocation];
+    if(distance > 3000) {
         [self testMode];
-//    } else {
-//        _currentLocation = newLocation;
-//        // For testing only (location of Kijkruimte) - JBG
-//        [self updateTracks:_currentLocation];
-//        NSLog(@"LOCATION!!!!");
-//    }
+    } else {
+        _currentLocation = newLocation;
+        // For testing only (location of Kijkruimte) - JBG
+        [self updateTracks:_currentLocation];
+        NSLog(@"LOCATION!!!!");
+    }
 }
 
 -(void)locationManager:(CLLocationManager *)manager
       didFailWithError:(NSError *)error {
     NSLog(@"%@", [error localizedDescription]);
+}
+
+#pragma mark -
+#pragma mark KRMessageViewDelegate <NSObject>
+
+-(void)messageViewTapped:(KRMessageView*)view {
+    [_messageLabel setText:@"Retrying..."];
+    [self getTracks];
+}
+
+#pragma mark -
+#pragma mark KRViewController (Private)
+
+- (NSString*)generateUuidString {
+    // create a new UUID which you own
+    CFUUIDRef uuid = CFUUIDCreate(kCFAllocatorDefault);
+    // create a new CFStringRef (toll-free bridged to NSString)
+    // that you own
+    NSString *uuidString = (NSString *)CFBridgingRelease(CFUUIDCreateString(kCFAllocatorDefault, uuid));
+    return uuidString;
+}
+
+-(double)randomDoubleBetween:(double)smallNumber and:(double)bigNumber {
+    float diff = bigNumber - smallNumber;
+    return (((double) (arc4random() % ((unsigned)RAND_MAX + 1)) / RAND_MAX) * diff) + smallNumber;
+}
+
+-(void)testModeUpdate {
+    
+    double randLat = [self randomDoubleBetween:52.385059 and:52.391187];
+    double randLng = [self randomDoubleBetween:4.906275 and:4.914773];
+    
+    _currentLocation = [[CLLocation alloc] initWithLatitude:randLat longitude:randLng];
+    [_messageLabel setText:[NSString stringWithFormat:@"You are too far away! Using random location: %f, %f",
+                            _currentLocation.coordinate.latitude,
+                            _currentLocation.coordinate.longitude]];
+    
+    _messageView.hidden = NO;
+    [self updateTracks:_currentLocation];
+    
+}
+
+-(void)testMode {
+    NSLog(@"Enabling test function.");
+    [_locationManager stopUpdatingLocation];
+    [self testModeUpdate];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:5.0
+                                              target:self
+                                            selector:@selector(testModeUpdate)
+                                            userInfo:nil
+                                             repeats:YES];
+}
+
+-(void)broadcastTrack:(NSNumber*)trackId
+             location:(CLLocation*)location
+        trackLocation:(CLLocation*)trackLocation
+         playPosition:(NSTimeInterval)playPosition
+               volume:(double)volume {
+    NSDictionary *message = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:
+                                                                 trackId,
+                                                                 [NSNumber numberWithDouble:location.coordinate.latitude],
+                                                                 [NSNumber numberWithDouble:location.coordinate.longitude],
+                                                                 [NSNumber numberWithDouble:trackLocation.coordinate.latitude],
+                                                                 [NSNumber numberWithDouble:trackLocation.coordinate.longitude],
+                                                                 [NSNumber numberWithDouble:playPosition],
+                                                                 [NSNumber numberWithDouble:volume],
+                                                                 _guid,
+                                                                 nil]
+                                                        forKeys:[NSArray arrayWithObjects:
+                                                                 @"trackId",
+                                                                 @"latitude",
+                                                                 @"longitude",
+                                                                 @"trackLatitude",
+                                                                 @"trackLongitude",
+                                                                 @"playPosition",
+                                                                 @"volume",
+                                                                 @"guid",
+                                                                 nil]];
+    [_broadcaster broadcastTrack:message];
+}
+
+-(void)getTracks {
+    SCGetUserTracks *tracksAPI = [[SCGetUserTracks alloc] init];
+    tracksAPI.delegate = self;
+    [tracksAPI getTracks:@"kijkruimte"];
 }
 
 @end

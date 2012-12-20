@@ -11,6 +11,7 @@
 		3108FE5E1638451300A3D243 /* SCServiceAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 3108FE5D1638451300A3D243 /* SCServiceAPI.m */; };
 		3108FE5F1638454400A3D243 /* SCServiceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 31AD0A9716384273000CFD7B /* SCServiceRequest.m */; };
 		3108FE691638460E00A3D243 /* KRTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 3108FE681638460E00A3D243 /* KRTrack.m */; };
+		3121A6F81683BF15004747B6 /* KRMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3121A6F71683BF15004747B6 /* KRMessageView.m */; };
 		313E3C62163D96EB000165B7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 313E3C61163D96EB000165B7 /* MapKit.framework */; };
 		313E3C8E163D9B89000165B7 /* KRMapPin.m in Sources */ = {isa = PBXBuildFile; fileRef = 313E3C8D163D9B89000165B7 /* KRMapPin.m */; };
 		3160FB3D1664001100CD7C72 /* KRBroadcaster.m in Sources */ = {isa = PBXBuildFile; fileRef = 3160FB3C1664001100CD7C72 /* KRBroadcaster.m */; };
@@ -69,6 +70,8 @@
 		3108FE5D1638451300A3D243 /* SCServiceAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCServiceAPI.m; sourceTree = "<group>"; };
 		3108FE671638460E00A3D243 /* KRTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRTrack.h; sourceTree = "<group>"; };
 		3108FE681638460E00A3D243 /* KRTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRTrack.m; sourceTree = "<group>"; };
+		3121A6F61683BF15004747B6 /* KRMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRMessageView.h; sourceTree = "<group>"; };
+		3121A6F71683BF15004747B6 /* KRMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRMessageView.m; sourceTree = "<group>"; };
 		313E3C61163D96EB000165B7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		313E3C8C163D9B89000165B7 /* KRMapPin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRMapPin.h; sourceTree = "<group>"; };
 		313E3C8D163D9B89000165B7 /* KRMapPin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRMapPin.m; sourceTree = "<group>"; };
@@ -238,6 +241,8 @@
 				313E3C8D163D9B89000165B7 /* KRMapPin.m */,
 				3160FB3B1664001100CD7C72 /* KRBroadcaster.h */,
 				3160FB3C1664001100CD7C72 /* KRBroadcaster.m */,
+				3121A6F61683BF15004747B6 /* KRMessageView.h */,
+				3121A6F71683BF15004747B6 /* KRMessageView.m */,
 			);
 			path = Kijkruimte;
 			sourceTree = "<group>";
@@ -428,6 +433,7 @@
 				31B4ECB6163A82AF00BB5A31 /* SCGetTrackDetail.m in Sources */,
 				313E3C8E163D9B89000165B7 /* KRMapPin.m in Sources */,
 				3160FB3D1664001100CD7C72 /* KRBroadcaster.m in Sources */,
+				3121A6F81683BF15004747B6 /* KRMessageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

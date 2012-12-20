@@ -22,6 +22,10 @@ extern NSString* kSCServiceAPIURL;
     id<SCServiceRequestDelegate> _delegate;
     NSMutableData *_receivedData;
     NSInteger _statusCode;
+    
+    NSMutableURLRequest *_urlRequest;
+    
+    NSInteger _tries;
 }
 
 @property(nonatomic,strong)id<SCServiceRequestDelegate> delegate;

@@ -36,6 +36,7 @@ NSURLConnectionDataDelegate
     id<KRTrackDelegate> _delegate;
     
     NSMutableURLRequest *_request;
+    NSInteger _tries;
 }
 
 @property(nonatomic,strong)NSNumber *trackId;

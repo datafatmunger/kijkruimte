@@ -11,9 +11,23 @@
 NSString *kSCClientId = @"50ec847d33865167c22cf865c3160819";
 NSString *kSCServiceAPIURL = @"http://api.soundcloud.com/";
 
+@interface SCServiceRequest (Private)
+
+-(void)sendAsync:(NSMutableURLRequest*)request;
+-(void)sendSync:(NSMutableURLRequest*)request;
+
+@end
+
 @implementation SCServiceRequest
 
 @synthesize delegate = _delegate;
+
+-(id)init {
+    if(self = [super init]) {
+        _tries = 0;
+    }
+    return self;
+}
 
 -(void)getResponseForRequest:(NSString*)endpoint
                       method:(NSString*)method
@@ -28,12 +42,11 @@ NSString *kSCServiceAPIURL = @"http://api.soundcloud.com/";
 
     BOOL fromCache = [@"GET" isEqualToString:method] && useCache;
 
-    NSMutableURLRequest *urlRequest =
-    [NSMutableURLRequest requestWithURL:url
-                            cachePolicy:!fromCache ? NSURLRequestReloadIgnoringCacheData : NSURLRequestReturnCacheDataElseLoad
-                        timeoutInterval:240.0f];
+    _urlRequest = [NSMutableURLRequest requestWithURL:url
+                                          cachePolicy:!fromCache ? NSURLRequestReloadIgnoringCacheData : NSURLRequestReturnCacheDataElseLoad
+                                      timeoutInterval:240.0f];
 
-    [urlRequest setHTTPMethod:method];
+    [_urlRequest setHTTPMethod:method];
     
     if(parameters != nil) {
         if([method isEqualToString:@"GET"] ||
@@ -54,39 +67,18 @@ NSString *kSCServiceAPIURL = @"http://api.soundcloud.com/";
                                                                      error:&error];
             
             NSString* byteSizeString = [NSString stringWithFormat: @"%d", (int)requestBody.bytes];
-            [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-            [urlRequest setValue:byteSizeString forHTTPHeaderField:@"Content-Length"];
-            [urlRequest setHTTPBody:requestBody];
+            [_urlRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+            [_urlRequest setValue:byteSizeString forHTTPHeaderField:@"Content-Length"];
+            [_urlRequest setHTTPBody:requestBody];
         }
 	}
     
     NSLog(@"URL is %@", urlStr);
   
     if(!sync) {
-        NSLog(@"ASYNC REQUEST");
-        NSURLConnection* urlConnection = [NSURLConnection connectionWithRequest:urlRequest
-                                                                       delegate:self];
-        if (urlConnection) {
-            _receivedData = [[NSMutableData alloc] init];
-        } else {
-            [_delegate handleError:@"Request could not be made."];
-        }
+        [self sendAsync:_urlRequest];
     } else {
-        NSLog(@"SYNC REQUEST");
-        NSURLResponse* response = nil;
-		NSError* error = nil;
-		NSData* receivedData = [NSURLConnection sendSynchronousRequest:urlRequest
-                                                     returningResponse:&response error:&error];
-		if(error != nil) {
-			if (_delegate && [_delegate respondsToSelector:@selector(handleError:)]) {
-				[_delegate handleError:[error description]];
-			}
-		} else {
-            _receivedData = [[NSMutableData alloc] initWithData:receivedData];
-            _statusCode = ((NSHTTPURLResponse*)response).statusCode;
-            NSLog(@"RESPONSE RECEIVED: %d", _statusCode);
-            [self connectionDidFinishLoading:nil];
-		}
+        [self sendSync:_urlRequest];
     }
 }
 
@@ -103,7 +95,13 @@ didReceiveResponse:(NSURLResponse *)response {
 
 - (void)connection:(NSURLConnection *)connection
   didFailWithError:(NSError *)error {
-    [_delegate handleError:@"Request failed"];
+    if(_tries < 10) {
+        NSLog(@"Trying request again...");
+        ++_tries;
+        [self sendAsync:_urlRequest];
+    } else {
+        [_delegate handleError:@"Request failed"];
+    }
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
@@ -126,6 +124,38 @@ didReceiveResponse:(NSURLResponse *)response {
     } else {
         [_delegate handleError:
          [NSString stringWithFormat:@"Server returned: %d", _statusCode]];
+    }
+}
+
+# pragma mark -
+# pragma mark SCServiceRequest (Private)
+
+-(void)sendAsync:(NSMutableURLRequest*)urlRequest {
+    NSLog(@"ASYNC REQUEST");
+    NSURLConnection* urlConnection = [NSURLConnection connectionWithRequest:urlRequest
+                                                                   delegate:self];
+    if (urlConnection) {
+        _receivedData = [[NSMutableData alloc] init];
+    } else {
+        [_delegate handleError:@"Request could not be made."];
+    }
+}
+
+-(void)sendSync:(NSMutableURLRequest*)urlRequest {
+    NSLog(@"SYNC REQUEST");
+    NSURLResponse* response = nil;
+    NSError* error = nil;
+    NSData* receivedData = [NSURLConnection sendSynchronousRequest:urlRequest
+                                                 returningResponse:&response error:&error];
+    if(error != nil) {
+        if (_delegate && [_delegate respondsToSelector:@selector(handleError:)]) {
+            [_delegate handleError:[error description]];
+        }
+    } else {
+        _receivedData = [[NSMutableData alloc] initWithData:receivedData];
+        _statusCode = ((NSHTTPURLResponse*)response).statusCode;
+        NSLog(@"RESPONSE RECEIVED: %d", _statusCode);
+        [self connectionDidFinishLoading:nil];
     }
 }
 

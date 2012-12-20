@@ -12,6 +12,7 @@
 @interface KRTrack (Private)
 
 -(CLLocationDegrees)getNumber:(NSString*)tag;
+-(void)sendAsync:(NSMutableURLRequest*)request;
 
 @end
 
@@ -93,8 +94,7 @@
         _request = [NSMutableURLRequest requestWithURL:originalUrl
                                            cachePolicy:NSURLRequestReloadIgnoringCacheData
                                        timeoutInterval:600];
-        [NSURLConnection connectionWithRequest:_request
-                                      delegate:self];
+        [self sendAsync:_request];
     } else {
         _audioData = [NSData dataWithContentsOfFile:songFile];
         [self createPlayer];
@@ -121,10 +121,14 @@
 
 - (void)connection:(NSURLConnection *)connection
   didFailWithError:(NSError *)error {
-    NSLog(@"Request FAILED: %@, %@",
-          [error localizedDescription],
-          [[_request URL] absoluteString]);
-    [_delegate trackDataError:@"FAILED to download audio."];
+    if(_tries < 10) {
+        [self sendAsync:_request];
+    } else {
+        NSLog(@"Request FAILED: %@, %@",
+              [error localizedDescription],
+              [[_request URL] absoluteString]);
+        [_delegate trackDataError:@"FAILED to download audio."];
+    }
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
@@ -150,6 +154,14 @@
 
 -(void)audioPlayerEndInterruption:(AVAudioPlayer*)player {
     [player play];
+}
+
+#pragma mark -
+#pragma mark KRTrack (Private)
+
+-(void)sendAsync:(NSMutableURLRequest*)request {
+    [NSURLConnection connectionWithRequest:request
+                                  delegate:self];
 }
 
 @end
