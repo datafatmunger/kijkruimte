@@ -262,6 +262,10 @@
     }
 }
 
+-(IBAction)toInfo:(id)sender {
+    [self performSegueWithIdentifier:@"toInfo" sender:sender];
+}
+
 #pragma mark -
 #pragma mark SCGetUserTracksDelegate
 

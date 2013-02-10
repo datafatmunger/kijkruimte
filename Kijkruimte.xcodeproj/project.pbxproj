@@ -51,6 +51,7 @@
 		31E4D643163F067B00A05763 /* btn-stop-passive.png in Resources */ = {isa = PBXBuildFile; fileRef = 31E4D63F163F067B00A05763 /* btn-stop-passive.png */; };
 		31E4D644163F067B00A05763 /* btn-stop-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 31E4D640163F067B00A05763 /* btn-stop-pressed.png */; };
 		31E6D2CC1648489F00BACF3F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31E6D2CB1648489F00BACF3F /* CFNetwork.framework */; };
+		31EB851516C7A0FB0012230F /* KRInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31EB851416C7A0FB0012230F /* KRInfoViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,6 +127,8 @@
 		31E4D63F163F067B00A05763 /* btn-stop-passive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-stop-passive.png"; sourceTree = "<group>"; };
 		31E4D640163F067B00A05763 /* btn-stop-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-stop-pressed.png"; sourceTree = "<group>"; };
 		31E6D2CB1648489F00BACF3F /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		31EB851316C7A0FB0012230F /* KRInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRInfoViewController.h; sourceTree = "<group>"; };
+		31EB851416C7A0FB0012230F /* KRInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRInfoViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,6 +246,8 @@
 				3160FB3C1664001100CD7C72 /* KRBroadcaster.m */,
 				3121A6F61683BF15004747B6 /* KRMessageView.h */,
 				3121A6F71683BF15004747B6 /* KRMessageView.m */,
+				31EB851316C7A0FB0012230F /* KRInfoViewController.h */,
+				31EB851416C7A0FB0012230F /* KRInfoViewController.m */,
 			);
 			path = Kijkruimte;
 			sourceTree = "<group>";
@@ -434,6 +439,7 @@
 				313E3C8E163D9B89000165B7 /* KRMapPin.m in Sources */,
 				3160FB3D1664001100CD7C72 /* KRBroadcaster.m in Sources */,
 				3121A6F81683BF15004747B6 /* KRMessageView.m in Sources */,
+				31EB851516C7A0FB0012230F /* KRInfoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -556,7 +562,7 @@
 				INFOPLIST_FILE = "Kijkruimte/Kijkruimte-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5010F07D-8639-408D-A349-59ECC2C25354";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

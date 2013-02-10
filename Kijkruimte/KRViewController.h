@@ -48,5 +48,6 @@ UITableViewDelegate> {
 }
 
 -(IBAction)start;
+-(IBAction)toInfo:(id)sender;
 
 @end
