@@ -9,11 +9,12 @@
 
 #import <MapKit/MapKit.h>
 #import <UIKit/UIKit.h>
-#import "KRBroadcaster.h"
 #import "KRMessageView.h"
 #import "KRTrack.h"
 #import "SCGetUserTracks.h"
 #import "SCGetTrackDetail.h"
+
+extern NSString* kSCUser;
 
 @interface KRViewController : UIViewController <
 CLLocationManagerDelegate,
@@ -42,8 +43,6 @@ UITableViewDelegate> {
     NSString *_guid;
     
     NSTimer *_timer;
-    
-    KRBroadcaster *_broadcaster;
 
 }
 

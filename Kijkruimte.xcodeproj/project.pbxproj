@@ -14,7 +14,6 @@
 		3121A6F81683BF15004747B6 /* KRMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3121A6F71683BF15004747B6 /* KRMessageView.m */; };
 		313E3C62163D96EB000165B7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 313E3C61163D96EB000165B7 /* MapKit.framework */; };
 		313E3C8E163D9B89000165B7 /* KRMapPin.m in Sources */ = {isa = PBXBuildFile; fileRef = 313E3C8D163D9B89000165B7 /* KRMapPin.m */; };
-		3160FB3D1664001100CD7C72 /* KRBroadcaster.m in Sources */ = {isa = PBXBuildFile; fileRef = 3160FB3C1664001100CD7C72 /* KRBroadcaster.m */; };
 		31948B84163ABB8F002B85BD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31948B83163ABB8F002B85BD /* AVFoundation.framework */; };
 		31AD0A5C1638424F000CFD7B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31AD0A5B1638424F000CFD7B /* UIKit.framework */; };
 		31AD0A5E1638424F000CFD7B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31AD0A5D1638424F000CFD7B /* Foundation.framework */; };
@@ -76,8 +75,6 @@
 		313E3C61163D96EB000165B7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		313E3C8C163D9B89000165B7 /* KRMapPin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRMapPin.h; sourceTree = "<group>"; };
 		313E3C8D163D9B89000165B7 /* KRMapPin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRMapPin.m; sourceTree = "<group>"; };
-		3160FB3B1664001100CD7C72 /* KRBroadcaster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRBroadcaster.h; sourceTree = "<group>"; };
-		3160FB3C1664001100CD7C72 /* KRBroadcaster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRBroadcaster.m; sourceTree = "<group>"; };
 		31948B83163ABB8F002B85BD /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		31AD0A571638424F000CFD7B /* Kijkruimte.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kijkruimte.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31AD0A5B1638424F000CFD7B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -242,8 +239,6 @@
 				31AD0A621638424F000CFD7B /* Supporting Files */,
 				313E3C8C163D9B89000165B7 /* KRMapPin.h */,
 				313E3C8D163D9B89000165B7 /* KRMapPin.m */,
-				3160FB3B1664001100CD7C72 /* KRBroadcaster.h */,
-				3160FB3C1664001100CD7C72 /* KRBroadcaster.m */,
 				3121A6F61683BF15004747B6 /* KRMessageView.h */,
 				3121A6F71683BF15004747B6 /* KRMessageView.m */,
 				31EB851316C7A0FB0012230F /* KRInfoViewController.h */,
@@ -437,7 +432,6 @@
 				31B4ECB4163A7D9F00BB5A31 /* KRTrackDetail.m in Sources */,
 				31B4ECB6163A82AF00BB5A31 /* SCGetTrackDetail.m in Sources */,
 				313E3C8E163D9B89000165B7 /* KRMapPin.m in Sources */,
-				3160FB3D1664001100CD7C72 /* KRBroadcaster.m in Sources */,
 				3121A6F81683BF15004747B6 /* KRMessageView.m in Sources */,
 				31EB851516C7A0FB0012230F /* KRInfoViewController.m in Sources */,
 			);
@@ -542,7 +536,7 @@
 		31AD0A911638424F000CFD7B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Klasien van de Zandschulp (2U5PP7ARKJ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Kijkruimte/Kijkruimte-Prefix.pch";
 				INFOPLIST_FILE = "Kijkruimte/Kijkruimte-Info.plist";
@@ -556,13 +550,13 @@
 		31AD0A921638424F000CFD7B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Klasien van de Zandschulp";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Kijkruimte/Kijkruimte-Prefix.pch";
 				INFOPLIST_FILE = "Kijkruimte/Kijkruimte-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5010F07D-8639-408D-A349-59ECC2C25354";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
