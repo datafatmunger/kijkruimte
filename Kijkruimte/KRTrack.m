@@ -44,6 +44,7 @@
         CLLocationDegrees lng = 0.0;
         
         for(NSString *tag in tags) {
+            NSLog(@"tag: %@", tag);
             if([tag rangeOfString:@"lat"].location != NSNotFound) {
                 lat = [self getNumber:tag];
             } else if([tag rangeOfString:@"lon"].location != NSNotFound)
@@ -105,7 +106,7 @@
 -(void)createPlayer {
     NSError *error;
     _audioPlayer = [[AVAudioPlayer alloc] initWithData:_audioData error:&error];
-    _audioPlayer.numberOfLoops = -1;
+    _audioPlayer.numberOfLoops = 0;
     _audioPlayer.volume = 1.0f;
     _audioPlayer.delegate = self;
     
