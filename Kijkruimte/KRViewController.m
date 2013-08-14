@@ -48,7 +48,7 @@
     
     [_actView startAnimating];
     
-    _currentLocation = [[CLLocation alloc] initWithLatitude:52.385538 longitude:4.915974];
+    _currentLocation = [[CLLocation alloc] initWithLatitude:52.383851 longitude:4.905685];
     MKCoordinateRegion region = _mapView.region;
     MKCoordinateSpan span = MKCoordinateSpanMake(MAP_ZOOM_LEVEL, MAP_ZOOM_LEVEL);
 	region.span = span;
