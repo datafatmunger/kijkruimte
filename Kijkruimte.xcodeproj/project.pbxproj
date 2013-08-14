@@ -81,9 +81,9 @@
 		3115EBF517BBD22B00748051 /* icon1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon1024.png; path = ../icon1024.png; sourceTree = "<group>"; };
 		3115EBFC17BBD30400748051 /* vogelsafari-splash-non-retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vogelsafari-splash-non-retina.png"; sourceTree = "<group>"; };
 		3115EBFD17BBD30400748051 /* vogelsafari-splash-retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vogelsafari-splash-retina.png"; sourceTree = "<group>"; };
-		3115EC0017BBD31200748051 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		3115EC0217BBD31600748051 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		3115EC0417BBD32000748051 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		3115EC0017BBD31200748051 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
+		3115EC0217BBD31600748051 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
+		3115EC0417BBD32000748051 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		3121A6F61683BF15004747B6 /* KRMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRMessageView.h; sourceTree = "<group>"; };
 		3121A6F71683BF15004747B6 /* KRMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRMessageView.m; sourceTree = "<group>"; };
 		313E3C61163D96EB000165B7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -192,9 +192,6 @@
 		31AD0A4C1638424F000CFD7B = {
 			isa = PBXGroup;
 			children = (
-				3115EC0417BBD32000748051 /* Default.png */,
-				3115EC0217BBD31600748051 /* Default-568h@2x.png */,
-				3115EC0017BBD31200748051 /* Default@2x.png */,
 				31E6D2CB1648489F00BACF3F /* CFNetwork.framework */,
 				313E3C61163D96EB000165B7 /* MapKit.framework */,
 				31E04FFF163AE7F30044F0F8 /* CoreLocation.framework */,
@@ -286,6 +283,9 @@
 		31E4D632163F02E300A05763 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				3115EC0417BBD32000748051 /* Default.png */,
+				3115EC0217BBD31600748051 /* Default-568h@2x.png */,
+				3115EC0017BBD31200748051 /* Default@2x.png */,
 				3115EBFC17BBD30400748051 /* vogelsafari-splash-non-retina.png */,
 				3115EBFD17BBD30400748051 /* vogelsafari-splash-retina.png */,
 				3115EBF017BBD22B00748051 /* icon29.png */,
