@@ -578,15 +578,15 @@
 		31AD0A911638424F000CFD7B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Klasien van de Zandschulp (2U5PP7ARKJ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Klasien van de Zandschulp (2U5PP7ARKJ)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: W.M. Kluppell (86T74DHKW3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: W.M. Kluppell (86T74DHKW3)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Kijkruimte/Kijkruimte-Prefix.pch";
 				INFOPLIST_FILE = "Kijkruimte/Kijkruimte-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "507AE48D-C049-47E3-B65D-5F11727846E5";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "507AE48D-C049-47E3-B65D-5F11727846E5";
+				PROVISIONING_PROFILE = "14026F42-53D5-471F-894B-283DB3D6BA7A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "14026F42-53D5-471F-894B-283DB3D6BA7A";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -594,15 +594,15 @@
 		31AD0A921638424F000CFD7B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Klasien van de Zandschulp (2U5PP7ARKJ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Klasien van de Zandschulp (2U5PP7ARKJ)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: W.M. Kluppell (86T74DHKW3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: W.M. Kluppell (86T74DHKW3)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Kijkruimte/Kijkruimte-Prefix.pch";
 				INFOPLIST_FILE = "Kijkruimte/Kijkruimte-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "507AE48D-C049-47E3-B65D-5F11727846E5";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "507AE48D-C049-47E3-B65D-5F11727846E5";
+				PROVISIONING_PROFILE = "14026F42-53D5-471F-894B-283DB3D6BA7A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "14026F42-53D5-471F-894B-283DB3D6BA7A";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
