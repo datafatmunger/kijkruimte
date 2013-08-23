@@ -20,12 +20,13 @@
 		3115EBFE17BBD30400748051 /* vogelsafari-splash-non-retina.png in Resources */ = {isa = PBXBuildFile; fileRef = 3115EBFC17BBD30400748051 /* vogelsafari-splash-non-retina.png */; };
 		3115EBFF17BBD30400748051 /* vogelsafari-splash-retina.png in Resources */ = {isa = PBXBuildFile; fileRef = 3115EBFD17BBD30400748051 /* vogelsafari-splash-retina.png */; };
 		3115EC0117BBD31200748051 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3115EC0017BBD31200748051 /* Default@2x.png */; };
-		3115EC0317BBD31600748051 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3115EC0217BBD31600748051 /* Default-568h@2x.png */; };
 		3115EC0517BBD32000748051 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3115EC0417BBD32000748051 /* Default.png */; };
 		3121A6F81683BF15004747B6 /* KRMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3121A6F71683BF15004747B6 /* KRMessageView.m */; };
 		313E3C62163D96EB000165B7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 313E3C61163D96EB000165B7 /* MapKit.framework */; };
 		313E3C8E163D9B89000165B7 /* KRMapPin.m in Sources */ = {isa = PBXBuildFile; fileRef = 313E3C8D163D9B89000165B7 /* KRMapPin.m */; };
 		3160FB3D1664001100CD7C72 /* KRBroadcaster.m in Sources */ = {isa = PBXBuildFile; fileRef = 3160FB3C1664001100CD7C72 /* KRBroadcaster.m */; };
+		316883A417C7DE7E00F65326 /* vogelsafari-splash-retina-5-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 316883A317C7DE7E00F65326 /* vogelsafari-splash-retina-5-3.png */; };
+		316883A617C7DE8E00F65326 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 316883A517C7DE8E00F65326 /* Default-568h@2x.png */; };
 		31948B84163ABB8F002B85BD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31948B83163ABB8F002B85BD /* AVFoundation.framework */; };
 		31AD0A5C1638424F000CFD7B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31AD0A5B1638424F000CFD7B /* UIKit.framework */; };
 		31AD0A5E1638424F000CFD7B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31AD0A5D1638424F000CFD7B /* Foundation.framework */; };
@@ -82,7 +83,6 @@
 		3115EBFC17BBD30400748051 /* vogelsafari-splash-non-retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vogelsafari-splash-non-retina.png"; sourceTree = "<group>"; };
 		3115EBFD17BBD30400748051 /* vogelsafari-splash-retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vogelsafari-splash-retina.png"; sourceTree = "<group>"; };
 		3115EC0017BBD31200748051 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
-		3115EC0217BBD31600748051 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		3115EC0417BBD32000748051 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		3121A6F61683BF15004747B6 /* KRMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRMessageView.h; sourceTree = "<group>"; };
 		3121A6F71683BF15004747B6 /* KRMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRMessageView.m; sourceTree = "<group>"; };
@@ -91,6 +91,8 @@
 		313E3C8D163D9B89000165B7 /* KRMapPin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRMapPin.m; sourceTree = "<group>"; };
 		3160FB3B1664001100CD7C72 /* KRBroadcaster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRBroadcaster.h; sourceTree = "<group>"; };
 		3160FB3C1664001100CD7C72 /* KRBroadcaster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRBroadcaster.m; sourceTree = "<group>"; };
+		316883A317C7DE7E00F65326 /* vogelsafari-splash-retina-5-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vogelsafari-splash-retina-5-3.png"; sourceTree = "<group>"; };
+		316883A517C7DE8E00F65326 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		31948B83163ABB8F002B85BD /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		31AD0A571638424F000CFD7B /* Kijkruimte.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kijkruimte.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31AD0A5B1638424F000CFD7B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -192,6 +194,7 @@
 		31AD0A4C1638424F000CFD7B = {
 			isa = PBXGroup;
 			children = (
+				316883A517C7DE8E00F65326 /* Default-568h@2x.png */,
 				31E6D2CB1648489F00BACF3F /* CFNetwork.framework */,
 				313E3C61163D96EB000165B7 /* MapKit.framework */,
 				31E04FFF163AE7F30044F0F8 /* CoreLocation.framework */,
@@ -283,8 +286,8 @@
 		31E4D632163F02E300A05763 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				316883A317C7DE7E00F65326 /* vogelsafari-splash-retina-5-3.png */,
 				3115EC0417BBD32000748051 /* Default.png */,
-				3115EC0217BBD31600748051 /* Default-568h@2x.png */,
 				3115EC0017BBD31200748051 /* Default@2x.png */,
 				3115EBFC17BBD30400748051 /* vogelsafari-splash-non-retina.png */,
 				3115EBFD17BBD30400748051 /* vogelsafari-splash-retina.png */,
@@ -399,8 +402,9 @@
 				3115EBFE17BBD30400748051 /* vogelsafari-splash-non-retina.png in Resources */,
 				3115EBFF17BBD30400748051 /* vogelsafari-splash-retina.png in Resources */,
 				3115EC0117BBD31200748051 /* Default@2x.png in Resources */,
-				3115EC0317BBD31600748051 /* Default-568h@2x.png in Resources */,
 				3115EC0517BBD32000748051 /* Default.png in Resources */,
+				316883A417C7DE7E00F65326 /* vogelsafari-splash-retina-5-3.png in Resources */,
+				316883A617C7DE8E00F65326 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -550,13 +554,15 @@
 		31AD0A911638424F000CFD7B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Klasien van de Zandschulp (2U5PP7ARKJ)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Klasien van de Zandschulp";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Klasien van de Zandschulp";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Kijkruimte/Kijkruimte-Prefix.pch";
 				INFOPLIST_FILE = "Kijkruimte/Kijkruimte-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "1B798FF3-1309-49A2-ADD9-472FFCC66E07";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1B798FF3-1309-49A2-ADD9-472FFCC66E07";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -564,13 +570,15 @@
 		31AD0A921638424F000CFD7B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Klasien van de Zandschulp";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Klasien van de Zandschulp";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Kijkruimte/Kijkruimte-Prefix.pch";
 				INFOPLIST_FILE = "Kijkruimte/Kijkruimte-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5010F07D-8639-408D-A349-59ECC2C25354";
+				PROVISIONING_PROFILE = "1B798FF3-1309-49A2-ADD9-472FFCC66E07";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1B798FF3-1309-49A2-ADD9-472FFCC66E07";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
