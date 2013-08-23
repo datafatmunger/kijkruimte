@@ -25,6 +25,7 @@
 @synthesize audioPlayer = _audioPlayer;
 @synthesize pin = _pin;
 @synthesize delegate = _delegate;
+@synthesize whisper = _whisper;
 
 -(id)initWithDictionary:(NSDictionary*)dictionary {
     self = [self init];
@@ -32,6 +33,7 @@
         _pin = nil;
         _audioPlayer = nil;
         _audioData = [[NSMutableData alloc] init];
+        _whisper = NO;
         
         _trackId = [dictionary objectForKey:@"id"];
         _uri = [dictionary objectForKey:@"uri"];
@@ -47,8 +49,12 @@
             NSLog(@"tag: %@", tag);
             if([tag rangeOfString:@"lat"].location != NSNotFound) {
                 lat = [self getNumber:tag];
-            } else if([tag rangeOfString:@"lon"].location != NSNotFound)
+            } else if([tag rangeOfString:@"lon"].location != NSNotFound) {
                 lng = [self getNumber:tag];
+            } else if([tag rangeOfString:@"whisper"].location != NSNotFound) {
+                NSLog(@"GOT WHISPER");
+                _whisper = YES;
+            }
         }
         _location = [[CLLocation alloc] initWithLatitude:lat longitude:lng];
     }

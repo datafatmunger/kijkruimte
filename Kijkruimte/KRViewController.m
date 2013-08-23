@@ -30,7 +30,9 @@
 
 @end
 
-@implementation KRViewController
+@implementation KRViewController {
+    KRTrack *_whisper;
+}
 
 -(void)viewDidLoad {
     [super viewDidLoad];
@@ -55,22 +57,19 @@
 	region.center = _currentLocation.coordinate;
     _mapView.region = region;
     
-    MKMapPoint points[9];
+    MKMapPoint points[4];
     
-    CLLocationCoordinate2D c1 = {52.384932, 4.905653};
+    CLLocationCoordinate2D c1 = {52.38351629, 4.90361599};
     points[0] = MKMapPointForCoordinate(c1);
-    CLLocationCoordinate2D c2 = {52.383753, 4.907048};
+    CLLocationCoordinate2D c2 = {52.38426149, 4.90524630};
     points[1] = MKMapPointForCoordinate(c2);
-    CLLocationCoordinate2D c3 = {52.382129, 4.903282};
+    CLLocationCoordinate2D c3 = {52.383771, 4.905707};
     points[2] = MKMapPointForCoordinate(c3);
-    CLLocationCoordinate2D c4 = {52.382980, 4.902273};
+    CLLocationCoordinate2D c4 = {52.38301053, 4.90410313};
     points[3] = MKMapPointForCoordinate(c4);
     
     MKPolygon *polygon = [MKPolygon polygonWithPoints:points count:4];
     [_mapView addOverlay:polygon];
-    
-    [_button setImage:[UIImage imageNamed:@"btn-start-pressed"]
-             forState:UIControlStateHighlighted];
     
     _locationManager = [[CLLocationManager alloc] init];
     _locationManager.delegate = self;
@@ -114,6 +113,8 @@
 -(void)updateTracks:(CLLocation*)location {
     if(!_isRunning) return;
     
+    BOOL playingGeo = NO;
+    
     for(int i = 0; i < [_tracks count]; i++) {
         KRTrack *track = [[_tracks allValues] objectAtIndex:i];
         
@@ -128,40 +129,52 @@
         
         double volume = 0.0;
         if(distance <= RADIUS && distance > 0.0f) {
-            volume = log(distance/100) * -1;
+            volume = (log(distance/100) * -1)/4;
             volume = volume > 1.0 ? 1.0 : volume;
             track.audioPlayer.volume = volume;
             if(track.audioPlayer != nil && ![track.audioPlayer isPlaying]) {
                 [track.audioPlayer play];
                 track.pin.isPlaying = YES;
-                [_mapView removeAnnotation:track.pin];
-                [_mapView addAnnotation:track.pin];
+//                [_mapView removeAnnotation:track.pin];
+//                [_mapView addAnnotation:track.pin];
             }
+            playingGeo = YES;
         } else if(distance <= 0.0f) {
             volume = 1.0;
             track.audioPlayer.volume = volume;
             if(track.audioPlayer != nil && ![track.audioPlayer isPlaying]) {
                 [track.audioPlayer play];
                 track.pin.isPlaying = YES;
-                [_mapView removeAnnotation:track.pin];
-                [_mapView addAnnotation:track.pin];
+//                [_mapView removeAnnotation:track.pin];
+//                [_mapView addAnnotation:track.pin];
             }
+            playingGeo = YES;
         } else {
             track.audioPlayer.volume = volume;
             if(track.pin.isPlaying != NO) {
                 //[track.audioPlayer stop];
                 track.pin.isPlaying = NO;
-                [_mapView removeAnnotation:track.pin];
-                [_mapView addAnnotation:track.pin];
+//                [_mapView removeAnnotation:track.pin];
+//                [_mapView addAnnotation:track.pin];
             }
+            playingGeo = playingGeo || NO;
         }
-//        [self broadcastTrack:track.trackId
-//                    location:location
-//               trackLocation:track.location
-//                playPosition:track.audioPlayer.currentTime
-//                      volume:volume];
         track.pin.subtitle = [NSString stringWithFormat:@"Volume: %f", volume];
         [_mapView setNeedsDisplay];
+    }
+    
+    if(!playingGeo) {
+        NSLog(@"PLAYING WHISPER");
+        _whisper.audioPlayer.volume = 1.0;
+        if(_whisper.audioPlayer != nil && ![_whisper.audioPlayer isPlaying]) {
+            [_whisper.audioPlayer play];
+            _whisper.pin.isPlaying = YES;
+//            [_mapView removeAnnotation:_whisper.pin];
+//            [_mapView addAnnotation:_whisper.pin];
+        }
+    } else {
+        NSLog(@"STOPING WHISPER");
+        _whisper.audioPlayer.volume = 0.0;
     }
 }
 
@@ -173,36 +186,31 @@
     if(_isRunning) {
         _currentLocation = [[CLLocation alloc] initWithLatitude:52.388 longitude:4.909006];
         [_locationManager startUpdatingLocation];
-        [_button setImage:[UIImage imageNamed:@"btn-stop-passive"]
+        [_button setImage:[UIImage imageNamed:@"klein-leed-stop"]
                  forState:UIControlStateNormal];
-        [_button setImage:[UIImage imageNamed:@"btn-stop-pressed"]
-                 forState:UIControlStateHighlighted];
-        
     } else {
         [_locationManager stopUpdatingLocation];
         for(KRTrack *track in _tracks.allValues) {
             [track.audioPlayer stop];
             track.audioPlayer.currentTime = 0.0f;
             track.pin.isPlaying = NO;
-            [_mapView removeAnnotation:track.pin];
-            [_mapView addAnnotation:track.pin];
+//            [_mapView removeAnnotation:track.pin];
+//            [_mapView addAnnotation:track.pin];
         }
-        [_button setImage:[UIImage imageNamed:@"btn-start-passive"]
+        [_button setImage:[UIImage imageNamed:@"klein-leed-start"]
                  forState:UIControlStateNormal];
-        [_button setImage:[UIImage imageNamed:@"btn-start-pressed"]
-                 forState:UIControlStateHighlighted];
         if(_loadCount == _tracks.count)
             _messageView.hidden = YES;
         [_timer invalidate];
         
-        for(int i = 0; i < [_tracks count]; i++) {
-            KRTrack *track = [[_tracks allValues] objectAtIndex:i];
-            [self broadcastTrack:track.trackId
-                        location:_currentLocation
-                   trackLocation:track.location
-                    playPosition:track.audioPlayer.currentTime
-                          volume:0.0f];
-        }
+//        for(int i = 0; i < [_tracks count]; i++) {
+//            KRTrack *track = [[_tracks allValues] objectAtIndex:i];
+//            [self broadcastTrack:track.trackId
+//                        location:_currentLocation
+//                   trackLocation:track.location
+//                    playPosition:track.audioPlayer.currentTime
+//                          volume:0.0f];
+//        }
     }
 }
 
@@ -229,7 +237,12 @@
                                                       title:track.title
                                                    subtitle:[NSString stringWithFormat:@"Volume: %f", 0.0]];
         track.pin = mp;
-        [_mapView addAnnotation:track.pin];
+//        [_mapView addAnnotation:track.pin];
+        
+        if(track.whisper) {
+            NSLog(@"Setting whisper");
+            _whisper = track;
+        }
     }
     [_messageLabel setText:[NSString stringWithFormat:@"Loading audio...%d of %d", _loadCount, tracks.count]];
 
@@ -259,26 +272,26 @@
 #pragma mark -
 #pragma mark MKMapKitDelegate
 
--(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>) annotation {
-    MKPinAnnotationView *newAnnotation = nil;
-    if([annotation isKindOfClass:[KRMapPin class]]) {
-        KRMapPin *pin = (KRMapPin*)annotation;
-        if(pin.isPlaying) {
-            newAnnotation = [[MKPinAnnotationView alloc] initWithAnnotation:annotation
-                                                            reuseIdentifier:@"GreenPin"];
-            newAnnotation.pinColor = MKPinAnnotationColorGreen;
-            //newAnnotation.animatesDrop = YES;
-            newAnnotation.canShowCallout = NO;
-        } else {
-            newAnnotation = [[MKPinAnnotationView alloc] initWithAnnotation:annotation
-                                                            reuseIdentifier:@"RedPin"];
-            newAnnotation.pinColor = MKPinAnnotationColorRed;
-            //newAnnotation.animatesDrop = YES;
-            newAnnotation.canShowCallout = NO;
-        }
-    }
-    return newAnnotation;
-}
+//-(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>) annotation {
+//    MKPinAnnotationView *newAnnotation = nil;
+//    if([annotation isKindOfClass:[KRMapPin class]]) {
+//        KRMapPin *pin = (KRMapPin*)annotation;
+//        if(pin.isPlaying) {
+//            newAnnotation = [[MKPinAnnotationView alloc] initWithAnnotation:annotation
+//                                                            reuseIdentifier:@"GreenPin"];
+//            newAnnotation.pinColor = MKPinAnnotationColorGreen;
+//            //newAnnotation.animatesDrop = YES;
+//            newAnnotation.canShowCallout = NO;
+//        } else {
+//            newAnnotation = [[MKPinAnnotationView alloc] initWithAnnotation:annotation
+//                                                            reuseIdentifier:@"RedPin"];
+//            newAnnotation.pinColor = MKPinAnnotationColorRed;
+//            //newAnnotation.animatesDrop = YES;
+//            newAnnotation.canShowCallout = NO;
+//        }
+//    }
+//    return newAnnotation;
+//}
 
 -(MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay {
     MKPolygonView *polygonView = [[MKPolygonView alloc] initWithPolygon:overlay];

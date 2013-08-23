@@ -37,6 +37,8 @@ NSURLConnectionDataDelegate
     
     NSMutableURLRequest *_request;
     NSInteger _tries;
+    
+    BOOL _whisper;
 }
 
 @property(nonatomic,strong)NSNumber *trackId;
@@ -46,6 +48,7 @@ NSURLConnectionDataDelegate
 @property(nonatomic,strong)AVAudioPlayer *audioPlayer;
 @property(nonatomic,strong)KRMapPin *pin;
 @property(nonatomic,strong)id<KRTrackDelegate> delegate;
+@property(nonatomic,assign)BOOL whisper;
 
 -(id)initWithDictionary:(NSDictionary*)dictionary;
 -(void)getData:(KRTrackDetail*)detail;
