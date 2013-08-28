@@ -75,7 +75,7 @@
 
 -(NSString*)getFilename {
     NSString *filename = [NSString stringWithFormat:@"%d.mp3", [_trackId intValue]];
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *songFile = [documentsDirectory stringByAppendingPathComponent:filename];
     return songFile;
