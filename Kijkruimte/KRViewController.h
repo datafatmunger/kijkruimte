@@ -21,9 +21,7 @@ MKMapViewDelegate,
 SCGetUserTracksDelegate,
 SCGetTrackDetailDelegate,
 KRMessageViewDelegate,
-KRTrackDelegate,
-UITableViewDataSource,
-UITableViewDelegate> {
+KRTrackDelegate> {
     
     NSMutableDictionary *_tracks;
     

@@ -12,6 +12,7 @@
 #import "KRTrackDetail.h"
 #import "KRViewController.h"
 
+#define RADIUS 50.0f
 #define MAP_ZOOM_LEVEL 0.01
 
 @interface KRViewController (Private)
@@ -47,39 +48,48 @@
     
     [_actView startAnimating];
     
-    _currentLocation = [[CLLocation alloc] initWithLatitude:52.385669 longitude:4.91576];
+    _currentLocation = [[CLLocation alloc] initWithLatitude:52.3735035 longitude:4.8488655];
     MKCoordinateRegion region = _mapView.region;
     MKCoordinateSpan span = MKCoordinateSpanMake(MAP_ZOOM_LEVEL, MAP_ZOOM_LEVEL);
 	region.span = span;
 	region.center = _currentLocation.coordinate;
     _mapView.region = region;
     
-    MKMapPoint points[9];
+    MKMapPoint points[13];
     
-    CLLocationCoordinate2D c1 = {52.388972, 4.919949};
+    // Center
+    //52.372521 + ((52.374486 - 52.372521) / 2) = 52.3735035
+    //4.842825 + ((4.854906 - 4.842825) / 2) = 4.8488655
+    
+    CLLocationCoordinate2D c1 = {52.375141, 4.843426};
     points[0] = MKMapPointForCoordinate(c1);
-    CLLocationCoordinate2D c2 = {52.387459, 4.924005};
+    CLLocationCoordinate2D c2 = {52.375010, 4.845722};
     points[1] = MKMapPointForCoordinate(c2);
-    CLLocationCoordinate2D c3 = {52.385848, 4.922631};
+    CLLocationCoordinate2D c3 = {52.375324, 4.847460};
     points[2] = MKMapPointForCoordinate(c3);
-    CLLocationCoordinate2D c4 = {52.385403, 4.918970};
+    CLLocationCoordinate2D c4 = {52.375953, 4.850485};
     points[3] = MKMapPointForCoordinate(c4);
-    CLLocationCoordinate2D c5 = {52.382718, 4.913995};
+    CLLocationCoordinate2D c5 = {52.376254, 4.852309};
     points[4] = MKMapPointForCoordinate(c5);
-    CLLocationCoordinate2D c6 = {52.383013, 4.910733};
+    CLLocationCoordinate2D c6 = {52.376346, 4.854240};
     points[5] = MKMapPointForCoordinate(c6);
-    CLLocationCoordinate2D c7 = {52.382139, 4.908595};
+    CLLocationCoordinate2D c7 = {52.374486, 4.854906};
     points[6] = MKMapPointForCoordinate(c7);
-    CLLocationCoordinate2D c8 = {52.382515, 4.907895};
+    CLLocationCoordinate2D c8 = {52.373569, 4.852352};
     points[7] = MKMapPointForCoordinate(c8);
-    CLLocationCoordinate2D c9 = {52.386444, 4.914182};
+    CLLocationCoordinate2D c9 = {52.372992, 4.849799};
     points[8] = MKMapPointForCoordinate(c9);
+    CLLocationCoordinate2D c10 = {52.372468, 4.846816};
+    points[9] = MKMapPointForCoordinate(c10);
+    CLLocationCoordinate2D c11 = {52.372521, 4.842825};
+    points[10] = MKMapPointForCoordinate(c11);
+    CLLocationCoordinate2D c12 = {52.373962, 4.842932};
+    points[11] = MKMapPointForCoordinate(c12);
+    CLLocationCoordinate2D c13 = {52.375141, 4.843426};
+    points[12] = MKMapPointForCoordinate(c13);
     
-    MKPolygon *polygon = [MKPolygon polygonWithPoints:points count:9];
+    MKPolygon *polygon = [MKPolygon polygonWithPoints:points count:13];
     [_mapView addOverlay:polygon];
-    
-    [_button setImage:[UIImage imageNamed:@"btn-start-pressed"]
-             forState:UIControlStateHighlighted];
     
     _locationManager = [[CLLocationManager alloc] init];
     _locationManager.delegate = self;
@@ -96,7 +106,7 @@
                         options: UIViewAnimationCurveEaseOut
                      animations:^{
                          _controls.frame = CGRectMake(_controls.frame.origin.x,
-                                                      screenRect.size.height - _controls.frame.size.height - [[UIApplication sharedApplication] statusBarFrame].size.height,
+                                                      screenRect.size.height - _controls.frame.size.height,
                                                       _controls.frame.size.width,
                                                       _controls.frame.size.height);
                          
@@ -136,8 +146,8 @@
         NSLog(@"You are %fm from sound: %@", distance, track.trackId);
         
         double volume = 0.0;
-        if(distance <= 100.0f && distance > 0.0f) {
-            volume = (log(distance/100) * -1)/4;
+        if(distance <= RADIUS && distance > 0.0f) {
+            volume = (log(distance/RADIUS) * -1)/4;
             volume = volume > 1.0 ? 1.0 : volume;
             track.audioPlayer.volume = volume;
             if(track.audioPlayer != nil && ![track.audioPlayer isPlaying]) {
@@ -180,12 +190,10 @@
     _isRunning = !_isRunning;
     
     if(_isRunning) {
-        _currentLocation = [[CLLocation alloc] initWithLatitude:52.385669 longitude:4.91576];
+        _currentLocation = [[CLLocation alloc] initWithLatitude:52.3735035 longitude:4.8488655];
         [_locationManager startUpdatingLocation];
-        [_button setImage:[UIImage imageNamed:@"btn-stop-passive"]
+        [_button setImage:[UIImage imageNamed:@"stopknop"]
                  forState:UIControlStateNormal];
-        [_button setImage:[UIImage imageNamed:@"btn-stop-pressed"]
-                 forState:UIControlStateHighlighted];
         
     } else {
         [_locationManager stopUpdatingLocation];
@@ -195,22 +203,20 @@
             //            [_mapView removeAnnotation:track.pin];
             //            [_mapView addAnnotation:track.pin];
         }
-        [_button setImage:[UIImage imageNamed:@"btn-start-passive"]
+        [_button setImage:[UIImage imageNamed:@"startknop"]
                  forState:UIControlStateNormal];
-        [_button setImage:[UIImage imageNamed:@"btn-start-pressed"]
-                 forState:UIControlStateHighlighted];
         if(_loadCount == _tracks.count)
             _messageView.hidden = YES;
         [_timer invalidate];
         
-        for(int i = 0; i < [_tracks count]; i++) {
-            KRTrack *track = [[_tracks allValues] objectAtIndex:i];
-            [self broadcastTrack:track.trackId
-                        location:_currentLocation
-                   trackLocation:track.location
-                    playPosition:track.audioPlayer.currentTime
-                          volume:0.0f];
-        }
+//        for(int i = 0; i < [_tracks count]; i++) {
+//            KRTrack *track = [[_tracks allValues] objectAtIndex:i];
+//            [self broadcastTrack:track.trackId
+//                        location:_currentLocation
+//                   trackLocation:track.location
+//                    playPosition:track.audioPlayer.currentTime
+//                          volume:0.0f];
+//        }
     }
 }
 
@@ -363,8 +369,11 @@
 
 -(void)testModeUpdate {
     
-    double randLat = [self randomDoubleBetween:52.382139 and:52.388972];
-    double randLng = [self randomDoubleBetween:4.907895 and:4.924005];
+    //52.372521 + ((52.374486 - 52.372521) / 2) = 52.3735035
+    //4.842825 + ((4.854906 - 4.842825) / 2) = 4.8488655
+    
+    double randLat = [self randomDoubleBetween:52.372521 and:52.374486];
+    double randLng = [self randomDoubleBetween:4.842825 and:4.854906];
     
     _currentLocation = [[CLLocation alloc] initWithLatitude:randLat longitude:randLng];
     [_messageLabel setText:[NSString stringWithFormat:@"You are too far away! Using random location: %f, %f",
@@ -418,7 +427,7 @@
 -(void)getTracks {
     SCGetUserTracks *tracksAPI = [[SCGetUserTracks alloc] init];
     tracksAPI.delegate = self;
-    [tracksAPI getTracks:@"vogelsafari"];
+    [tracksAPI getTracks:@"josephsghost"];
 }
 
 @end
