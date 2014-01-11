@@ -39,7 +39,6 @@ NSString *kSCServiceAPIURL = @"http://api.soundcloud.com/";
     NSLog(@"REQUEST TO: %@", urlStr);
           
     NSURL *url = [NSURL URLWithString:urlStr];
-
     BOOL fromCache = [@"GET" isEqualToString:method] && useCache;
 
     _urlRequest = [NSMutableURLRequest requestWithURL:url
@@ -55,10 +54,10 @@ NSString *kSCServiceAPIURL = @"http://api.soundcloud.com/";
             id key = [enumerator nextObject];
         
             for(NSInteger i = 0; key != nil; key = [enumerator nextObject], i++) {
-                endpoint = [endpoint stringByAppendingFormat:@"%@%@=%@",
-                            i == 0 ? @"?" : @"&",
-                            key,
-                            [parameters objectForKey:key]];
+                urlStr = [urlStr stringByAppendingFormat:@"%@%@=%@",
+                          @"&",
+                          key,
+                          [parameters objectForKey:key]];
             }
         } else {
             NSError *error;
@@ -73,8 +72,9 @@ NSString *kSCServiceAPIURL = @"http://api.soundcloud.com/";
         }
 	}
     
-    NSLog(@"URL is %@", urlStr);
-  
+    url = [NSURL URLWithString:urlStr];
+    [_urlRequest setURL:url];
+    NSLog(@"URL is %@", [_urlRequest.URL absoluteString]);
     if(!sync) {
         [self sendAsync:_urlRequest];
     } else {

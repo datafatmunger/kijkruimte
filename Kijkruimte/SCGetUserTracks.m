@@ -18,7 +18,7 @@
     request.delegate = self;
     [request getResponseForRequest:[NSString stringWithFormat:@"users/%@/tracks", username]
                             method:@"GET"
-                        parameters:nil
+                        parameters:@{ @"limit": @"100" }
                           useCache:NO
                               sync:_sync];
 }

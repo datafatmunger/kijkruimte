@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3100A903185B78A700D1F39F /* credits.png in Resources */ = {isa = PBXBuildFile; fileRef = 3100A901185B78A700D1F39F /* credits.png */; };
+		3100A904185B78A700D1F39F /* credits@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3100A902185B78A700D1F39F /* credits@2x.png */; };
+		3100A907185B797B00D1F39F /* i.png in Resources */ = {isa = PBXBuildFile; fileRef = 3100A905185B797B00D1F39F /* i.png */; };
+		3100A908185B797B00D1F39F /* i@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3100A906185B797B00D1F39F /* i@2x.png */; };
 		3108FE57163844C500A3D243 /* SCGetUserTracks.m in Sources */ = {isa = PBXBuildFile; fileRef = 3108FE56163844C500A3D243 /* SCGetUserTracks.m */; };
 		3108FE5E1638451300A3D243 /* SCServiceAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 3108FE5D1638451300A3D243 /* SCServiceAPI.m */; };
 		3108FE5F1638454400A3D243 /* SCServiceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 31AD0A9716384273000CFD7B /* SCServiceRequest.m */; };
@@ -65,6 +69,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3100A901185B78A700D1F39F /* credits.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = credits.png; sourceTree = "<group>"; };
+		3100A902185B78A700D1F39F /* credits@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "credits@2x.png"; sourceTree = "<group>"; };
+		3100A905185B797B00D1F39F /* i.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = i.png; sourceTree = "<group>"; };
+		3100A906185B797B00D1F39F /* i@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "i@2x.png"; sourceTree = "<group>"; };
 		3108FE55163844C500A3D243 /* SCGetUserTracks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCGetUserTracks.h; sourceTree = "<group>"; };
 		3108FE56163844C500A3D243 /* SCGetUserTracks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCGetUserTracks.m; sourceTree = "<group>"; };
 		3108FE5C1638451300A3D243 /* SCServiceAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCServiceAPI.h; sourceTree = "<group>"; };
@@ -274,6 +282,10 @@
 		31E4D632163F02E300A05763 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				3100A905185B797B00D1F39F /* i.png */,
+				3100A906185B797B00D1F39F /* i@2x.png */,
+				3100A901185B78A700D1F39F /* credits.png */,
+				3100A902185B78A700D1F39F /* credits@2x.png */,
 				3165074D18392355008EFD90 /* Default-568h@2x.png */,
 				3165074B1839234E008EFD90 /* Default~iphone.png */,
 				3165074918392346008EFD90 /* Default.png */,
@@ -386,11 +398,15 @@
 				3165075518392486008EFD90 /* stopknop.png in Resources */,
 				3165075618392486008EFD90 /* stopknop@2x.png in Resources */,
 				3165073C18391F59008EFD90 /* 72.png in Resources */,
+				3100A908185B797B00D1F39F /* i@2x.png in Resources */,
 				3165074A18392346008EFD90 /* Default.png in Resources */,
 				3165075418392486008EFD90 /* startknop@2x.png in Resources */,
 				3165074718392009008EFD90 /* 80.png in Resources */,
+				3100A904185B78A700D1F39F /* credits@2x.png in Resources */,
 				3165073D18391F59008EFD90 /* 114.png in Resources */,
 				3165073E18391F59008EFD90 /* 512.png in Resources */,
+				3100A903185B78A700D1F39F /* credits.png in Resources */,
+				3100A907185B797B00D1F39F /* i.png in Resources */,
 				3165074E18392355008EFD90 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
