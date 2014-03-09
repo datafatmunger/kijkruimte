@@ -14,20 +14,29 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" id="nYv-P8-Gef">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="164"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="delegate" destination="sfR-tX-hJg" id="Nw9-KA-3Gc"/>
                                 </connections>
                             </scrollView>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" id="8Zn-Vh-Ujy">
-                                <rect key="frame" x="141" y="511" width="39" height="37"/>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="1" id="8Zn-Vh-Ujy">
+                                <rect key="frame" x="141" y="134" width="39" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </pageControl>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="FD5-5S-Vcn">
+                                <rect key="frame" x="0.0" y="164" width="320" height="404"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="sfR-tX-hJg" id="Otb-eW-Oj2"/>
+                                </connections>
+                            </mapView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
+                        <outlet property="mapView" destination="FD5-5S-Vcn" id="iur-L5-SmX"/>
                         <outlet property="pageControl" destination="8Zn-Vh-Ujy" id="19c-6s-Omy"/>
                         <outlet property="scrollView" destination="nYv-P8-Gef" id="Rgq-1Y-MZD"/>
                         <segue destination="2" kind="modal" identifier="toWalk" id="5Zc-Wi-ZEy"/>

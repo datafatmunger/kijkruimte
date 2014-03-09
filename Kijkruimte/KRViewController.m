@@ -72,7 +72,6 @@
 	region.span = span;
 	region.center = _currentLocation.coordinate;
     _mapView.region = region;
-    
     [_mapView addOverlay:self.walk.polygon];
     
     _locationManager = [[CLLocationManager alloc] init];

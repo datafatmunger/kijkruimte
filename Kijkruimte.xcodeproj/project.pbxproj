@@ -55,6 +55,8 @@
 		31C4EC6118CB854600A4DAD5 /* KRGetWalks.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C4EC6018CB854600A4DAD5 /* KRGetWalks.m */; };
 		31C4EC6418CB866000A4DAD5 /* KRWalk.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C4EC6318CB866000A4DAD5 /* KRWalk.m */; };
 		31C4EC6718CB8AA200A4DAD5 /* KRWalkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C4EC6618CB8AA200A4DAD5 /* KRWalkViewController.m */; };
+		31C4EC6B18CC96EE00A4DAD5 /* WalkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31C4EC6A18CC96EE00A4DAD5 /* WalkView.xib */; };
+		31C4EC6E18CC977E00A4DAD5 /* KRWalkView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C4EC6D18CC977E00A4DAD5 /* KRWalkView.m */; };
 		31E05000163AE7F30044F0F8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31E04FFF163AE7F30044F0F8 /* CoreLocation.framework */; };
 		31E4D638163F02F700A05763 /* achtergrond-btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 31E4D633163F02F700A05763 /* achtergrond-btn@2x.png */; };
 		31E6D2CC1648489F00BACF3F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31E6D2CB1648489F00BACF3F /* CFNetwork.framework */; };
@@ -138,6 +140,9 @@
 		31C4EC6318CB866000A4DAD5 /* KRWalk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRWalk.m; sourceTree = "<group>"; };
 		31C4EC6518CB8AA200A4DAD5 /* KRWalkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRWalkViewController.h; sourceTree = "<group>"; };
 		31C4EC6618CB8AA200A4DAD5 /* KRWalkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRWalkViewController.m; sourceTree = "<group>"; };
+		31C4EC6A18CC96EE00A4DAD5 /* WalkView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WalkView.xib; sourceTree = "<group>"; };
+		31C4EC6C18CC977E00A4DAD5 /* KRWalkView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRWalkView.h; sourceTree = "<group>"; };
+		31C4EC6D18CC977E00A4DAD5 /* KRWalkView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRWalkView.m; sourceTree = "<group>"; };
 		31E04FFF163AE7F30044F0F8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		31E4D633163F02F700A05763 /* achtergrond-btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "achtergrond-btn@2x.png"; sourceTree = "<group>"; };
 		31E6D2CB1648489F00BACF3F /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -260,6 +265,9 @@
 				31650757183977FB008EFD90 /* Images.xcassets */,
 				31C4EC6518CB8AA200A4DAD5 /* KRWalkViewController.h */,
 				31C4EC6618CB8AA200A4DAD5 /* KRWalkViewController.m */,
+				31C4EC6A18CC96EE00A4DAD5 /* WalkView.xib */,
+				31C4EC6C18CC977E00A4DAD5 /* KRWalkView.h */,
+				31C4EC6D18CC977E00A4DAD5 /* KRWalkView.m */,
 			);
 			path = Kijkruimte;
 			sourceTree = "<group>";
@@ -412,6 +420,7 @@
 				3165074818392009008EFD90 /* 120.png in Resources */,
 				3165075518392486008EFD90 /* stopknop.png in Resources */,
 				3165075618392486008EFD90 /* stopknop@2x.png in Resources */,
+				31C4EC6B18CC96EE00A4DAD5 /* WalkView.xib in Resources */,
 				3165073C18391F59008EFD90 /* 72.png in Resources */,
 				3100A908185B797B00D1F39F /* i@2x.png in Resources */,
 				3165074A18392346008EFD90 /* Default.png in Resources */,
@@ -460,6 +469,7 @@
 				31C4EC6418CB866000A4DAD5 /* KRWalk.m in Sources */,
 				31C4EC6118CB854600A4DAD5 /* KRGetWalks.m in Sources */,
 				3108FE5F1638454400A3D243 /* SCServiceRequest.m in Sources */,
+				31C4EC6E18CC977E00A4DAD5 /* KRWalkView.m in Sources */,
 				31AD0A681638424F000CFD7B /* main.m in Sources */,
 				31AD0A6C1638424F000CFD7B /* KRAppDelegate.m in Sources */,
 				31AD0A781638424F000CFD7B /* KRViewController.m in Sources */,

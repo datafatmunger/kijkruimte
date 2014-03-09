@@ -7,6 +7,7 @@
 //
 
 #import "KRViewController.h"
+#import "KRWalkView.h"
 #import "KRWalkViewController.h"
 
 @interface KRWalkViewController ()
@@ -35,8 +36,16 @@
     [walksAPI getWalks];
 }
 
+-(void)showWalk {
+	MKCoordinateRegion region = _mapView.region;
+    MKCoordinateSpan span = MKCoordinateSpanMake(0.01, 0.01);
+	region.span = span;
+	region.center = self.walk.location.coordinate;
+    self.mapView.region = region;
+    [self.mapView addOverlay:self.walk.polygon];
+}
+
 -(void)toWalk {
-	self.walk = self.walks[0];
 	[self performSegueWithIdentifier:@"toWalk" sender:self];
 }
 
@@ -44,14 +53,29 @@
 #pragma mark KRGetWalksDelegate <NSObject>
 
 -(void)handleWalks:(NSArray*)walks {
-	for(KRWalk *walk in walks) {
+	for(NSInteger i = 0; i < walks.count; i++) {
+		KRWalk *walk = walks[i];
 		NSLog(@"Got walk: %@", walk.title);
-		NSLog(@"Got scUser: %@", walk.scUser);
+		KRWalkView *walkView = [[[NSBundle mainBundle] loadNibNamed:@"WalkView" owner:self options:nil] objectAtIndex:0];
+		walkView.frame = CGRectMake(self.scrollView.frame.size.width * i,
+									0,
+									walkView.frame.size.width,
+									walkView.frame.size.height);
+		NSLog(@"Walk view frame: %@", NSStringFromCGRect(walkView.frame));
+		walkView.titleLabel.text = walk.title;
+		NSString *urlStr = [NSString stringWithFormat:@"http://hearushere.nl/%@", walk.imageURLStr];
+		walkView.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:urlStr]]];
+		walkView.imageView.layer.cornerRadius = walkView.imageView.frame.size.height / 2;
+        walkView.imageView.layer.masksToBounds = YES;
+		[self.scrollView addSubview:walkView];
 	}
-	self.walks = walks;
-	
 	self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * walks.count,
 											 self.scrollView.frame.size.height);
+	self.pageControl.numberOfPages = walks.count;
+	self.walk = walks[0];
+	self.walks = walks;
+	
+	[self showWalk];
 }
 
 -(void)handleGetWalksError:(NSString*)message {
@@ -65,7 +89,25 @@
     CGFloat pageWidth = self.scrollView.frame.size.width;
     float fractionalPage = self.scrollView.contentOffset.x / pageWidth;
     NSInteger page = lround(fractionalPage);
-    self.pageControl.currentPage = page;
+	
+	if(page != self.pageControl.currentPage) {
+		self.pageControl.currentPage = page;
+		
+		[self.mapView removeOverlay:self.walk.polygon];
+		self.walk = self.walks[page];
+		[self showWalk];
+	}
+}
+
+#pragma mark -
+#pragma mark MKMapKitDelegate
+
+-(MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay {
+    MKPolygonView *polygonView = [[MKPolygonView alloc] initWithPolygon:overlay];
+    polygonView.fillColor = [[UIColor redColor] colorWithAlphaComponent:0.2];
+    polygonView.strokeColor = [[UIColor redColor] colorWithAlphaComponent:0.7];
+    polygonView.lineWidth = 3;
+    return polygonView;
 }
 
 

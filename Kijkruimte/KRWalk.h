@@ -12,6 +12,7 @@
 @interface KRWalk : NSObject
 
 @property(nonatomic, strong)NSString *title;
+@property(nonatomic, strong)NSString *imageURLStr;
 @property(nonatomic, strong)NSString *scUser;
 @property(nonatomic, strong)MKPolygon *polygon;
 @property(nonatomic, strong)CLLocation *location;
