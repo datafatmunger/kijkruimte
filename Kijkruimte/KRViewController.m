@@ -77,6 +77,10 @@
     _locationManager.delegate = self;
 	
 	[self getTracks];
+	
+	if(self.walk.credits) {
+		_info.hidden = NO;
+	}
 }
 
 -(void)didReceiveMemoryWarning {

@@ -100,7 +100,7 @@
                                     </button>
                                 </subviews>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="xTX-Jq-mf3">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="xTX-Jq-mf3">
                                 <rect key="frame" x="282" y="43" width="22" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
@@ -154,6 +154,7 @@
                         <outlet property="_actView" destination="Ijk-gG-Bva" id="9zF-QX-Ajl"/>
                         <outlet property="_button" destination="Xhc-l1-QCn" id="05z-OL-5SA"/>
                         <outlet property="_controls" destination="5wI-UU-KCa" id="SWD-g2-xx9"/>
+                        <outlet property="_info" destination="xTX-Jq-mf3" id="TXv-5A-DYR"/>
                         <outlet property="_mapView" destination="tay-Eg-iP9" id="mQn-Qr-h4c"/>
                         <outlet property="_messageLabel" destination="1KW-Ej-88F" id="X9E-BL-Riw"/>
                         <outlet property="_messageView" destination="rQ2-bt-Pbn" id="7jH-Se-qre"/>

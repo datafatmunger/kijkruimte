@@ -32,6 +32,7 @@ KRTrackDelegate> {
     IBOutlet UIButton *_button;
     IBOutlet KRMessageView *_messageView;
     IBOutlet UILabel *_messageLabel;
+	IBOutlet UIButton *_info;
     
     NSInteger _loadCount;
     CLLocationManager *_locationManager;
