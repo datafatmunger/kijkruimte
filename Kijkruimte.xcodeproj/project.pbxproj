@@ -52,6 +52,9 @@
 		31AD0A8D1638424F000CFD7B /* KijkruimteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 31AD0A8C1638424F000CFD7B /* KijkruimteTests.m */; };
 		31B4ECB4163A7D9F00BB5A31 /* KRTrackDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B4ECB3163A7D9F00BB5A31 /* KRTrackDetail.m */; };
 		31B4ECB6163A82AF00BB5A31 /* SCGetTrackDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B4ECB5163A82AF00BB5A31 /* SCGetTrackDetail.m */; };
+		31C4EC6118CB854600A4DAD5 /* KRGetWalks.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C4EC6018CB854600A4DAD5 /* KRGetWalks.m */; };
+		31C4EC6418CB866000A4DAD5 /* KRWalk.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C4EC6318CB866000A4DAD5 /* KRWalk.m */; };
+		31C4EC6718CB8AA200A4DAD5 /* KRWalkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C4EC6618CB8AA200A4DAD5 /* KRWalkViewController.m */; };
 		31E05000163AE7F30044F0F8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31E04FFF163AE7F30044F0F8 /* CoreLocation.framework */; };
 		31E4D638163F02F700A05763 /* achtergrond-btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 31E4D633163F02F700A05763 /* achtergrond-btn@2x.png */; };
 		31E6D2CC1648489F00BACF3F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31E6D2CB1648489F00BACF3F /* CFNetwork.framework */; };
@@ -129,6 +132,12 @@
 		31B4ECB2163A7D9F00BB5A31 /* KRTrackDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRTrackDetail.h; sourceTree = "<group>"; };
 		31B4ECB3163A7D9F00BB5A31 /* KRTrackDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRTrackDetail.m; sourceTree = "<group>"; };
 		31B4ECB5163A82AF00BB5A31 /* SCGetTrackDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCGetTrackDetail.m; sourceTree = "<group>"; };
+		31C4EC5F18CB854600A4DAD5 /* KRGetWalks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRGetWalks.h; sourceTree = "<group>"; };
+		31C4EC6018CB854600A4DAD5 /* KRGetWalks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRGetWalks.m; sourceTree = "<group>"; };
+		31C4EC6218CB866000A4DAD5 /* KRWalk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRWalk.h; sourceTree = "<group>"; };
+		31C4EC6318CB866000A4DAD5 /* KRWalk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRWalk.m; sourceTree = "<group>"; };
+		31C4EC6518CB8AA200A4DAD5 /* KRWalkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRWalkViewController.h; sourceTree = "<group>"; };
+		31C4EC6618CB8AA200A4DAD5 /* KRWalkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRWalkViewController.m; sourceTree = "<group>"; };
 		31E04FFF163AE7F30044F0F8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		31E4D633163F02F700A05763 /* achtergrond-btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "achtergrond-btn@2x.png"; sourceTree = "<group>"; };
 		31E6D2CB1648489F00BACF3F /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -164,7 +173,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3108FE54163843FC00A3D243 /* SoundCloud */ = {
+		3108FE54163843FC00A3D243 /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				3108FE5C1638451300A3D243 /* SCServiceAPI.h */,
@@ -175,8 +184,10 @@
 				3108FE56163844C500A3D243 /* SCGetUserTracks.m */,
 				31B4ECAF163A799A00BB5A31 /* SCGetTrackDetail.h */,
 				31B4ECB5163A82AF00BB5A31 /* SCGetTrackDetail.m */,
+				31C4EC5F18CB854600A4DAD5 /* KRGetWalks.h */,
+				31C4EC6018CB854600A4DAD5 /* KRGetWalks.m */,
 			);
-			name = SoundCloud;
+			name = Services;
 			sourceTree = "<group>";
 		};
 		3108FE66163845FC00A3D243 /* Models */ = {
@@ -186,6 +197,8 @@
 				3108FE681638460E00A3D243 /* KRTrack.m */,
 				31B4ECB2163A7D9F00BB5A31 /* KRTrackDetail.h */,
 				31B4ECB3163A7D9F00BB5A31 /* KRTrackDetail.m */,
+				31C4EC6218CB866000A4DAD5 /* KRWalk.h */,
+				31C4EC6318CB866000A4DAD5 /* KRWalk.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -229,7 +242,7 @@
 			children = (
 				31E4D632163F02E300A05763 /* Assets */,
 				3108FE66163845FC00A3D243 /* Models */,
-				3108FE54163843FC00A3D243 /* SoundCloud */,
+				3108FE54163843FC00A3D243 /* Services */,
 				31AD0A6A1638424F000CFD7B /* KRAppDelegate.h */,
 				31AD0A6B1638424F000CFD7B /* KRAppDelegate.m */,
 				31AD0A731638424F000CFD7B /* MainStoryboard.storyboard */,
@@ -245,6 +258,8 @@
 				31EB851316C7A0FB0012230F /* KRInfoViewController.h */,
 				31EB851416C7A0FB0012230F /* KRInfoViewController.m */,
 				31650757183977FB008EFD90 /* Images.xcassets */,
+				31C4EC6518CB8AA200A4DAD5 /* KRWalkViewController.h */,
+				31C4EC6618CB8AA200A4DAD5 /* KRWalkViewController.m */,
 			);
 			path = Kijkruimte;
 			sourceTree = "<group>";
@@ -442,6 +457,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31C4EC6418CB866000A4DAD5 /* KRWalk.m in Sources */,
+				31C4EC6118CB854600A4DAD5 /* KRGetWalks.m in Sources */,
 				3108FE5F1638454400A3D243 /* SCServiceRequest.m in Sources */,
 				31AD0A681638424F000CFD7B /* main.m in Sources */,
 				31AD0A6C1638424F000CFD7B /* KRAppDelegate.m in Sources */,
@@ -452,6 +469,7 @@
 				31B4ECB4163A7D9F00BB5A31 /* KRTrackDetail.m in Sources */,
 				31B4ECB6163A82AF00BB5A31 /* SCGetTrackDetail.m in Sources */,
 				313E3C8E163D9B89000165B7 /* KRMapPin.m in Sources */,
+				31C4EC6718CB8AA200A4DAD5 /* KRWalkViewController.m in Sources */,
 				3160FB3D1664001100CD7C72 /* KRBroadcaster.m in Sources */,
 				3121A6F81683BF15004747B6 /* KRMessageView.m in Sources */,
 				31EB851516C7A0FB0012230F /* KRInfoViewController.m in Sources */,

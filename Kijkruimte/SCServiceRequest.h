@@ -35,4 +35,10 @@ extern NSString* kSCServiceAPIURL;
                   parameters:(id)parameters
                     useCache:(BOOL)useCache
                         sync:(BOOL)sync;
+
+-(void)getResponseForUrlString:(NSString*)urlStr
+						method:(NSString*)method
+					parameters:(id)parameters
+					  useCache:(BOOL)useCache
+						  sync:(BOOL)sync;
 @end

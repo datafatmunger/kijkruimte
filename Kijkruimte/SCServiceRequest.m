@@ -37,6 +37,19 @@ NSString *kSCServiceAPIURL = @"http://api.soundcloud.com/";
     
     NSString *urlStr = [kSCServiceAPIURL stringByAppendingFormat:@"%@.json?client_id=%@", endpoint, kSCClientId];
     NSLog(@"REQUEST TO: %@", urlStr);
+	
+	[self getResponseForUrlString:urlStr
+						   method:method
+					   parameters:parameters
+						 useCache:useCache
+							 sync:sync];
+}
+
+-(void)getResponseForUrlString:(NSString*)urlStr
+                      method:(NSString*)method
+                  parameters:(id)parameters
+                    useCache:(BOOL)useCache
+                        sync:(BOOL)sync {
           
     NSURL *url = [NSURL URLWithString:urlStr];
     BOOL fromCache = [@"GET" isEqualToString:method] && useCache;

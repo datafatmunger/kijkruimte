@@ -12,6 +12,7 @@
 #import "KRBroadcaster.h"
 #import "KRMessageView.h"
 #import "KRTrack.h"
+#import "KRWalk.h"
 #import "SCGetUserTracks.h"
 #import "SCGetTrackDetail.h"
 
@@ -44,6 +45,8 @@ KRTrackDelegate> {
     KRBroadcaster *_broadcaster;
 
 }
+
+@property(nonatomic, strong)KRWalk *walk;
 
 -(IBAction)start;
 -(IBAction)toInfo:(id)sender;

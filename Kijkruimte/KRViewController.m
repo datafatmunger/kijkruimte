@@ -40,62 +40,11 @@
     _tracks = [NSMutableDictionary dictionary];
     _guid = [self generateUuidString];
     
-    [self getTracks];
-    
     double x1 = 100.0, y1 = 50.0, x2 = 250.0, y2 = 70.0;
     
     [self angleBetween2Pointsx1:x1 y1:y1 x2:x2 y2:y2];
     
     [_actView startAnimating];
-    
-    _currentLocation = [[CLLocation alloc] initWithLatitude:52.3735035 longitude:4.8488655];
-    MKCoordinateRegion region = _mapView.region;
-    MKCoordinateSpan span = MKCoordinateSpanMake(MAP_ZOOM_LEVEL, MAP_ZOOM_LEVEL);
-	region.span = span;
-	region.center = _currentLocation.coordinate;
-    _mapView.region = region;
-    
-    MKMapPoint points[13];
-    
-    // Center
-    //52.372521 + ((52.374486 - 52.372521) / 2) = 52.3735035
-    //4.842825 + ((4.854906 - 4.842825) / 2) = 4.8488655
-    
-    CLLocationCoordinate2D c1 = {52.375141, 4.843426};
-    points[0] = MKMapPointForCoordinate(c1);
-    CLLocationCoordinate2D c2 = {52.375010, 4.845722};
-    points[1] = MKMapPointForCoordinate(c2);
-    CLLocationCoordinate2D c3 = {52.375324, 4.847460};
-    points[2] = MKMapPointForCoordinate(c3);
-    CLLocationCoordinate2D c4 = {52.375953, 4.850485};
-    points[3] = MKMapPointForCoordinate(c4);
-    CLLocationCoordinate2D c5 = {52.376254, 4.852309};
-    points[4] = MKMapPointForCoordinate(c5);
-    CLLocationCoordinate2D c6 = {52.376346, 4.854240};
-    points[5] = MKMapPointForCoordinate(c6);
-    CLLocationCoordinate2D c7 = {52.374486, 4.854906};
-    points[6] = MKMapPointForCoordinate(c7);
-    CLLocationCoordinate2D c8 = {52.373569, 4.852352};
-    points[7] = MKMapPointForCoordinate(c8);
-    CLLocationCoordinate2D c9 = {52.372992, 4.849799};
-    points[8] = MKMapPointForCoordinate(c9);
-    CLLocationCoordinate2D c10 = {52.372468, 4.846816};
-    points[9] = MKMapPointForCoordinate(c10);
-    CLLocationCoordinate2D c11 = {52.372521, 4.842825};
-    points[10] = MKMapPointForCoordinate(c11);
-    CLLocationCoordinate2D c12 = {52.373962, 4.842932};
-    points[11] = MKMapPointForCoordinate(c12);
-    CLLocationCoordinate2D c13 = {52.375141, 4.843426};
-    points[12] = MKMapPointForCoordinate(c13);
-    
-    MKPolygon *polygon = [MKPolygon polygonWithPoints:points count:13];
-    [_mapView addOverlay:polygon];
-    
-    _locationManager = [[CLLocationManager alloc] init];
-    _locationManager.delegate = self;
-    
-    _broadcaster = [[KRBroadcaster alloc] init];
-    
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -114,6 +63,22 @@
                      completion:^(BOOL finished){
                          NSLog(@"Done!");
                      }];
+	
+	_currentLocation = self.walk.location;
+	NSLog(@"Location: %f, %f", _currentLocation.coordinate.latitude, _currentLocation.coordinate.longitude);
+	
+    MKCoordinateRegion region = _mapView.region;
+    MKCoordinateSpan span = MKCoordinateSpanMake(MAP_ZOOM_LEVEL, MAP_ZOOM_LEVEL);
+	region.span = span;
+	region.center = _currentLocation.coordinate;
+    _mapView.region = region;
+    
+    [_mapView addOverlay:self.walk.polygon];
+    
+    _locationManager = [[CLLocationManager alloc] init];
+    _locationManager.delegate = self;
+	
+	[self getTracks];
 }
 
 -(void)didReceiveMemoryWarning {
@@ -190,7 +155,7 @@
     _isRunning = !_isRunning;
     
     if(_isRunning) {
-        _currentLocation = [[CLLocation alloc] initWithLatitude:52.3735035 longitude:4.8488655];
+        _currentLocation = self.walk.location;
         [_locationManager startUpdatingLocation];
         [_button setImage:[UIImage imageNamed:@"stopknop"]
                  forState:UIControlStateNormal];
@@ -396,38 +361,37 @@
                                              repeats:YES];
 }
 
--(void)broadcastTrack:(NSNumber*)trackId
-             location:(CLLocation*)location
-        trackLocation:(CLLocation*)trackLocation
-         playPosition:(NSTimeInterval)playPosition
-               volume:(double)volume {
-    NSDictionary *message = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:
-                                                                 trackId,
-                                                                 [NSNumber numberWithDouble:location.coordinate.latitude],
-                                                                 [NSNumber numberWithDouble:location.coordinate.longitude],
-                                                                 [NSNumber numberWithDouble:trackLocation.coordinate.latitude],
-                                                                 [NSNumber numberWithDouble:trackLocation.coordinate.longitude],
-                                                                 [NSNumber numberWithDouble:playPosition],
-                                                                 [NSNumber numberWithDouble:volume],
-                                                                 _guid,
-                                                                 nil]
-                                                        forKeys:[NSArray arrayWithObjects:
-                                                                 @"trackId",
-                                                                 @"latitude",
-                                                                 @"longitude",
-                                                                 @"trackLatitude",
-                                                                 @"trackLongitude",
-                                                                 @"playPosition",
-                                                                 @"volume",
-                                                                 @"guid",
-                                                                 nil]];
-    [_broadcaster broadcastTrack:message];
-}
+//-(void)broadcastTrack:(NSNumber*)trackId
+//             location:(CLLocation*)location
+//        trackLocation:(CLLocation*)trackLocation
+//         playPosition:(NSTimeInterval)playPosition
+//               volume:(double)volume {
+//    NSDictionary *message = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:
+//                                                                 trackId,
+//                                                                 [NSNumber numberWithDouble:location.coordinate.latitude],
+//                                                                 [NSNumber numberWithDouble:location.coordinate.longitude],
+//                                                                 [NSNumber numberWithDouble:trackLocation.coordinate.latitude],
+//                                                                 [NSNumber numberWithDouble:trackLocation.coordinate.longitude],
+//                                                                 [NSNumber numberWithDouble:playPosition],
+//                                                                 [NSNumber numberWithDouble:volume],
+//                                                                 _guid,
+//                                                                 nil]
+//                                                        forKeys:[NSArray arrayWithObjects:
+//                                                                 @"trackId",
+//                                                                 @"latitude",
+//                                                                 @"longitude",
+//                                                                 @"trackLatitude",
+//                                                                 @"trackLongitude",
+//                                                                 @"playPosition",
+//                                                                 @"volume",
+//                                                                 @"guid",
+//                                                                 nil]];
+//}
 
 -(void)getTracks {
     SCGetUserTracks *tracksAPI = [[SCGetUserTracks alloc] init];
     tracksAPI.delegate = self;
-    [tracksAPI getTracks:@"josephsghost"];
+    [tracksAPI getTracks:self.walk.scUser];
 }
 
 @end
