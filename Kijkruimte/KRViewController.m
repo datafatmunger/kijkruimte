@@ -159,8 +159,8 @@
     if(_isRunning) {
         _currentLocation = self.walk.location;
         [_locationManager startUpdatingLocation];
-        [_button setImage:[UIImage imageNamed:@"stopknop"]
-                 forState:UIControlStateNormal];
+        [_button setTitle:@"Stop"
+				 forState:UIControlStateNormal];
         
     } else {
 		[self stop];
@@ -175,7 +175,7 @@
 		//            [_mapView removeAnnotation:track.pin];
 		//            [_mapView addAnnotation:track.pin];
 	}
-	[_button setImage:[UIImage imageNamed:@"startknop"]
+	[_button setTitle:@"Start"
 			 forState:UIControlStateNormal];
 	if(_loadCount == _tracks.count)
 		_messageView.hidden = YES;

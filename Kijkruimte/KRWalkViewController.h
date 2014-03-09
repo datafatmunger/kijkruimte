@@ -15,6 +15,7 @@
 KRGetWalksDelegate
 >
 
+@property(nonatomic,weak)IBOutlet UIActivityIndicatorView *actView;
 @property(nonatomic,weak)IBOutlet UIPageControl *pageControl;
 @property(nonatomic,weak)IBOutlet UIScrollView *scrollView;
 @property(nonatomic,weak)IBOutlet MKMapView *mapView;

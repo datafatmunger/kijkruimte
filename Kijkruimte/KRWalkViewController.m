@@ -30,6 +30,10 @@
 	((KRViewController*)segue.destinationViewController).walk = self.walk;
 }
 
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
+}
+
 -(void)getWalks {
     KRGetWalks *walksAPI = [[KRGetWalks alloc] init];
     walksAPI.delegate = self;
@@ -61,6 +65,7 @@
 #pragma mark KRGetWalksDelegate <NSObject>
 
 -(void)handleWalks:(NSArray*)walks {
+	[self.actView stopAnimating];
 	for(NSInteger i = 0; i < walks.count; i++) {
 		KRWalk *walk = walks[i];
 		NSLog(@"Got walk: %@", walk.title);
@@ -87,6 +92,7 @@
 }
 
 -(void)handleGetWalksError:(NSString*)message {
+	[self.actView stopAnimating];
 	NSLog(@"ERROR: %@", message);
 }
 
