@@ -49,6 +49,14 @@
 	[self performSegueWithIdentifier:@"toWalk" sender:self];
 }
 
+-(IBAction)start:(id)sender {
+	[self toWalk];
+}
+
+-(IBAction)toInfo:(id)sender {
+    [self performSegueWithIdentifier:@"toInfo" sender:sender];
+}
+
 #pragma mark -
 #pragma mark KRGetWalksDelegate <NSObject>
 

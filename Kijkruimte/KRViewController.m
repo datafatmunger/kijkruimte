@@ -8,6 +8,7 @@
 
 #import <AVFoundation/AVFoundation.h>
 #import <math.h>
+#import "KRInfoViewController.h"
 #import "KRMapPin.h"
 #import "KRTrackDetail.h"
 #import "KRViewController.h"
@@ -45,17 +46,15 @@
     [self angleBetween2Pointsx1:x1 y1:y1 x2:x2 y2:y2];
     
     [_actView startAnimating];
-}
-
--(void)viewDidAppear:(BOOL)animated {
-    CGRect screenRect = [[UIScreen mainScreen] bounds];
+	
+	CGRect screenRect = [[UIScreen mainScreen] bounds];
     NSLog(@"Screen height: %f", screenRect.size.height);
     [UIView animateWithDuration:0.5
                           delay:1.0
                         options: UIViewAnimationCurveEaseOut
                      animations:^{
                          _controls.frame = CGRectMake(_controls.frame.origin.x,
-                                                      screenRect.size.height - _controls.frame.size.height,
+                                                      self.view.frame.size.height - _controls.frame.size.height,
                                                       _controls.frame.size.width,
                                                       _controls.frame.size.height);
                          
@@ -83,6 +82,10 @@
 -(void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+	((KRInfoViewController*)segue.destinationViewController).creditsUrlStr = [NSString stringWithFormat:@"http://hearushere.nl/%@", self.walk.credits];
 }
 
 -(void)angleBetween2Pointsx1:(double)x1 y1:(double)y1 x2:(double)x2 y2:(double)y2 {
@@ -160,32 +163,41 @@
                  forState:UIControlStateNormal];
         
     } else {
-        [_locationManager stopUpdatingLocation];
-        for(KRTrack *track in _tracks.allValues) {
-            [track.audioPlayer stop];
-            track.pin.isPlaying = NO;
-            //            [_mapView removeAnnotation:track.pin];
-            //            [_mapView addAnnotation:track.pin];
-        }
-        [_button setImage:[UIImage imageNamed:@"startknop"]
-                 forState:UIControlStateNormal];
-        if(_loadCount == _tracks.count)
-            _messageView.hidden = YES;
-        [_timer invalidate];
-        
-//        for(int i = 0; i < [_tracks count]; i++) {
-//            KRTrack *track = [[_tracks allValues] objectAtIndex:i];
-//            [self broadcastTrack:track.trackId
-//                        location:_currentLocation
-//                   trackLocation:track.location
-//                    playPosition:track.audioPlayer.currentTime
-//                          volume:0.0f];
-//        }
+		[self stop];
     }
+}
+
+-(void)stop {
+	[_locationManager stopUpdatingLocation];
+	for(KRTrack *track in _tracks.allValues) {
+		[track.audioPlayer stop];
+		track.pin.isPlaying = NO;
+		//            [_mapView removeAnnotation:track.pin];
+		//            [_mapView addAnnotation:track.pin];
+	}
+	[_button setImage:[UIImage imageNamed:@"startknop"]
+			 forState:UIControlStateNormal];
+	if(_loadCount == _tracks.count)
+		_messageView.hidden = YES;
+	[_timer invalidate];
+	
+	//        for(int i = 0; i < [_tracks count]; i++) {
+	//            KRTrack *track = [[_tracks allValues] objectAtIndex:i];
+	//            [self broadcastTrack:track.trackId
+	//                        location:_currentLocation
+	//                   trackLocation:track.location
+	//                    playPosition:track.audioPlayer.currentTime
+	//                          volume:0.0f];
+	//        }
 }
 
 -(IBAction)toInfo:(id)sender {
     [self performSegueWithIdentifier:@"toInfo" sender:sender];
+}
+
+-(IBAction)back:(id)sender {
+	[self stop];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark -

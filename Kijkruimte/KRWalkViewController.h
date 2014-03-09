@@ -22,4 +22,6 @@ KRGetWalksDelegate
 @property(nonatomic,strong)KRWalk *walk;
 @property(nonatomic,strong)NSArray *walks;
 
+-(IBAction)start:(id)sender;
+
 @end

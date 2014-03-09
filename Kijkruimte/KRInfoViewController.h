@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface KRInfoViewController : UIViewController {
-    
-}
+@interface KRInfoViewController : UIViewController
+
+@property(nonatomic,weak)IBOutlet UIWebView *webView;
+
+@property(nonatomic,strong)NSString *creditsUrlStr;
 
 -(IBAction)done:(id)sender;
 

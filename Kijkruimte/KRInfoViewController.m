@@ -10,6 +10,14 @@
 
 @implementation KRInfoViewController
 
+-(void)viewDidLoad {
+    NSURL* url = [NSURL URLWithString:self.creditsUrlStr];
+    NSURLRequest* request = [NSURLRequest requestWithURL:url
+											 cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
+										 timeoutInterval:30];
+    [self.webView loadRequest:request];
+}
+
 -(IBAction)done:(id)sender {
     [self dismissModalViewControllerAnimated:YES];
 }
