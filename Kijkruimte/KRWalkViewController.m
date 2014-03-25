@@ -12,13 +12,24 @@
 
 @interface KRWalkViewController ()
 
+@property(nonatomic, assign)BOOL requestMade;
+@property(nonatomic, strong)CLLocationManager *locationManager;
+@property(nonatomic, strong)CLLocation *currentLocation;
+
 @end
 
 @implementation KRWalkViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	[self getWalks];
+	
+	self.requestMade = NO;
+	
+	self.locationManager = [[CLLocationManager alloc] init];
+	self.locationManager.delegate = self;
+	
+	[self.locationManager startUpdatingLocation];
+	
 }
 
 - (void)didReceiveMemoryWarning {
@@ -61,13 +72,36 @@
     [self performSegueWithIdentifier:@"toInfo" sender:sender];
 }
 
+-(void)showDescription {
+	[UIView animateWithDuration:0.25 animations:^{
+		if(self.scrollView.frame.size.height == 164) {
+			self.scrollView.frame = CGRectMake(self.scrollView.frame.origin.x,
+											   self.scrollView.frame.origin.y,
+											   self.scrollView.frame.size.width,
+											   self.view.frame.size.height);
+		} else {
+			self.scrollView.frame = CGRectMake(self.scrollView.frame.origin.x,
+											   self.scrollView.frame.origin.y,
+											   self.scrollView.frame.size.width,
+											   164);
+		}
+	}];
+	NSLog(@"Scroll view frame: %@", NSStringFromCGRect(self.scrollView.frame));
+}
+
 #pragma mark -
 #pragma mark KRGetWalksDelegate <NSObject>
 
 -(void)handleWalks:(NSArray*)walks {
 	[self.actView stopAnimating];
-	for(NSInteger i = 0; i < walks.count; i++) {
-		KRWalk *walk = walks[i];
+	NSArray *sortedWalks = [walks sortedArrayUsingComparator:^NSComparisonResult(KRWalk *walk1, KRWalk * walk2) {
+		CLLocationDistance d1 = [self.currentLocation distanceFromLocation:walk1.location];
+		CLLocationDistance d2 = [self.currentLocation distanceFromLocation:walk2.location];
+		return [[NSNumber numberWithDouble:d1] compare:[NSNumber numberWithDouble:d2]];
+	}];
+	
+	for(NSInteger i = 0; i < sortedWalks.count; i++) {
+		KRWalk *walk = sortedWalks[i];
 		NSLog(@"Got walk: %@", walk.title);
 		KRWalkView *walkView = [[[NSBundle mainBundle] loadNibNamed:@"WalkView" owner:self options:nil] objectAtIndex:0];
 		walkView.frame = CGRectMake(self.scrollView.frame.size.width * i,
@@ -76,17 +110,22 @@
 									walkView.frame.size.height);
 		NSLog(@"Walk view frame: %@", NSStringFromCGRect(walkView.frame));
 		walkView.titleLabel.text = walk.title;
+		walkView.textView.text = walk.description;
 		NSString *urlStr = [NSString stringWithFormat:@"http://hearushere.nl/%@", walk.imageURLStr];
 		walkView.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:urlStr]]];
 		walkView.imageView.layer.cornerRadius = walkView.imageView.frame.size.height / 2;
         walkView.imageView.layer.masksToBounds = YES;
+		[walkView.button addTarget:self action:@selector(showDescription) forControlEvents:UIControlEventTouchUpInside];
+		
+		walkView.distanceLabel.text = [NSString stringWithFormat:@"%.2fkm", [self.currentLocation distanceFromLocation:walk.location]/1000];
+		
 		[self.scrollView addSubview:walkView];
 	}
 	self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * walks.count,
 											 self.scrollView.frame.size.height);
 	self.pageControl.numberOfPages = walks.count;
-	self.walk = walks[0];
-	self.walks = walks;
+	self.walk = sortedWalks[0];
+	self.walks = sortedWalks;
 	
 	[self showWalk];
 }
@@ -122,6 +161,25 @@
     polygonView.strokeColor = [[UIColor redColor] colorWithAlphaComponent:0.7];
     polygonView.lineWidth = 3;
     return polygonView;
+}
+
+#pragma mark -
+#pragma mark CLLocationManagerDelegate
+
+-(void)locationManager:(CLLocationManager *)manager
+   didUpdateToLocation:(CLLocation *)newLocation
+          fromLocation:(CLLocation *)oldLocation {
+	self.currentLocation = newLocation;
+	if(!self.requestMade) {
+		self.requestMade = YES;
+		[self getWalks];
+	}
+	
+}
+
+-(void)locationManager:(CLLocationManager *)manager
+      didFailWithError:(NSError *)error {
+    NSLog(@"%@", [error localizedDescription]);
 }
 
 

@@ -17,6 +17,7 @@
 		self.scUser = dictionary[@"scUser"];
 		self.imageURLStr = dictionary[@"image"];
 		self.credits = dictionary[@"credits"];
+		self.description = dictionary[@"description"];
 		
 		NSArray *coordinates = dictionary[@"area"];
 		MKMapPoint points[coordinates.count / 2];

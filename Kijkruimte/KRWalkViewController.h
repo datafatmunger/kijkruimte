@@ -12,6 +12,7 @@
 #import "KRWalk.h"
 
 @interface KRWalkViewController : UIViewController <
+CLLocationManagerDelegate,
 KRGetWalksDelegate
 >
 
