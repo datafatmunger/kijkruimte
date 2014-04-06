@@ -18,6 +18,8 @@
 @property(nonatomic, strong)NSString *description;
 @property(nonatomic, strong)MKPolygon *polygon;
 @property(nonatomic, strong)CLLocation *location;
+@property(nonatomic, assign)BOOL autoPlay;
+@property(nonatomic, assign)double radius;
 
 -(id)initWithDictionary:(NSDictionary*)dictionary;
 

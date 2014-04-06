@@ -13,7 +13,6 @@
 #import "KRTrackDetail.h"
 #import "KRViewController.h"
 
-#define RADIUS 50.0f
 #define MAP_ZOOM_LEVEL 0.01
 
 @interface KRViewController (Private)
@@ -117,8 +116,8 @@
         NSLog(@"You are %fm from sound: %@", distance, track.trackId);
         
         double volume = 0.0;
-        if(distance <= RADIUS && distance > 0.0f) {
-            volume = (log(distance/RADIUS) * -1)/4;
+        if(distance <= self.walk.radius && distance > 0.0f) {
+            volume = (log(distance/self.walk.radius) * -1)/4;
             volume = volume > 1.0 ? 1.0 : volume;
             track.audioPlayer.volume = volume;
             if(track.audioPlayer != nil && ![track.audioPlayer isPlaying]) {
@@ -159,6 +158,14 @@
     NSLog(@"Start and Stop");
     
     _isRunning = !_isRunning;
+	
+	if(self.walk.autoPlay) {
+		NSLog(@"AUTOPLAYING!");
+		for(KRTrack *track in _tracks.allValues) {
+			track.audioPlayer.volume = 0.0;
+			[track.audioPlayer play];
+		}
+	}
     
     if(_isRunning) {
         _currentLocation = self.walk.location;
@@ -211,6 +218,12 @@
     SCGetTrackDetail *detailAPI = [[SCGetTrackDetail alloc] init];
     detailAPI.delegate = self;
     for(KRTrack *track in tracks) {
+		
+		if(track.location.coordinate.latitude < self.minLat) self.minLat = track.location.coordinate.latitude;
+		if(track.location.coordinate.latitude > self.maxLat) self.maxLat = track.location.coordinate.latitude;
+		if(track.location.coordinate.longitude < self.minLng) self.minLng = track.location.coordinate.longitude;
+		if(track.location.coordinate.longitude > self.maxLng) self.maxLng = track.location.coordinate.longitude;
+		
         track.delegate = self;
         
         NSLog(@"TRACK URI: %@", track.uri);
@@ -225,7 +238,7 @@
         track.pin = mp;
         //        [_mapView addAnnotation:track.pin];
     }
-    [_messageLabel setText:[NSString stringWithFormat:@"Loading audio...%d of %d", _loadCount, tracks.count]];
+    [_messageLabel setText:[NSString stringWithFormat:@"Loading audio...%ld of %lu", (long)_loadCount, (unsigned long)tracks.count]];
     
 }
 
@@ -291,7 +304,7 @@
         [_actView stopAnimating];
         _messageView.hidden = YES;
     }
-    [_messageLabel setText:[NSString stringWithFormat:@"Loading...%d of %d", _loadCount, _tracks.count]];
+    [_messageLabel setText:[NSString stringWithFormat:@"Loading...%ld of %lu", (long)_loadCount, (unsigned long)_tracks.count]];
 }
 
 -(void)trackDataError:(NSString*)message {
@@ -352,8 +365,8 @@
     //52.372521 + ((52.374486 - 52.372521) / 2) = 52.3735035
     //4.842825 + ((4.854906 - 4.842825) / 2) = 4.8488655
     
-    double randLat = [self randomDoubleBetween:52.372521 and:52.374486];
-    double randLng = [self randomDoubleBetween:4.842825 and:4.854906];
+    double randLat = [self randomDoubleBetween:self.minLat and:self.maxLat];
+    double randLng = [self randomDoubleBetween:self.minLng and:self.maxLng];
     
     _currentLocation = [[CLLocation alloc] initWithLatitude:randLat longitude:randLng];
     [_messageLabel setText:[NSString stringWithFormat:@"You are too far away! Using random location: %f, %f",

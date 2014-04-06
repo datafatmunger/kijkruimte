@@ -18,6 +18,8 @@
 		self.imageURLStr = dictionary[@"image"];
 		self.credits = dictionary[@"credits"];
 		self.description = dictionary[@"description"];
+		self.autoPlay = [dictionary[@"autoplay"] boolValue];
+		self.radius = [dictionary[@"radius"] doubleValue];
 		
 		NSArray *coordinates = dictionary[@"area"];
 		MKMapPoint points[coordinates.count / 2];
