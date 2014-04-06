@@ -45,6 +45,11 @@ KRTrackDelegate> {
 
 }
 
+@property(nonatomic,assign)CLLocationDegrees minLat;
+@property(nonatomic,assign)CLLocationDegrees maxLat;
+@property(nonatomic,assign)CLLocationDegrees minLng;
+@property(nonatomic,assign)CLLocationDegrees maxLng;
+
 -(IBAction)start;
 -(IBAction)toInfo:(id)sender;
 

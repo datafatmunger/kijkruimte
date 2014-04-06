@@ -34,6 +34,11 @@
 
 -(void)viewDidLoad {
     [super viewDidLoad];
+	
+	self.maxLat = 0.0f;
+	self.maxLng = 0.0f;
+	self.minLat = FLT_MAX;
+	self.minLng = FLT_MAX;
     
     _isRunning = NO;
     _loadCount = 0;
@@ -48,53 +53,49 @@
     
     [_actView startAnimating];
     
-    _currentLocation = [[CLLocation alloc] initWithLatitude:52.3735035 longitude:4.8488655];
+
+	//52.357941,4.864454
+    _currentLocation = [[CLLocation alloc] initWithLatitude:52.357941 longitude:4.864454];
     MKCoordinateRegion region = _mapView.region;
     MKCoordinateSpan span = MKCoordinateSpanMake(MAP_ZOOM_LEVEL, MAP_ZOOM_LEVEL);
 	region.span = span;
 	region.center = _currentLocation.coordinate;
     _mapView.region = region;
     
-    MKMapPoint points[13];
-    
-    // Center
-    //52.372521 + ((52.374486 - 52.372521) / 2) = 52.3735035
-    //4.842825 + ((4.854906 - 4.842825) / 2) = 4.8488655
-    
-    CLLocationCoordinate2D c1 = {52.375141, 4.843426};
+    MKMapPoint points[9];
+	
+	//52.358345,4.863274
+	CLLocationCoordinate2D c1 = {52.358345, 4.863274};
     points[0] = MKMapPointForCoordinate(c1);
-    CLLocationCoordinate2D c2 = {52.375010, 4.845722};
+	//52.357749,4.861085
+	CLLocationCoordinate2D c2 = {52.357749, 4.861085};
     points[1] = MKMapPointForCoordinate(c2);
-    CLLocationCoordinate2D c3 = {52.375324, 4.847460};
+	//52.356504,4.859251
+	CLLocationCoordinate2D c3 = {52.356504, 4.859251};
     points[2] = MKMapPointForCoordinate(c3);
-    CLLocationCoordinate2D c4 = {52.375953, 4.850485};
+	//52.355652,4.860678
+	CLLocationCoordinate2D c4 = {52.355652, 4.860678};
     points[3] = MKMapPointForCoordinate(c4);
-    CLLocationCoordinate2D c5 = {52.376254, 4.852309};
+	//52.356209,4.862158
+	CLLocationCoordinate2D c5 = {52.356209, 4.86215};
     points[4] = MKMapPointForCoordinate(c5);
-    CLLocationCoordinate2D c6 = {52.376346, 4.854240};
+	//52.35672,4.862641
+	CLLocationCoordinate2D c6 = {52.35672, 4.862641};
     points[5] = MKMapPointForCoordinate(c6);
-    CLLocationCoordinate2D c7 = {52.374486, 4.854906};
+	//52.357133,4.864379
+	CLLocationCoordinate2D c7 = {52.357133, 4.864379};
     points[6] = MKMapPointForCoordinate(c7);
-    CLLocationCoordinate2D c8 = {52.373569, 4.852352};
+	//52.357769,4.864937
+	CLLocationCoordinate2D c8 = {52.357769, 4.864937};
     points[7] = MKMapPointForCoordinate(c8);
-    CLLocationCoordinate2D c9 = {52.372992, 4.849799};
-    points[8] = MKMapPointForCoordinate(c9);
-    CLLocationCoordinate2D c10 = {52.372468, 4.846816};
-    points[9] = MKMapPointForCoordinate(c10);
-    CLLocationCoordinate2D c11 = {52.372521, 4.842825};
-    points[10] = MKMapPointForCoordinate(c11);
-    CLLocationCoordinate2D c12 = {52.373962, 4.842932};
-    points[11] = MKMapPointForCoordinate(c12);
-    CLLocationCoordinate2D c13 = {52.375141, 4.843426};
-    points[12] = MKMapPointForCoordinate(c13);
     
-    MKPolygon *polygon = [MKPolygon polygonWithPoints:points count:13];
+    MKPolygon *polygon = [MKPolygon polygonWithPoints:points count:8];
     [_mapView addOverlay:polygon];
     
     _locationManager = [[CLLocationManager alloc] init];
     _locationManager.delegate = self;
     
-    _broadcaster = [[KRBroadcaster alloc] init];
+//    _broadcaster = [[KRBroadcaster alloc] init];
     
 }
 
@@ -153,8 +154,8 @@
             if(track.audioPlayer != nil && ![track.audioPlayer isPlaying]) {
                 [track.audioPlayer play];
                 track.pin.isPlaying = YES;
-                //                [_mapView removeAnnotation:track.pin];
-                //                [_mapView addAnnotation:track.pin];
+//                [_mapView removeAnnotation:track.pin];
+//                [_mapView addAnnotation:track.pin];
             }
         } else if(distance <= 0.0f) {
             volume = 1.0;
@@ -162,8 +163,8 @@
             if(track.audioPlayer != nil && ![track.audioPlayer isPlaying]) {
                 [track.audioPlayer play];
                 track.pin.isPlaying = YES;
-                //                [_mapView removeAnnotation:track.pin];
-                //                [_mapView addAnnotation:track.pin];
+//                [_mapView removeAnnotation:track.pin];
+//                [_mapView addAnnotation:track.pin];
             }
         } else {
             track.audioPlayer.volume = volume;
@@ -174,11 +175,6 @@
                 //                [_mapView addAnnotation:track.pin];
             }
         }
-//        [self broadcastTrack:track.trackId
-//                    location:location
-//               trackLocation:track.location
-//                playPosition:track.audioPlayer.currentTime
-//                      volume:volume];
         track.pin.subtitle = [NSString stringWithFormat:@"Volume: %f", volume];
         [_mapView setNeedsDisplay];
     }
@@ -190,33 +186,35 @@
     _isRunning = !_isRunning;
     
     if(_isRunning) {
-        _currentLocation = [[CLLocation alloc] initWithLatitude:52.3735035 longitude:4.8488655];
-        [_locationManager startUpdatingLocation];
-        [_button setImage:[UIImage imageNamed:@"stopknop"]
+		[_button setImage:[UIImage imageNamed:@"stopknop"]
                  forState:UIControlStateNormal];
-        
+				
+		for(KRTrack *track in _tracks.allValues) {
+			track.audioPlayer.volume = 0.0;
+			[track.audioPlayer play];
+			
+			if(track.location.coordinate.latitude < self.minLat) self.minLat = track.location.coordinate.latitude;
+			if(track.location.coordinate.latitude > self.maxLat) self.maxLat = track.location.coordinate.latitude;
+			if(track.location.coordinate.longitude < self.minLng) self.minLng = track.location.coordinate.longitude;
+			if(track.location.coordinate.longitude > self.maxLng) self.maxLng = track.location.coordinate.longitude;
+		}
+		
+		//52.357941,4.864454
+        _currentLocation = [[CLLocation alloc] initWithLatitude:52.357941 longitude:4.864454];
+        [_locationManager startUpdatingLocation];
     } else {
+		[_button setImage:[UIImage imageNamed:@"startknop"]
+                 forState:UIControlStateNormal];
         [_locationManager stopUpdatingLocation];
         for(KRTrack *track in _tracks.allValues) {
             [track.audioPlayer stop];
             track.pin.isPlaying = NO;
-            //            [_mapView removeAnnotation:track.pin];
-            //            [_mapView addAnnotation:track.pin];
+//            [_mapView removeAnnotation:track.pin];
+//            [_mapView addAnnotation:track.pin];
         }
-        [_button setImage:[UIImage imageNamed:@"startknop"]
-                 forState:UIControlStateNormal];
         if(_loadCount == _tracks.count)
             _messageView.hidden = YES;
         [_timer invalidate];
-        
-//        for(int i = 0; i < [_tracks count]; i++) {
-//            KRTrack *track = [[_tracks allValues] objectAtIndex:i];
-//            [self broadcastTrack:track.trackId
-//                        location:_currentLocation
-//                   trackLocation:track.location
-//                    playPosition:track.audioPlayer.currentTime
-//                          volume:0.0f];
-//        }
     }
 }
 
@@ -239,13 +237,13 @@
         [detailAPI getTrackDetail:[NSString stringWithFormat:@"%d", [track.trackId intValue]]];
         
         // Map Stuff - JBG
-        KRMapPin *mp = [[KRMapPin alloc] initWithCoordinate:track.location.coordinate
-                                                      title:track.title
-                                                   subtitle:[NSString stringWithFormat:@"Volume: %f", 0.0]];
-        track.pin = mp;
-        //        [_mapView addAnnotation:track.pin];
+//        KRMapPin *mp = [[KRMapPin alloc] initWithCoordinate:track.location.coordinate
+//                                                      title:track.title
+//                                                   subtitle:[NSString stringWithFormat:@"Volume: %f", 0.0]];
+//        track.pin = mp;
+//        [_mapView addAnnotation:track.pin];
     }
-    [_messageLabel setText:[NSString stringWithFormat:@"Loading audio...%d of %d", _loadCount, tracks.count]];
+    [_messageLabel setText:[NSString stringWithFormat:@"Loading audio...%ld of %lu", (long)_loadCount, (unsigned long)tracks.count]];
     
 }
 
@@ -311,7 +309,7 @@
         [_actView stopAnimating];
         _messageView.hidden = YES;
     }
-    [_messageLabel setText:[NSString stringWithFormat:@"Loading...%d of %d", _loadCount, _tracks.count]];
+    [_messageLabel setText:[NSString stringWithFormat:@"Loading...%ld of %lu", (long)_loadCount, (unsigned long)_tracks.count]];
 }
 
 -(void)trackDataError:(NSString*)message {
@@ -372,8 +370,8 @@
     //52.372521 + ((52.374486 - 52.372521) / 2) = 52.3735035
     //4.842825 + ((4.854906 - 4.842825) / 2) = 4.8488655
     
-    double randLat = [self randomDoubleBetween:52.372521 and:52.374486];
-    double randLng = [self randomDoubleBetween:4.842825 and:4.854906];
+    double randLat = [self randomDoubleBetween:self.minLat and:self.maxLat];
+    double randLng = [self randomDoubleBetween:self.minLng and:self.maxLng];
     
     _currentLocation = [[CLLocation alloc] initWithLatitude:randLat longitude:randLng];
     [_messageLabel setText:[NSString stringWithFormat:@"You are too far away! Using random location: %f, %f",
@@ -396,38 +394,10 @@
                                              repeats:YES];
 }
 
--(void)broadcastTrack:(NSNumber*)trackId
-             location:(CLLocation*)location
-        trackLocation:(CLLocation*)trackLocation
-         playPosition:(NSTimeInterval)playPosition
-               volume:(double)volume {
-    NSDictionary *message = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:
-                                                                 trackId,
-                                                                 [NSNumber numberWithDouble:location.coordinate.latitude],
-                                                                 [NSNumber numberWithDouble:location.coordinate.longitude],
-                                                                 [NSNumber numberWithDouble:trackLocation.coordinate.latitude],
-                                                                 [NSNumber numberWithDouble:trackLocation.coordinate.longitude],
-                                                                 [NSNumber numberWithDouble:playPosition],
-                                                                 [NSNumber numberWithDouble:volume],
-                                                                 _guid,
-                                                                 nil]
-                                                        forKeys:[NSArray arrayWithObjects:
-                                                                 @"trackId",
-                                                                 @"latitude",
-                                                                 @"longitude",
-                                                                 @"trackLatitude",
-                                                                 @"trackLongitude",
-                                                                 @"playPosition",
-                                                                 @"volume",
-                                                                 @"guid",
-                                                                 nil]];
-    [_broadcaster broadcastTrack:message];
-}
-
 -(void)getTracks {
     SCGetUserTracks *tracksAPI = [[SCGetUserTracks alloc] init];
     tracksAPI.delegate = self;
-    [tracksAPI getTracks:@"josephsghost"];
+    [tracksAPI getTracks:@"artpark-1"];
 }
 
 @end
