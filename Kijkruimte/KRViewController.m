@@ -35,6 +35,7 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     
+	_canRetry = NO;
     _isRunning = NO;
     _loadCount = 0;
     _tracks = [NSMutableDictionary dictionary];
@@ -64,6 +65,7 @@
 	
 	_currentLocation = self.walk.location;
 	NSLog(@"Location: %f, %f", _currentLocation.coordinate.latitude, _currentLocation.coordinate.longitude);
+	NSLog(@"Radius: %f", self.walk.radius);
 	
     MKCoordinateRegion region = _mapView.region;
     MKCoordinateSpan span = MKCoordinateSpanMake(MAP_ZOOM_LEVEL, MAP_ZOOM_LEVEL);
@@ -218,12 +220,6 @@
     SCGetTrackDetail *detailAPI = [[SCGetTrackDetail alloc] init];
     detailAPI.delegate = self;
     for(KRTrack *track in tracks) {
-		
-		if(track.location.coordinate.latitude < self.minLat) self.minLat = track.location.coordinate.latitude;
-		if(track.location.coordinate.latitude > self.maxLat) self.maxLat = track.location.coordinate.latitude;
-		if(track.location.coordinate.longitude < self.minLng) self.minLng = track.location.coordinate.longitude;
-		if(track.location.coordinate.longitude > self.maxLng) self.maxLng = track.location.coordinate.longitude;
-		
         track.delegate = self;
         
         NSLog(@"TRACK URI: %@", track.uri);
@@ -246,6 +242,7 @@
     NSLog(@"ERROR: %@", message);
     [_actView stopAnimating];
     [_messageLabel setText:@"FAILED to connect to SoundCloud! (Tap to retry)"];
+	_canRetry = YES;
 }
 
 #pragma mark -
@@ -261,6 +258,7 @@
     NSLog(@"ERROR: %@", message);
     [_actView stopAnimating];
     [_messageLabel setText:@"FAILED to connect to SoundCloud! (Tap to retry)"];
+	_canRetry = YES;
 }
 
 #pragma mark -
@@ -339,8 +337,11 @@
 #pragma mark KRMessageViewDelegate <NSObject>
 
 -(void)messageViewTapped:(KRMessageView*)view {
-    [_messageLabel setText:@"Retrying..."];
-    [self getTracks];
+	if(_canRetry) {
+		_canRetry = NO;
+		[_messageLabel setText:@"Retrying..."];
+		[self getTracks];
+	}
 }
 
 #pragma mark -
@@ -361,12 +362,8 @@
 }
 
 -(void)testModeUpdate {
-    
-    //52.372521 + ((52.374486 - 52.372521) / 2) = 52.3735035
-    //4.842825 + ((4.854906 - 4.842825) / 2) = 4.8488655
-    
-    double randLat = [self randomDoubleBetween:self.minLat and:self.maxLat];
-    double randLng = [self randomDoubleBetween:self.minLng and:self.maxLng];
+    double randLat = [self randomDoubleBetween:self.walk.minLat and:self.walk.maxLat];
+    double randLng = [self randomDoubleBetween:self.walk.minLng and:self.walk.maxLng];
     
     _currentLocation = [[CLLocation alloc] initWithLatitude:randLat longitude:randLng];
     [_messageLabel setText:[NSString stringWithFormat:@"You are too far away! Using random location: %f, %f",

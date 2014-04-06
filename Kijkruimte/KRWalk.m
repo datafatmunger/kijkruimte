@@ -21,11 +21,21 @@
 		self.autoPlay = [dictionary[@"autoplay"] boolValue];
 		self.radius = [dictionary[@"radius"] doubleValue];
 		
+		self.maxLat = 0.0f;
+		self.maxLng = 0.0f;
+		self.minLat = FLT_MAX;
+		self.minLng = FLT_MAX;
+		
 		NSArray *coordinates = dictionary[@"area"];
 		MKMapPoint points[coordinates.count / 2];
 		for(NSInteger i = 0, j = 0; i < coordinates.count; i+=2, j++) {
 			CLLocationCoordinate2D c = {[coordinates[i] doubleValue], [coordinates[i+1] doubleValue]};
 			points[j] = MKMapPointForCoordinate(c);
+			
+			if(c.latitude < self.minLat) self.minLat = c.latitude;
+			if(c.latitude > self.maxLat) self.maxLat = c.latitude;
+			if(c.longitude < self.minLng) self.minLng = c.longitude;
+			if(c.longitude > self.maxLng) self.maxLng = c.longitude;
 		}
 		self.polygon = [MKPolygon polygonWithPoints:points count:coordinates.count / 2];
 		

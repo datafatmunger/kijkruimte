@@ -21,6 +21,11 @@
 @property(nonatomic, assign)BOOL autoPlay;
 @property(nonatomic, assign)double radius;
 
+@property(nonatomic,assign)CLLocationDegrees minLat;
+@property(nonatomic,assign)CLLocationDegrees maxLat;
+@property(nonatomic,assign)CLLocationDegrees minLng;
+@property(nonatomic,assign)CLLocationDegrees maxLng;
+
 -(id)initWithDictionary:(NSDictionary*)dictionary;
 
 @end
