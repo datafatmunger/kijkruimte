@@ -11,7 +11,7 @@
                 <viewController id="sfR-tX-hJg" customClass="KRWalkViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ko6-f6-epb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="FD5-5S-Vcn">
                                 <rect key="frame" x="0.0" y="164" width="320" height="404"/>
@@ -61,7 +61,7 @@
                         <outletCollection property="controls" destination="nYv-P8-Gef" id="XX4-gu-rrV"/>
                         <outletCollection property="controls" destination="8Zn-Vh-Ujy" id="ERI-ea-zfO"/>
                         <outletCollection property="controls" destination="rGa-xl-vnn" id="Tvz-FJ-qYI"/>
-                        <segue destination="2" kind="modal" identifier="toWalk" id="5Zc-Wi-ZEy"/>
+                        <segue destination="2" kind="modal" identifier="toWalk" modalTransitionStyle="flipHorizontal" id="5Zc-Wi-ZEy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5TV-p6-IT2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -78,17 +78,18 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" id="tay-Eg-iP9">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="2" id="GdW-og-Xkq"/>
                                 </connections>
                             </mapView>
                             <view contentMode="scaleToFill" id="5wI-UU-KCa">
                                 <rect key="frame" x="0.0" y="568" width="320" height="70"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Xhc-l1-QCn">
                                         <rect key="frame" x="10" y="10" width="300" height="55"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                         <color key="backgroundColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="32"/>
                                         <state key="normal" title="Start">
@@ -131,18 +132,18 @@
                             </button>
                             <view contentMode="scaleToFill" id="rQ2-bt-Pbn" customClass="KRMessageView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="1KW-Ej-88F">
                                         <rect key="frame" x="20" y="40" width="244" height="51"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="white" id="Ijk-gG-Bva">
                                         <rect key="frame" x="280" y="46" width="20" height="20"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>

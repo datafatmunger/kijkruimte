@@ -227,6 +227,7 @@
 		31AD0A611638424F000CFD7B /* Kijkruimte */ = {
 			isa = PBXGroup;
 			children = (
+				31CD0348197BDA550073D819 /* iPad */,
 				31E4D632163F02E300A05763 /* Assets */,
 				3108FE66163845FC00A3D243 /* Models */,
 				3108FE54163843FC00A3D243 /* Services */,
@@ -282,6 +283,13 @@
 				31AD0A881638424F000CFD7B /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		31CD0348197BDA550073D819 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = iPad;
 			sourceTree = "<group>";
 		};
 		31E4D632163F02E300A05763 /* Assets */ = {
@@ -561,6 +569,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "7A8063AF-5C98-46C0-BDC3-2B3A3E38C6FE";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7A8063AF-5C98-46C0-BDC3-2B3A3E38C6FE";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -579,6 +588,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "7A8063AF-5C98-46C0-BDC3-2B3A3E38C6FE";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7A8063AF-5C98-46C0-BDC3-2B3A3E38C6FE";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

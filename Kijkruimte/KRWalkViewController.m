@@ -112,7 +112,7 @@
 		KRWalk *walk = sortedWalks[i];
 		
 		// Handle custom walk - JBG
-		if([customWalk isEqualToString:walk.scUser]) {
+		if([customWalk isEqualToString:walk.title]) {
 			self.walk = walk;
 			[self toWalk];
 			break;
@@ -122,7 +122,7 @@
 		KRWalkView *walkView = [[[NSBundle mainBundle] loadNibNamed:@"WalkView" owner:self options:nil] objectAtIndex:0];
 		walkView.frame = CGRectMake(self.scrollView.frame.size.width * i,
 									0,
-									walkView.frame.size.width,
+									self.scrollView.frame.size.width,
 									walkView.frame.size.height);
 		NSLog(@"Walk view frame: %@", NSStringFromCGRect(walkView.frame));
 		walkView.titleLabel.text = walk.title;
@@ -174,8 +174,8 @@
 -(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id <MKOverlay>)overlay {
 	MKPolygon *polygon = (MKPolygon *)overlay;
     MKPolygonRenderer *renderer = [[MKPolygonRenderer alloc] initWithPolygon:polygon];
-    renderer.fillColor = [[UIColor darkGrayColor] colorWithAlphaComponent:0.2];
-	renderer.strokeColor = [[UIColor darkGrayColor] colorWithAlphaComponent:0.7];
+    renderer.fillColor = [UIColor colorWithRed:1.0f green:0.0f blue:0.0f alpha:0.2f];
+    renderer.strokeColor = [UIColor colorWithRed:1.0f green:0.0f blue:0.0f alpha:0.7];
 	renderer.lineWidth = 3;
     return renderer;
 }

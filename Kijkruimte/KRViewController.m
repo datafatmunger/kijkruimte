@@ -291,12 +291,13 @@
 //    return newAnnotation;
 //}
 
--(MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay {
-    MKPolygonView *polygonView = [[MKPolygonView alloc] initWithPolygon:overlay];
-    polygonView.fillColor = [[UIColor redColor] colorWithAlphaComponent:0.2];
-    polygonView.strokeColor = [[UIColor redColor] colorWithAlphaComponent:0.7];
-    polygonView.lineWidth = 3;
-    return polygonView;
+-(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id <MKOverlay>)overlay {
+	MKPolygon *polygon = (MKPolygon *)overlay;
+    MKPolygonRenderer *renderer = [[MKPolygonRenderer alloc] initWithPolygon:polygon];
+    renderer.fillColor = [UIColor colorWithRed:1.0f green:0.0f blue:0.0f alpha:0.2f];
+    renderer.strokeColor = [UIColor colorWithRed:1.0f green:0.0f blue:0.0f alpha:0.7];
+	renderer.lineWidth = 3;
+    return renderer;
 }
 
 #pragma mark -

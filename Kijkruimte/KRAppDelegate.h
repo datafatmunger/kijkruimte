@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+//static NSString *customWalk = @"Joseph's Ghost";
 static NSString *customWalk = nil;
 
 @interface KRAppDelegate : UIResponder <UIApplicationDelegate>
