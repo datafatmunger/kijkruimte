@@ -294,8 +294,8 @@
 -(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id <MKOverlay>)overlay {
 	MKPolygon *polygon = (MKPolygon *)overlay;
     MKPolygonRenderer *renderer = [[MKPolygonRenderer alloc] initWithPolygon:polygon];
-    renderer.fillColor = [UIColor colorWithRed:1.0f green:0.0f blue:0.0f alpha:0.2f];
-    renderer.strokeColor = [UIColor colorWithRed:1.0f green:0.0f blue:0.0f alpha:0.7];
+    renderer.fillColor = [UIColor colorWithRed:253.0f/255 green:232.0f/255 blue:17.0f/255 alpha:0.33f];
+    renderer.strokeColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.9];
 	renderer.lineWidth = 3;
     return renderer;
 }
