@@ -87,6 +87,8 @@
 	if(customWalk) {
 		_doneButton.hidden = YES;
 	}
+	
+	[_button setBackgroundImage:[UIImage imageNamed:@"startknop"] forState:UIControlStateNormal];
 }
 
 -(void)didReceiveMemoryWarning {
@@ -178,8 +180,7 @@
     if(_isRunning) {
         _currentLocation = self.walk.location;
         [_locationManager startUpdatingLocation];
-        [_button setTitle:@"Stop"
-				 forState:UIControlStateNormal];
+		[_button setBackgroundImage:[UIImage imageNamed:@"stopknop"] forState:UIControlStateNormal];
         
     } else {
 		[self stop];
@@ -194,8 +195,7 @@
 		//            [_mapView removeAnnotation:track.pin];
 		//            [_mapView addAnnotation:track.pin];
 	}
-	[_button setTitle:@"Start"
-			 forState:UIControlStateNormal];
+	[_button setBackgroundImage:[UIImage imageNamed:@"startknop"] forState:UIControlStateNormal];
 	if(_loadCount == _tracks.count)
 		_messageView.hidden = YES;
 	[_timer invalidate];

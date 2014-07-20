@@ -8,8 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-//static NSString *customWalk = @"Joseph's Ghost";
-static NSString *customWalk = nil;
+static NSString *customWalk = @"Extrapool Augmented Sounds";
 
 @interface KRAppDelegate : UIResponder <UIApplicationDelegate>
 
