@@ -43,6 +43,7 @@ NSURLConnectionDataDelegate
 @property(nonatomic,strong)NSString *uri;
 @property(nonatomic,strong)NSString *title;
 @property(nonatomic,strong)CLLocation *location;
+@property(nonatomic, assign)double radius;
 @property(nonatomic,strong)AVAudioPlayer *audioPlayer;
 @property(nonatomic,strong)KRMapPin *pin;
 @property(nonatomic,strong)id<KRTrackDelegate> delegate;

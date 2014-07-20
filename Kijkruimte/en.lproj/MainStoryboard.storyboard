@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="sfR-tX-hJg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="sfR-tX-hJg">
     <dependencies>
-        <deployment defaultVersion="1280" identifier="iOS"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
@@ -57,6 +57,10 @@
                         <outlet property="mapView" destination="FD5-5S-Vcn" id="iur-L5-SmX"/>
                         <outlet property="pageControl" destination="8Zn-Vh-Ujy" id="19c-6s-Omy"/>
                         <outlet property="scrollView" destination="nYv-P8-Gef" id="Rgq-1Y-MZD"/>
+                        <outletCollection property="controls" destination="FD5-5S-Vcn" id="Azc-zo-u59"/>
+                        <outletCollection property="controls" destination="nYv-P8-Gef" id="XX4-gu-rrV"/>
+                        <outletCollection property="controls" destination="8Zn-Vh-Ujy" id="ERI-ea-zfO"/>
+                        <outletCollection property="controls" destination="rGa-xl-vnn" id="Tvz-FJ-qYI"/>
                         <segue destination="2" kind="modal" identifier="toWalk" id="5Zc-Wi-ZEy"/>
                     </connections>
                 </viewController>
@@ -154,6 +158,7 @@
                         <outlet property="_actView" destination="Ijk-gG-Bva" id="9zF-QX-Ajl"/>
                         <outlet property="_button" destination="Xhc-l1-QCn" id="05z-OL-5SA"/>
                         <outlet property="_controls" destination="5wI-UU-KCa" id="SWD-g2-xx9"/>
+                        <outlet property="_doneButton" destination="MB1-lt-e8j" id="9OJ-8w-Ev3"/>
                         <outlet property="_info" destination="xTX-Jq-mf3" id="TXv-5A-DYR"/>
                         <outlet property="_mapView" destination="tay-Eg-iP9" id="mQn-Qr-h4c"/>
                         <outlet property="_messageLabel" destination="1KW-Ej-88F" id="X9E-BL-Riw"/>

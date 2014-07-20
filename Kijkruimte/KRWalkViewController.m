@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Hipstart. All rights reserved.
 //
 
+#import "KRAppDelegate.h"
 #import "KRViewController.h"
 #import "KRWalkView.h"
 #import "KRWalkViewController.h"
@@ -29,6 +30,13 @@
 	self.locationManager.delegate = self;
 	
 	[self.locationManager startUpdatingLocation];
+	
+	//If walk is custom hide the views - JBG
+	if(customWalk) {
+		for(UIView *view in self.controls) {
+			view.hidden = YES;
+		}
+	}
 	
 }
 
@@ -102,6 +110,14 @@
 	
 	for(NSInteger i = 0; i < sortedWalks.count; i++) {
 		KRWalk *walk = sortedWalks[i];
+		
+		// Handle custom walk - JBG
+		if([customWalk isEqualToString:walk.scUser]) {
+			self.walk = walk;
+			[self toWalk];
+			break;
+		}
+
 		NSLog(@"Got walk: %@", walk.title);
 		KRWalkView *walkView = [[[NSBundle mainBundle] loadNibNamed:@"WalkView" owner:self options:nil] objectAtIndex:0];
 		walkView.frame = CGRectMake(self.scrollView.frame.size.width * i,
@@ -155,12 +171,13 @@
 #pragma mark -
 #pragma mark MKMapKitDelegate
 
--(MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay {
-    MKPolygonView *polygonView = [[MKPolygonView alloc] initWithPolygon:overlay];
-    polygonView.fillColor = [[UIColor redColor] colorWithAlphaComponent:0.2];
-    polygonView.strokeColor = [[UIColor redColor] colorWithAlphaComponent:0.7];
-    polygonView.lineWidth = 3;
-    return polygonView;
+-(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id <MKOverlay>)overlay {
+	MKPolygon *polygon = (MKPolygon *)overlay;
+    MKPolygonRenderer *renderer = [[MKPolygonRenderer alloc] initWithPolygon:polygon];
+    renderer.fillColor = [[UIColor darkGrayColor] colorWithAlphaComponent:0.2];
+	renderer.strokeColor = [[UIColor darkGrayColor] colorWithAlphaComponent:0.7];
+	renderer.lineWidth = 3;
+    return renderer;
 }
 
 #pragma mark -

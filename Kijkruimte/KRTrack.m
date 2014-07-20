@@ -46,8 +46,11 @@
         for(NSString *tag in tags) {
             if([tag rangeOfString:@"lat"].location != NSNotFound) {
                 lat = [self getNumber:tag];
-            } else if([tag rangeOfString:@"lon"].location != NSNotFound)
+            } else if([tag rangeOfString:@"lon"].location != NSNotFound) {
                 lng = [self getNumber:tag];
+			} else if([tag rangeOfString:@"radius"].location != NSNotFound) {
+				_radius = [self getNumber:tag];
+			}
         }
         _location = [[CLLocation alloc] initWithLatitude:lat longitude:lng];
     }

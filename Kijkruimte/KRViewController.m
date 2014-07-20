@@ -8,6 +8,7 @@
 
 #import <AVFoundation/AVFoundation.h>
 #import <math.h>
+#import "KRAppDelegate.h"
 #import "KRInfoViewController.h"
 #import "KRMapPin.h"
 #import "KRTrackDetail.h"
@@ -82,6 +83,10 @@
 	if(self.walk.credits) {
 		_info.hidden = NO;
 	}
+	
+	if(customWalk) {
+		_doneButton.hidden = YES;
+	}
 }
 
 -(void)didReceiveMemoryWarning {
@@ -117,9 +122,10 @@
         CLLocationDistance distance = [location distanceFromLocation:track.location];
         NSLog(@"You are %fm from sound: %@", distance, track.trackId);
         
+		double radius = track.radius > 1 ? track.radius : self.walk.radius;
         double volume = 0.0;
-        if(distance <= self.walk.radius && distance > 0.0f) {
-            volume = (log(distance/self.walk.radius) * -1)/4;
+        if(distance <= radius && distance > 0.0f) {
+            volume = (log(distance/radius) * -1)/4;
             volume = volume > 1.0 ? 1.0 : volume;
             track.audioPlayer.volume = volume;
             if(track.audioPlayer != nil && ![track.audioPlayer isPlaying]) {

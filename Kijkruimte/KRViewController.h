@@ -30,6 +30,7 @@ KRTrackDelegate> {
     IBOutlet UIActivityIndicatorView *_actView;
     IBOutlet UIView *_controls;
     IBOutlet UIButton *_button;
+	IBOutlet UIButton *_doneButton;
     IBOutlet KRMessageView *_messageView;
     IBOutlet UILabel *_messageLabel;
 	IBOutlet UIButton *_info;

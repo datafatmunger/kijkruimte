@@ -21,6 +21,8 @@ KRGetWalksDelegate
 @property(nonatomic,weak)IBOutlet UIScrollView *scrollView;
 @property(nonatomic,weak)IBOutlet MKMapView *mapView;
 
+@property (nonatomic, strong) IBOutletCollection(UIView) NSArray *controls;
+
 @property(nonatomic,strong)KRWalk *walk;
 @property(nonatomic,strong)NSArray *walks;
 
