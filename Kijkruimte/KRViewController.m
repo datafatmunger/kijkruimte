@@ -338,6 +338,14 @@
 -(void)locationManager:(CLLocationManager *)manager
       didFailWithError:(NSError *)error {
     NSLog(@"%@", [error localizedDescription]);
+	NSLog(@"%@", [error localizedDescription]);
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Location Unknown :("
+													message:@"I tried to find you, but no luck.  I'll keep trying."
+												   delegate:nil
+										  cancelButtonTitle:@"OK"
+										  otherButtonTitles:nil];
+	
+    [alert show];
 }
 
 #pragma mark -

@@ -31,6 +31,8 @@
 	
 	[self.locationManager startUpdatingLocation];
 	
+	[self getWalks];
+	
 	//If walk is custom hide the views - JBG
 	if(customWalk) {
 		for(UIView *view in self.controls) {
@@ -149,6 +151,13 @@
 -(void)handleGetWalksError:(NSString*)message {
 	[self.actView stopAnimating];
 	NSLog(@"ERROR: %@", message);
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Server not reachable :("
+													message:@"I tried a few times, but no luck."
+												   delegate:nil
+										  cancelButtonTitle:@"OK"
+										  otherButtonTitles:nil];
+	
+    [alert show];
 }
 
 #pragma mark -
@@ -197,6 +206,13 @@
 -(void)locationManager:(CLLocationManager *)manager
       didFailWithError:(NSError *)error {
     NSLog(@"%@", [error localizedDescription]);
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Location Unknown :("
+													message:@"I tried to find you, but no luck.  I'll keep trying."
+												   delegate:nil
+										  cancelButtonTitle:@"OK"
+										  otherButtonTitles:nil];
+	
+    [alert show];
 }
 
 
