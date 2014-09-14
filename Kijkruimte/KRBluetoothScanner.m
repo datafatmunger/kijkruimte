@@ -41,9 +41,17 @@
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central {
     switch (central.state) {
         case CBCentralManagerStatePoweredOff: {
-
+			[self.delegate bleOff];
             break;
         }
+		case CBCentralManagerStateUnsupported: {
+			[self.delegate bleNotSupported];
+			break;
+		}
+		case CBCentralManagerStateUnauthorized: {
+			[self.delegate bleNotAuthorized];
+			break;
+		}
         case CBCentralManagerStatePoweredOn:{
 			[self scan];
             break;

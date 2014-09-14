@@ -28,7 +28,8 @@
 	
 	self.locationManager = [[CLLocationManager alloc] init];
 	self.locationManager.delegate = self;
-	[self.locationManager requestAlwaysAuthorization];
+	if([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)])
+		[self.locationManager requestAlwaysAuthorization];
 	[self.locationManager startUpdatingLocation];
 	
 	//If walk is custom hide the views - JBG
@@ -124,7 +125,6 @@
 									0,
 									self.scrollView.frame.size.width,
 									walkView.frame.size.height);
-		NSLog(@"Walk view frame: %@", NSStringFromCGRect(walkView.frame));
 		walkView.titleLabel.text = walk.title;
 		walkView.textView.text = walk.walkDescription;
 		NSString *urlStr = [NSString stringWithFormat:@"http://hearushere.nl/%@", walk.imageURLStr];
@@ -149,6 +149,13 @@
 -(void)handleGetWalksError:(NSString*)message {
 	[self.actView stopAnimating];
 	NSLog(@"ERROR: %@", message);
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Server not reachable :("
+													message:@"I tried a few times, but no luck."
+												   delegate:nil
+										  cancelButtonTitle:@"OK"
+										  otherButtonTitles:nil];
+	
+	[alert show];
 }
 
 #pragma mark -
@@ -197,6 +204,13 @@
 -(void)locationManager:(CLLocationManager *)manager
       didFailWithError:(NSError *)error {
     NSLog(@"%@", [error localizedDescription]);
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Location Unknown :("
+													message:@"I tried to find you, but no luck.  I'll keep trying."
+												   delegate:nil
+										  cancelButtonTitle:@"OK"
+										  otherButtonTitles:nil];
+	
+	[alert show];
 }
 
 

@@ -11,6 +11,9 @@
 @protocol KRBluetoothScannerDelegate <NSObject>
 
 -(void)foundDevice:(NSString*)uuidStr RSSI:(NSNumber*)RSSI;
+-(void)bleNotAuthorized;
+-(void)bleNotSupported;
+-(void)bleOff;
 
 @end
 

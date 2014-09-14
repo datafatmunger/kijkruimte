@@ -499,4 +499,41 @@ KRBluetoothScannerDelegate
 	}
 }
 
+-(void)bleNotAuthorized {
+	dispatch_async(dispatch_get_main_queue(), ^{
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"BlueTooth Not Authorized :("
+														message:@"Please adjust your iOS settings and try again."
+													   delegate:nil
+											  cancelButtonTitle:@"OK"
+											  otherButtonTitles:nil];
+		
+		[alert show];
+	});
+}
+
+-(void)bleNotSupported {
+	dispatch_async(dispatch_get_main_queue(), ^{
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"BLE Not Supported :("
+														message:@"Sorry your device does not support BlueTooth Low Energy.  You can continue using the app, but will not hear BlueTooth sounds."
+													   delegate:nil
+											  cancelButtonTitle:@"OK"
+											  otherButtonTitles:nil];
+		
+		[alert show];
+	});
+	
+}
+
+-(void)bleOff {
+	dispatch_async(dispatch_get_main_queue(), ^{
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"BlueTooth Off :("
+														message:@"Please adjust your iOS settings and try again."
+													   delegate:nil
+											  cancelButtonTitle:@"OK"
+											  otherButtonTitles:nil];
+		
+		[alert show];
+	});
+}
+
 @end
