@@ -28,7 +28,7 @@
 	
 	self.locationManager = [[CLLocationManager alloc] init];
 	self.locationManager.delegate = self;
-	
+	[self.locationManager requestAlwaysAuthorization];
 	[self.locationManager startUpdatingLocation];
 	
 	//If walk is custom hide the views - JBG
@@ -126,7 +126,7 @@
 									walkView.frame.size.height);
 		NSLog(@"Walk view frame: %@", NSStringFromCGRect(walkView.frame));
 		walkView.titleLabel.text = walk.title;
-		walkView.textView.text = walk.description;
+		walkView.textView.text = walk.walkDescription;
 		NSString *urlStr = [NSString stringWithFormat:@"http://hearushere.nl/%@", walk.imageURLStr];
 		walkView.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:urlStr]]];
 		walkView.imageView.layer.cornerRadius = walkView.imageView.frame.size.height / 2;

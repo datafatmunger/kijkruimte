@@ -15,7 +15,7 @@
 @property(nonatomic, strong)NSString *imageURLStr;
 @property(nonatomic, strong)NSString *credits;
 @property(nonatomic, strong)NSString *scUser;
-@property(nonatomic, strong)NSString *description;
+@property(nonatomic, strong)NSString *walkDescription;
 @property(nonatomic, strong)MKPolygon *polygon;
 @property(nonatomic, strong)CLLocation *location;
 @property(nonatomic, assign)BOOL autoPlay;

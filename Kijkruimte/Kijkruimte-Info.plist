@@ -28,6 +28,8 @@
 	<string>4</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>HearUsHere is an augmented audio app which requires your GPS locations to sound content.</string>
 	<key>NSMainNibFile~ipad</key>
 	<string>MainStoryboard-iPad</string>
 	<key>UIBackgroundModes</key>

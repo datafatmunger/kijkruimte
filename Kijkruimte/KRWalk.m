@@ -17,7 +17,7 @@
 		self.scUser = dictionary[@"scUser"];
 		self.imageURLStr = dictionary[@"image"];
 		self.credits = dictionary[@"credits"];
-		self.description = dictionary[@"description"];
+		self.walkDescription = dictionary[@"description"];
 		self.autoPlay = [dictionary[@"autoplay"] boolValue];
 		self.radius = [dictionary[@"radius"] doubleValue];
 		

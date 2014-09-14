@@ -9,6 +9,7 @@
 
 #import <MapKit/MapKit.h>
 #import <UIKit/UIKit.h>
+#import "KRBluetoothScanner.h"
 #import "KRBroadcaster.h"
 #import "KRMessageView.h"
 #import "KRTrack.h"
@@ -49,6 +50,8 @@ KRTrackDelegate> {
 
 }
 
+@property(nonatomic, strong)NSMutableDictionary *bleTracks;
+@property(nonatomic, strong)KRBluetoothScanner *bleScanner;
 @property(nonatomic, strong)KRWalk *walk;
 
 -(IBAction)start;

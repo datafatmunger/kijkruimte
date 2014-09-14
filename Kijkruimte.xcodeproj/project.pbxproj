@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3102326119B889EC00E13EDD /* KRBluetoothScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3102326019B889EC00E13EDD /* KRBluetoothScanner.m */; };
+		3102326319B88ACD00E13EDD /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3102326219B88ACD00E13EDD /* CoreBluetooth.framework */; };
 		3108FE57163844C500A3D243 /* SCGetUserTracks.m in Sources */ = {isa = PBXBuildFile; fileRef = 3108FE56163844C500A3D243 /* SCGetUserTracks.m */; };
 		3108FE5E1638451300A3D243 /* SCServiceAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 3108FE5D1638451300A3D243 /* SCServiceAPI.m */; };
 		3108FE5F1638454400A3D243 /* SCServiceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 31AD0A9716384273000CFD7B /* SCServiceRequest.m */; };
@@ -65,6 +67,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3102325F19B889EC00E13EDD /* KRBluetoothScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRBluetoothScanner.h; sourceTree = "<group>"; };
+		3102326019B889EC00E13EDD /* KRBluetoothScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRBluetoothScanner.m; sourceTree = "<group>"; };
+		3102326219B88ACD00E13EDD /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		3108FE55163844C500A3D243 /* SCGetUserTracks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCGetUserTracks.h; sourceTree = "<group>"; };
 		3108FE56163844C500A3D243 /* SCGetUserTracks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCGetUserTracks.m; sourceTree = "<group>"; };
 		3108FE5C1638451300A3D243 /* SCServiceAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCServiceAPI.h; sourceTree = "<group>"; };
@@ -137,6 +142,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3102326319B88ACD00E13EDD /* CoreBluetooth.framework in Frameworks */,
 				31E6D2CC1648489F00BACF3F /* CFNetwork.framework in Frameworks */,
 				313E3C62163D96EB000165B7 /* MapKit.framework in Frameworks */,
 				31E05000163AE7F30044F0F8 /* CoreLocation.framework in Frameworks */,
@@ -216,6 +222,7 @@
 		31AD0A5A1638424F000CFD7B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3102326219B88ACD00E13EDD /* CoreBluetooth.framework */,
 				31AD0A5B1638424F000CFD7B /* UIKit.framework */,
 				31AD0A5D1638424F000CFD7B /* Foundation.framework */,
 				31AD0A5F1638424F000CFD7B /* CoreGraphics.framework */,
@@ -227,7 +234,6 @@
 		31AD0A611638424F000CFD7B /* Kijkruimte */ = {
 			isa = PBXGroup;
 			children = (
-				31CD0348197BDA550073D819 /* iPad */,
 				31E4D632163F02E300A05763 /* Assets */,
 				3108FE66163845FC00A3D243 /* Models */,
 				3108FE54163843FC00A3D243 /* Services */,
@@ -251,6 +257,8 @@
 				31C4EC6A18CC96EE00A4DAD5 /* WalkView.xib */,
 				31C4EC6C18CC977E00A4DAD5 /* KRWalkView.h */,
 				31C4EC6D18CC977E00A4DAD5 /* KRWalkView.m */,
+				3102325F19B889EC00E13EDD /* KRBluetoothScanner.h */,
+				3102326019B889EC00E13EDD /* KRBluetoothScanner.m */,
 			);
 			path = Kijkruimte;
 			sourceTree = "<group>";
@@ -283,13 +291,6 @@
 				31AD0A881638424F000CFD7B /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		31CD0348197BDA550073D819 /* iPad */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = iPad;
 			sourceTree = "<group>";
 		};
 		31E4D632163F02E300A05763 /* Assets */ = {
@@ -348,7 +349,7 @@
 			name = KijkruimteTests;
 			productName = KijkruimteTests;
 			productReference = 31AD0A7E1638424F000CFD7B /* KijkruimteTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -446,6 +447,7 @@
 				31AD0A6C1638424F000CFD7B /* KRAppDelegate.m in Sources */,
 				31AD0A781638424F000CFD7B /* KRViewController.m in Sources */,
 				3108FE57163844C500A3D243 /* SCGetUserTracks.m in Sources */,
+				3102326119B889EC00E13EDD /* KRBluetoothScanner.m in Sources */,
 				3108FE5E1638451300A3D243 /* SCServiceAPI.m in Sources */,
 				3108FE691638460E00A3D243 /* KRTrack.m in Sources */,
 				31B4ECB4163A7D9F00BB5A31 /* KRTrackDetail.m in Sources */,
