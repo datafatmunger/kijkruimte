@@ -490,12 +490,12 @@ KRBluetoothScannerDelegate
 -(void)foundDevice:(NSString*)uuidStr RSSI:(NSNumber*)RSSI {
 	if(!_isRunning) return;
 	
-	double volume = 0.0;
-	if(RSSI.intValue < 0) {
-		volume = -(log(-(RSSI.doubleValue) - 40)) + 4;
-		volume = volume > 1.0 ? 1.0 : volume;
-		NSLog(@"RSSI: %ld, volume: %f, UUID: %@", (long)RSSI.integerValue, volume, uuidStr);
-	}
+	double volume = 1.0;
+//	if(RSSI.intValue < 0) {
+//		volume = -(log(-(RSSI.doubleValue) - 40)) + 4;
+//		volume = volume > 1.0 ? 1.0 : volume;
+//		NSLog(@"RSSI: %ld, volume: %f, UUID: %@", (long)RSSI.integerValue, volume, uuidStr);
+//	}
 	
 	KRTrack *track = [self.bleTracks objectForKey:uuidStr];
 	if(!track) {
@@ -506,7 +506,7 @@ KRBluetoothScannerDelegate
 			NSString *key = [array objectAtIndex:random];
 			track = [_tracks objectForKey:key];
 		} while (!track.bluetooth);
-		NSLog(@"Starting audio player...for %@", uuidStr);
+		NSLog(@"Starting audio player...for %@, %@", uuidStr, track.title);
 		[track.audioPlayer play];
 		[self.bleTracks setObject:track forKey:uuidStr];
 	}
@@ -515,17 +515,18 @@ KRBluetoothScannerDelegate
 		track.audioPlayer.volume = volume;
 	
 	// This will slow degrade the audio track so devices that "disappear", don't sound forever - JBG
-	if(!degradeTimer_) {
-		degradeTimer_ = ble_create_dispatch_timer(0.1, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-			for(id key in [_tracks allKeys]) {
-				KRTrack *track = [_tracks objectForKey:key];
-				if(track.bluetooth && track.audioPlayer.volume > 0)
-					track.audioPlayer.volume -= 0.01;
-				
-				NSLog(@"degrading volume to: %f", track.audioPlayer.volume);
-			}
-		});
-	}
+//	if(!degradeTimer_) {
+//		degradeTimer_ = ble_create_dispatch_timer(0.1, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//			for(id key in [_tracks allKeys]) {
+//				KRTrack *track = [_tracks objectForKey:key];
+//				if(track.bluetooth && track.audioPlayer.volume > 0)
+//					track.audioPlayer.volume -= 0.01;
+//				
+//				NSLog(@"degrading volume to: %f", track.audioPlayer.volume);
+//			}
+//		});
+//	}
+	
 }
 
 -(void)bleNotAuthorized {
