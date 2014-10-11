@@ -52,6 +52,8 @@
 				_radius = [self getNumber:tag];
 			} else if([tag rangeOfString:@"bluetooth"].location != NSNotFound) {
 				_bluetooth = YES;
+			} else if([tag rangeOfString:@"background"].location != NSNotFound) {
+				_background = YES;
 			}
         }
         _location = [[CLLocation alloc] initWithLatitude:lat longitude:lng];
