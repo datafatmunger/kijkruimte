@@ -185,17 +185,17 @@ KRBluetoothScannerDelegate
         [_mapView setNeedsDisplay];
     }
 	
-	if(!playingGeo) {
+//	if(!playingGeo) {
 		NSLog(@"PLAYING BACKGROUND");
 		background_.audioPlayer.volume = 1.0;
 		if(background_.audioPlayer != nil && ![background_.audioPlayer isPlaying]) {
 			[background_.audioPlayer play];
 			background_.pin.isPlaying = YES;
 		}
-	} else {
-		NSLog(@"STOPING BACKGROUND");
-		background_.audioPlayer.volume = 0.0;
-	}
+//	} else {
+//		NSLog(@"STOPING BACKGROUND");
+//		background_.audioPlayer.volume = 0.0;
+//	}
 }
 
 -(IBAction)start {
