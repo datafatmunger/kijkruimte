@@ -509,7 +509,8 @@ KRBluetoothScannerDelegate
 		[self.bleTracks setObject:track forKey:uuidStr];
 	}
 	
-	track.audioPlayer.volume = volume;
+	if(!isnan(volume))
+		track.audioPlayer.volume = volume;
 	if(track.audioPlayer != nil && ![track.audioPlayer isPlaying]) {
 		NSLog(@"Starting audio player...for %@", uuidStr);
 		[track.audioPlayer play];
