@@ -112,7 +112,7 @@
 -(void)createPlayer {
     NSError *error;
     _audioPlayer = [[AVAudioPlayer alloc] initWithData:_audioData error:&error];
-	_audioPlayer.numberOfLoops = _bluetooth ? 1 : -1;
+	_audioPlayer.numberOfLoops = _bluetooth ? 0 : -1;
     _audioPlayer.volume = 1.0f;
     _audioPlayer.delegate = self;
     

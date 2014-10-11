@@ -488,44 +488,44 @@ KRBluetoothScannerDelegate
 #pragma mark - KRBluetoothScannerDelegate <NSObject>
 
 -(void)foundDevice:(NSString*)uuidStr RSSI:(NSNumber*)RSSI {
-	if(!_isRunning) return;
-	
-	double volume = 0.0;
-	if(RSSI.intValue < 0) {
-		volume = -(log(-(RSSI.doubleValue) - 40)) + 4;
-		volume = volume > 1.0 ? 1.0 : volume;
-		NSLog(@"RSSI: %ld, volume: %f, UUID: %@", (long)RSSI.integerValue, volume, uuidStr);
-	}
-	
-	KRTrack *track = [self.bleTracks objectForKey:uuidStr];
-	if(!track) {
-		NSArray *array = [_tracks allKeys];
-		// Get a random track, if it's tagged "bluetooth" use it - JBG
-		do {
-			int random = arc4random()%[array count];
-			NSString *key = [array objectAtIndex:random];
-			track = [_tracks objectForKey:key];
-		} while (!track.bluetooth);
-		[self.bleTracks setObject:track forKey:uuidStr];
-	}
-	
-	if(!isnan(volume))
-		track.audioPlayer.volume = volume;
-	if(track.audioPlayer != nil && ![track.audioPlayer isPlaying]) {
-		NSLog(@"Starting audio player...for %@", uuidStr);
-		[track.audioPlayer play];
-	}
-	
-	// This will slow degrade the audio track so devices that "disappear", don't sound forever - JBG
-	if(!degradeTimer_) {
-		degradeTimer_ = ble_create_dispatch_timer(2.0, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-			for(id key in [_tracks allKeys]) {
-				KRTrack *track = [_tracks objectForKey:key];
-				if(track.audioPlayer.volume > 0)
-					track.audioPlayer.volume -= -0.01;
-			}
-		});
-	}
+//	if(!_isRunning) return;
+//	
+//	double volume = 0.0;
+//	if(RSSI.intValue < 0) {
+//		volume = -(log(-(RSSI.doubleValue) - 40)) + 4;
+//		volume = volume > 1.0 ? 1.0 : volume;
+//		NSLog(@"RSSI: %ld, volume: %f, UUID: %@", (long)RSSI.integerValue, volume, uuidStr);
+//	}
+//	
+//	KRTrack *track = [self.bleTracks objectForKey:uuidStr];
+//	if(!track) {
+//		NSArray *array = [_tracks allKeys];
+//		// Get a random track, if it's tagged "bluetooth" use it - JBG
+//		do {
+//			int random = arc4random()%[array count];
+//			NSString *key = [array objectAtIndex:random];
+//			track = [_tracks objectForKey:key];
+//		} while (!track.bluetooth);
+//		[self.bleTracks setObject:track forKey:uuidStr];
+//	}
+//	
+//	if(!isnan(volume))
+//		track.audioPlayer.volume = volume;
+//	if(track.audioPlayer != nil && ![track.audioPlayer isPlaying]) {
+//		NSLog(@"Starting audio player...for %@", uuidStr);
+//		[track.audioPlayer play];
+//	}
+//	
+//	// This will slow degrade the audio track so devices that "disappear", don't sound forever - JBG
+//	if(!degradeTimer_) {
+//		degradeTimer_ = ble_create_dispatch_timer(2.0, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//			for(id key in [_tracks allKeys]) {
+//				KRTrack *track = [_tracks objectForKey:key];
+//				if(track.audioPlayer.volume > 0)
+//					track.audioPlayer.volume -= -0.01;
+//			}
+//		});
+//	}
 }
 
 -(void)bleNotAuthorized {
