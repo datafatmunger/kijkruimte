@@ -102,8 +102,9 @@ KRBluetoothScannerDelegate
 	if(customWalk) {
 		_doneButton.hidden = YES;
 	}
-	
-	[_button setBackgroundImage:[UIImage imageNamed:@"startknop"] forState:UIControlStateNormal];
+	[_button setTitle:@"Start" forState:UIControlStateNormal];
+	_button.backgroundColor = [UIColor colorWithRed:255 green:242 blue:0 alpha:1.0];
+	[_button setTitleColor:[UIColor darkTextColor] forState:UIControlStateNormal];
 }
 
 -(void)didReceiveMemoryWarning {
@@ -225,8 +226,9 @@ KRBluetoothScannerDelegate
 		
 		self.bleProducer = [[KRBluetoothProducer alloc] init];
 		[self.bleProducer start];
-		
-		[_button setBackgroundImage:[UIImage imageNamed:@"stopknop"] forState:UIControlStateNormal];
+		[_button setTitle:@"Stop" forState:UIControlStateNormal];
+		_button.backgroundColor = [UIColor darkTextColor];
+		[_button setTitleColor:[UIColor colorWithRed:255 green:242 blue:0 alpha:1] forState:UIControlStateNormal];
     } else {
 		[self stop];
     }
@@ -261,8 +263,9 @@ KRBluetoothScannerDelegate
 //		dispatch_source_cancel(degradeTimer_);
 //		degradeTimer_ = nil;
 //	}
-	
-	[_button setBackgroundImage:[UIImage imageNamed:@"startknop"] forState:UIControlStateNormal];
+	[_button setTitle:@"Start" forState:UIControlStateNormal];
+	_button.backgroundColor = [UIColor colorWithRed:255 green:242 blue:0 alpha:1.0];
+	[_button setTitleColor:[UIColor darkTextColor] forState:UIControlStateNormal];
 }
 
 -(IBAction)toInfo:(id)sender {
