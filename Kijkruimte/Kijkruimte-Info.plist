@@ -36,6 +36,8 @@
 	<array>
 		<string>location</string>
 		<string>audio</string>
+		<string>bluetooth-peripheral</string>
+		<string>bluetooth-central</string>
 	</array>
 	<key>UIMainStoryboardFile</key>
 	<string>MainStoryboard</string>

@@ -205,6 +205,9 @@ KRBluetoothScannerDelegate
 		self.bleScanner.delegate = self;
 		[self.bleScanner scan];
 		
+		self.bleProducer = [[KRBluetoothProducer alloc] init];
+		[self.bleProducer start];
+		
     } else {
 		[self stop];
     }
@@ -234,6 +237,7 @@ KRBluetoothScannerDelegate
 	//        }
 	
 	[self.bleScanner stop];
+	[self.bleProducer stop];
 	
 	if(degradeTimer_) {
 		dispatch_source_cancel(degradeTimer_);
