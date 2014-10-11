@@ -102,6 +102,8 @@ KRBluetoothScannerDelegate
 	if(customWalk) {
 		_doneButton.hidden = YES;
 	}
+	
+	[_button setBackgroundImage:[UIImage imageNamed:@"startknop"] forState:UIControlStateNormal];
 }
 
 -(void)didReceiveMemoryWarning {
@@ -214,8 +216,6 @@ KRBluetoothScannerDelegate
     if(_isRunning) {
         _currentLocation = self.walk.location;
         [_locationManager startUpdatingLocation];
-        [_button setTitle:@"Stop"
-				 forState:UIControlStateNormal];
 		
 		//Bluetooth Scanner - JBG
 		self.bleTracks = [NSMutableDictionary dictionary];
@@ -226,6 +226,7 @@ KRBluetoothScannerDelegate
 		self.bleProducer = [[KRBluetoothProducer alloc] init];
 		[self.bleProducer start];
 		
+		[_button setBackgroundImage:[UIImage imageNamed:@"stopknop"] forState:UIControlStateNormal];
     } else {
 		[self stop];
     }
@@ -239,8 +240,7 @@ KRBluetoothScannerDelegate
 		//            [_mapView removeAnnotation:track.pin];
 		//            [_mapView addAnnotation:track.pin];
 	}
-	[_button setTitle:@"Start"
-			 forState:UIControlStateNormal];
+	
 	if(_loadCount == _tracks.count)
 		_messageView.hidden = YES;
 	[_timer invalidate];
@@ -257,10 +257,12 @@ KRBluetoothScannerDelegate
 	[self.bleScanner stop];
 	[self.bleProducer stop];
 	
-	if(degradeTimer_) {
-		dispatch_source_cancel(degradeTimer_);
-		degradeTimer_ = nil;
-	}
+//	if(degradeTimer_) {
+//		dispatch_source_cancel(degradeTimer_);
+//		degradeTimer_ = nil;
+//	}
+	
+	[_button setBackgroundImage:[UIImage imageNamed:@"startknop"] forState:UIControlStateNormal];
 }
 
 -(IBAction)toInfo:(id)sender {
