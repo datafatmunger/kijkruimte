@@ -45,6 +45,7 @@ KRBluetoothScannerDelegate
 
 @implementation KRViewController {
 	dispatch_source_t degradeTimer_;
+	KRTrack *background_;
 }
 
 -(void)viewDidLoad {
@@ -123,7 +124,9 @@ KRBluetoothScannerDelegate
 
 -(void)updateTracks:(CLLocation*)location {
     if(!_isRunning) return;
-    
+	
+	BOOL playingGeo = NO;
+	
     for(int i = 0; i < [_tracks count]; i++) {
         KRTrack *track = [[_tracks allValues] objectAtIndex:i];
 		
@@ -152,6 +155,7 @@ KRBluetoothScannerDelegate
                 //                [_mapView removeAnnotation:track.pin];
                 //                [_mapView addAnnotation:track.pin];
             }
+			playingGeo = YES;
         } else if(distance <= 0.0f) {
             volume = 1.0;
             track.audioPlayer.volume = volume;
@@ -161,6 +165,7 @@ KRBluetoothScannerDelegate
                 //                [_mapView removeAnnotation:track.pin];
                 //                [_mapView addAnnotation:track.pin];
             }
+			playingGeo = YES;
         } else {
             track.audioPlayer.volume = volume;
             if(track.pin.isPlaying != NO) {
@@ -169,6 +174,7 @@ KRBluetoothScannerDelegate
                 //                [_mapView removeAnnotation:track.pin];
                 //                [_mapView addAnnotation:track.pin];
             }
+			playingGeo = playingGeo || NO;
         }
 //        [self broadcastTrack:track.trackId
 //                    location:location
@@ -178,11 +184,23 @@ KRBluetoothScannerDelegate
         track.pin.subtitle = [NSString stringWithFormat:@"Volume: %f", volume];
         [_mapView setNeedsDisplay];
     }
+	
+	if(!playingGeo) {
+		NSLog(@"PLAYING BACKGROUND");
+		background_.audioPlayer.volume = 1.0;
+		if(background_.audioPlayer != nil && ![background_.audioPlayer isPlaying]) {
+			[background_.audioPlayer play];
+			background_.pin.isPlaying = YES;
+		}
+	} else {
+		NSLog(@"STOPING BACKGROUND");
+		background_.audioPlayer.volume = 0.0;
+	}
 }
 
 -(IBAction)start {
     NSLog(@"Start and Stop");
-    
+	
     _isRunning = !_isRunning;
 	
 	if(self.walk.autoPlay) {
@@ -274,7 +292,13 @@ KRBluetoothScannerDelegate
                                                    subtitle:[NSString stringWithFormat:@"Volume: %f", 0.0]];
         track.pin = mp;
         //        [_mapView addAnnotation:track.pin];
+		
+		if(track.background) {
+			NSLog(@"Setting whisper");
+			background_ = track;
+		}
     }
+
     [_messageLabel setText:[NSString stringWithFormat:@"Loading audio...%ld of %lu", (long)_loadCount, (unsigned long)tracks.count]];
     
 }
