@@ -44,6 +44,7 @@ KRTrackDelegate> {
     BOOL _isRunning;
     NSString *_guid;
 	BOOL _canRetry;
+	BOOL _enableBluetooth;
     
     NSTimer *_timer;
     

@@ -53,6 +53,10 @@
 		3113F2BB19E9471200BC29C8 /* Info-Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3113F29119E9471200BC29C8 /* Info-Icon@2x.png */; };
 		3121A6F81683BF15004747B6 /* KRMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3121A6F71683BF15004747B6 /* KRMessageView.m */; };
 		3121D71F19E989A600DABAE6 /* Relative-Faux.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3121D71E19E989A600DABAE6 /* Relative-Faux.otf */; };
+		3121D72519E9965100DABAE6 /* 76.png in Resources */ = {isa = PBXBuildFile; fileRef = 3121D72419E9965100DABAE6 /* 76.png */; };
+		3121D72719E9965700DABAE6 /* 152.png in Resources */ = {isa = PBXBuildFile; fileRef = 3121D72619E9965700DABAE6 /* 152.png */; };
+		3121D72919E9968B00DABAE6 /* 120.png in Resources */ = {isa = PBXBuildFile; fileRef = 3121D72819E9968B00DABAE6 /* 120.png */; };
+		3121D72B19E997A600DABAE6 /* AppIcon120x120.png in Resources */ = {isa = PBXBuildFile; fileRef = 3121D72A19E997A600DABAE6 /* AppIcon120x120.png */; };
 		313E3C62163D96EB000165B7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 313E3C61163D96EB000165B7 /* MapKit.framework */; };
 		313E3C8E163D9B89000165B7 /* KRMapPin.m in Sources */ = {isa = PBXBuildFile; fileRef = 313E3C8D163D9B89000165B7 /* KRMapPin.m */; };
 		313FA7A719CF2ED200A0EDB5 /* KRBluetoothProducer.m in Sources */ = {isa = PBXBuildFile; fileRef = 313FA7A619CF2ED200A0EDB5 /* KRBluetoothProducer.m */; };
@@ -146,6 +150,10 @@
 		3121A6F61683BF15004747B6 /* KRMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRMessageView.h; sourceTree = "<group>"; };
 		3121A6F71683BF15004747B6 /* KRMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRMessageView.m; sourceTree = "<group>"; };
 		3121D71E19E989A600DABAE6 /* Relative-Faux.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Relative-Faux.otf"; sourceTree = "<group>"; };
+		3121D72419E9965100DABAE6 /* 76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 76.png; sourceTree = "<group>"; };
+		3121D72619E9965700DABAE6 /* 152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 152.png; sourceTree = "<group>"; };
+		3121D72819E9968B00DABAE6 /* 120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 120.png; sourceTree = "<group>"; };
+		3121D72A19E997A600DABAE6 /* AppIcon120x120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon120x120.png; sourceTree = "<group>"; };
 		313E3C61163D96EB000165B7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		313E3C8C163D9B89000165B7 /* KRMapPin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRMapPin.h; sourceTree = "<group>"; };
 		313E3C8D163D9B89000165B7 /* KRMapPin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRMapPin.m; sourceTree = "<group>"; };
@@ -357,6 +365,10 @@
 		31E4D632163F02E300A05763 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				3121D72A19E997A600DABAE6 /* AppIcon120x120.png */,
+				3121D72819E9968B00DABAE6 /* 120.png */,
+				3121D72619E9965700DABAE6 /* 152.png */,
+				3121D72419E9965100DABAE6 /* 76.png */,
 				3121D71E19E989A600DABAE6 /* Relative-Faux.otf */,
 				3113F26C19E9471200BC29C8 /* 2727pt.png */,
 				3113F26D19E9471200BC29C8 /* 2727px.png */,
@@ -477,10 +489,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3121D72B19E997A600DABAE6 /* AppIcon120x120.png in Resources */,
 				3113F29C19E9471200BC29C8 /* 5757pt.png in Resources */,
 				3113F2AF19E9471200BC29C8 /* 801920.png in Resources */,
 				3113F2A219E9471200BC29C8 /* 7676pt.png in Resources */,
 				3113F2B119E9471200BC29C8 /* 6401136.png in Resources */,
+				3121D72519E9965100DABAE6 /* 76.png in Resources */,
 				3113F2A419E9471200BC29C8 /* 8080pt.png in Resources */,
 				3113F2AC19E9471200BC29C8 /* 320480.png in Resources */,
 				3113F2BA19E9471200BC29C8 /* Info-Icon.png in Resources */,
@@ -489,6 +503,7 @@
 				3113F2A919E9471200BC29C8 /* 120120px.png in Resources */,
 				3113F2A519E9471200BC29C8 /* 8080px.png in Resources */,
 				3113F2B219E9471200BC29C8 /* 7681024.png in Resources */,
+				3121D72919E9968B00DABAE6 /* 120.png in Resources */,
 				3113F2AE19E9471200BC29C8 /* 640960.png in Resources */,
 				3113F2AB19E9471200BC29C8 /* 152152px.png in Resources */,
 				3113F29B19E9471200BC29C8 /* 4040px.png in Resources */,
@@ -501,6 +516,7 @@
 				3113F29719E9471200BC29C8 /* 2727px.png in Resources */,
 				3113F2B019E9471200BC29C8 /* 1024768.png in Resources */,
 				3113F2A819E9471200BC29C8 /* 120120pt.png in Resources */,
+				3121D72719E9965700DABAE6 /* 152.png in Resources */,
 				3121D71F19E989A600DABAE6 /* Relative-Faux.otf in Resources */,
 				3113F2B919E9471200BC29C8 /* Info-Icon-black@2x.png in Resources */,
 				3113F2BB19E9471200BC29C8 /* Info-Icon@2x.png in Resources */,
@@ -701,8 +717,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Klasien van de Zandschulp (2U5PP7ARKJ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Klasien van de Zandschulp (2U5PP7ARKJ)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/jbg/Downloads/IHS-SDK-Beta-v1_90/SDK",

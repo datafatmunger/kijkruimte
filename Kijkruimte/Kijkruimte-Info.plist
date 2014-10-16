@@ -25,13 +25,11 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>3</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>HearUsHere is an augmented audio app which requires your GPS locations to sound content.</string>
-	<key>NSMainNibFile~ipad</key>
-	<string>MainStoryboard-iPad</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Felative-Faux.otf</string>
@@ -45,10 +43,14 @@
 	</array>
 	<key>UIMainStoryboardFile</key>
 	<string>MainStoryboard</string>
+	<key>UIMainStoryboardFile~ipad</key>
+	<string>MainStoryboard</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>UIStatusBarHidden~ipad</key>
+	<true/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

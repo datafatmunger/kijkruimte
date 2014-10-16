@@ -126,79 +126,78 @@ KRBluetoothScannerDelegate
 }
 
 -(void)updateTracks:(CLLocation*)location {
-//    if(!_isRunning) return;
-//	
-//	BOOL playingGeo = NO;
-//	
-//    for(int i = 0; i < [_tracks count]; i++) {
-//        KRTrack *track = [[_tracks allValues] objectAtIndex:i];
-//		
-//		if(track.location.coordinate.latitude == 0.0 ||
-//		   track.location.coordinate.longitude == 0.0)
-//			continue; // If the track doesn't have coordinates, just continue - JBG
-//        
-//        NSLog(@"comparing %f, %f with %f, %f",
-//              location.coordinate.latitude,
-//              location.coordinate.longitude,
-//              track.location.coordinate.latitude,
-//              track.location.coordinate.longitude);
-//        
-//        CLLocationDistance distance = [location distanceFromLocation:track.location];
-//        NSLog(@"You are %fm from sound: %@", distance, track.trackId);
-//        
-//		double radius = track.radius > 1 ? track.radius : self.walk.radius;
-//        double volume = 0.0;
-//        if(distance <= radius && distance > 0.0f) {
-//            volume = (log(distance/radius) * -1)/4;
-//            volume = volume > 1.0 ? 1.0 : volume;
-//            track.audioPlayer.volume = volume;
-//            if(track.audioPlayer != nil && ![track.audioPlayer isPlaying]) {
-//                [track.audioPlayer play];
-//                track.pin.isPlaying = YES;
-//                //                [_mapView removeAnnotation:track.pin];
-//                //                [_mapView addAnnotation:track.pin];
-//            }
-//			playingGeo = YES;
-//        } else if(distance <= 0.0f) {
-//            volume = 1.0;
-//            track.audioPlayer.volume = volume;
-//            if(track.audioPlayer != nil && ![track.audioPlayer isPlaying]) {
-//                [track.audioPlayer play];
-//                track.pin.isPlaying = YES;
-//                //                [_mapView removeAnnotation:track.pin];
-//                //                [_mapView addAnnotation:track.pin];
-//            }
-//			playingGeo = YES;
-//        } else {
-//            track.audioPlayer.volume = volume;
-//            if(track.pin.isPlaying != NO) {
-//                //[track.audioPlayer stop];
-//                track.pin.isPlaying = NO;
-//                //                [_mapView removeAnnotation:track.pin];
-//                //                [_mapView addAnnotation:track.pin];
-//            }
-//			playingGeo = playingGeo || NO;
-//        }
-////        [self broadcastTrack:track.trackId
-////                    location:location
-////               trackLocation:track.location
-////                playPosition:track.audioPlayer.currentTime
-////                      volume:volume];
-//        track.pin.subtitle = [NSString stringWithFormat:@"Volume: %f", volume];
-//        [_mapView setNeedsDisplay];
-//    }
-//	
-////	if(!playingGeo) {
-//		NSLog(@"PLAYING BACKGROUND");
-//		background_.audioPlayer.volume = 1.0;
-//		if(background_.audioPlayer != nil && ![background_.audioPlayer isPlaying]) {
-//			[background_.audioPlayer play];
-//			background_.pin.isPlaying = YES;
-//		}
-////	} else {
-////		NSLog(@"STOPING BACKGROUND");
-////		background_.audioPlayer.volume = 0.0;
-////	}
+	if(!_isRunning) return;
+	
+	BOOL playingGeo = NO;
+	
+    for(int i = 0; i < [_tracks count]; i++) {
+        KRTrack *track = [[_tracks allValues] objectAtIndex:i];
+		
+		if(track.location.coordinate.latitude == 0.0 ||
+		   track.location.coordinate.longitude == 0.0)
+			continue; // If the track doesn't have coordinates, just continue - JBG
+		
+        NSLog(@"comparing %f, %f with %f, %f",
+              location.coordinate.latitude,
+              location.coordinate.longitude,
+              track.location.coordinate.latitude,
+              track.location.coordinate.longitude);
+		
+        CLLocationDistance distance = [location distanceFromLocation:track.location];
+        NSLog(@"You are %fm from sound: %@", distance, track.trackId);
+		
+		double radius = track.radius > 1 ? track.radius : self.walk.radius;
+        double volume = 0.0;
+        if(distance <= radius && distance > 0.0f) {
+            volume = (log(distance/radius) * -1)/4;
+            volume = volume > 1.0 ? 1.0 : volume;
+            track.audioPlayer.volume = volume;
+            if(track.audioPlayer != nil && ![track.audioPlayer isPlaying]) {
+                [track.audioPlayer play];
+                track.pin.isPlaying = YES;
+                //                [_mapView removeAnnotation:track.pin];
+                //                [_mapView addAnnotation:track.pin];
+            }
+			playingGeo = YES;
+        } else if(distance <= 0.0f) {
+            volume = 1.0;
+            track.audioPlayer.volume = volume;
+            if(track.audioPlayer != nil && ![track.audioPlayer isPlaying]) {
+                [track.audioPlayer play];
+                track.pin.isPlaying = YES;
+                //                [_mapView removeAnnotation:track.pin];
+                //                [_mapView addAnnotation:track.pin];
+            }
+			playingGeo = YES;
+        } else {
+            track.audioPlayer.volume = volume;
+            if(track.pin.isPlaying != NO) {
+                //[track.audioPlayer stop];
+                track.pin.isPlaying = NO;
+                //                [_mapView removeAnnotation:track.pin];
+                //                [_mapView addAnnotation:track.pin];
+            }
+			playingGeo = playingGeo || NO;
+        }
+//        [self broadcastTrack:track.trackId
+//                    location:location
+//               trackLocation:track.location
+//                playPosition:track.audioPlayer.currentTime
+//                      volume:volume];
+        track.pin.subtitle = [NSString stringWithFormat:@"Volume: %f", volume];
+        [_mapView setNeedsDisplay];
+    }
+	
+//	if(!playingGeo) {
+		background_.audioPlayer.volume = 1.0;
+		if(background_.audioPlayer != nil && ![background_.audioPlayer isPlaying]) {
+			[background_.audioPlayer play];
+			background_.pin.isPlaying = YES;
+		}
+//	} else {
+//		NSLog(@"STOPING BACKGROUND");
+//		background_.audioPlayer.volume = 0.0;
+//	}
 }
 
 -(IBAction)start {
@@ -219,13 +218,17 @@ KRBluetoothScannerDelegate
         [_locationManager startUpdatingLocation];
 		
 		//Bluetooth Scanner - JBG
-		self.bleTracks = [NSMutableDictionary dictionary];
-		self.bleScanner = [[KRBluetoothScanner alloc] init];
-		self.bleScanner.delegate = self;
-		[self.bleScanner scan];
+		if(_enableBluetooth) {
+			NSLog(@"Enabling bluetooth...");
+			self.bleTracks = [NSMutableDictionary dictionary];
+			self.bleScanner = [[KRBluetoothScanner alloc] init];
+			self.bleScanner.delegate = self;
+			[self.bleScanner scan];
+			
+			self.bleProducer = [[KRBluetoothProducer alloc] init];
+			[self.bleProducer start];
+		}
 		
-		self.bleProducer = [[KRBluetoothProducer alloc] init];
-		[self.bleProducer start];
 		[_button setTitle:@"Stop" forState:UIControlStateNormal];
 		_button.backgroundColor = [UIColor darkTextColor];
 		[_button setTitleColor:[UIColor colorWithRed:255 green:242 blue:0 alpha:1] forState:UIControlStateNormal];
@@ -256,8 +259,10 @@ KRBluetoothScannerDelegate
 	//                          volume:0.0f];
 	//        }
 	
-	[self.bleScanner stop];
-	[self.bleProducer stop];
+	if(_enableBluetooth) {
+		[self.bleScanner stop];
+		[self.bleProducer stop];
+	}
 	
 //	if(degradeTimer_) {
 //		dispatch_source_cancel(degradeTimer_);
@@ -302,6 +307,9 @@ KRBluetoothScannerDelegate
 			NSLog(@"Setting whisper");
 			background_ = track;
 		}
+		
+		if(track.bluetooth)
+			_enableBluetooth = YES;
     }
 
     [_messageLabel setText:[NSString stringWithFormat:@"Loading audio...%ld of %lu", (long)_loadCount, (unsigned long)tracks.count]];
@@ -512,7 +520,10 @@ KRBluetoothScannerDelegate
 			track = [_tracks objectForKey:key];
 		} while (!track.bluetooth);
 		NSLog(@"Starting audio player...for %@, %@", uuidStr, track.title);
-		[track.audioPlayer play];
+		if(![track.audioPlayer isPlaying]) {
+			NSLog(@"Recycling track. . .");
+			[track.audioPlayer play];
+		}
 		[self.bleTracks setObject:track forKey:uuidStr];
 	}
 	
