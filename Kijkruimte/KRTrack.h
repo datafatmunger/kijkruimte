@@ -10,12 +10,13 @@
 #import <CoreLocation/CoreLocation.h>
 #import <Foundation/Foundation.h>
 
+#import "HUHSound.h"
 #import "KRMapPin.h"
 #import "KRTrackDetail.h"
 
 @protocol KRTrackDelegate <NSObject>
 
--(void)trackDataLoaded:(NSNumber*)trackId;
+-(void)trackDataLoaded:(NSString*)trackId;
 -(void)trackDataError:(NSString*)message;
 
 @end
@@ -24,7 +25,7 @@
 AVAudioPlayerDelegate,
 NSURLConnectionDataDelegate
 > {
-    NSNumber *_trackId;
+    NSString *_trackId;
     NSString *_uri;
     NSString *_title;
     CLLocation *_location;
@@ -39,7 +40,7 @@ NSURLConnectionDataDelegate
     NSInteger _tries;
 }
 
-@property(nonatomic,strong)NSNumber *trackId;
+@property(nonatomic,strong)NSString *trackId;
 @property(nonatomic,strong)NSString *uri;
 @property(nonatomic,strong)NSString *title;
 @property(nonatomic,strong)CLLocation *location;
@@ -51,7 +52,9 @@ NSURLConnectionDataDelegate
 @property(nonatomic,strong)id<KRTrackDelegate> delegate;
 
 -(id)initWithDictionary:(NSDictionary*)dictionary;
--(void)getData:(KRTrackDetail*)detail;
+-(id)initWithSound:(HUHSound*)sound;
+-(void)getDataWithDetail:(KRTrackDetail*)detail;
+-(void)getDataWithSound:(HUHSound*)sound;
 
 
 @end

@@ -9,22 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 
-@interface KRWalk : NSObject
+#import "Walk.h"
 
-@property(nonatomic, strong)NSString *title;
-@property(nonatomic, strong)NSString *imageURLStr;
-@property(nonatomic, strong)NSString *credits;
+@interface KRWalk : Walk
+
 @property(nonatomic, strong)NSString *scUser;
-@property(nonatomic, strong)NSString *walkDescription;
 @property(nonatomic, strong)MKPolygon *polygon;
-@property(nonatomic, strong)CLLocation *location;
-@property(nonatomic, assign)BOOL autoPlay;
-@property(nonatomic, assign)double radius;
-
-@property(nonatomic,assign)CLLocationDegrees minLat;
-@property(nonatomic,assign)CLLocationDegrees maxLat;
-@property(nonatomic,assign)CLLocationDegrees minLng;
-@property(nonatomic,assign)CLLocationDegrees maxLng;
 
 -(id)initWithDictionary:(NSDictionary*)dictionary;
 

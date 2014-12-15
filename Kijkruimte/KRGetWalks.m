@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Hipstart. All rights reserved.
 //
 
+#import "HUHWalk.h"
 #import "KRGetWalks.h"
 #import "KRWalk.h"
 
@@ -17,7 +18,7 @@
     SCServiceRequest *request = [[SCServiceRequest alloc] init];
     request.delegate = self;
 	
-    [request getResponseForUrlString:@"http://hearushere.nl/walks.json"
+    [request getResponseForUrlString:@"http://api.hearushere.nl/walks"
                             method:@"GET"
                         parameters:nil
                           useCache:NO
@@ -31,8 +32,13 @@
     NSMutableArray *walks = [[NSMutableArray alloc] init];
     NSArray *walksObjs = (NSArray*)obj;
     for(NSDictionary *walkDict in walksObjs) {
-		KRWalk *walk = [[KRWalk alloc] initWithDictionary:walkDict];
-		[walks addObject:walk];
+		if(walkDict[@"scUser"]) {
+			KRWalk *walk = [[KRWalk alloc] initWithDictionary:walkDict];
+			[walks addObject:walk];
+		} else {
+			HUHWalk *walk = [[HUHWalk alloc] initWithDictionary:walkDict];
+			[walks addObject:walk];
+		}
     }
     [_delegate handleWalks:walks];
 }

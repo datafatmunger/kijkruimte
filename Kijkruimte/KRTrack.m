@@ -26,12 +26,19 @@
 @synthesize pin = _pin;
 @synthesize delegate = _delegate;
 
+- (id)init {
+	if (self) {
+		_pin = nil;
+		_audioPlayer = nil;
+		_audioData = [[NSMutableData alloc] init];
+	}
+	return self;
+}
+
 -(id)initWithDictionary:(NSDictionary*)dictionary {
     self = [self init];
     if (self) {
-        _pin = nil;
-        _audioPlayer = nil;
-        _audioData = [[NSMutableData alloc] init];
+		
         
         _trackId = [dictionary objectForKey:@"id"];
         _uri = [dictionary objectForKey:@"uri"];
@@ -61,6 +68,18 @@
     return self;
 }
 
+- (id)initWithSound:(HUHSound*)sound {
+	self = [self init];
+	if (self) {
+		_trackId = sound.soundId;
+		_location = sound.location;
+		_radius = sound.radius;
+		_background = sound.background;
+		_bluetooth = sound.bluetooth;
+	}
+	return self;
+}
+
 -(CLLocationDegrees)getNumber:(NSString*)tag {
     NSMutableString *numberStr = [NSMutableString
                                   stringWithCapacity:tag.length];
@@ -88,7 +107,7 @@
     return songFile;
 }
 
--(void)getData:(KRTrackDetail*)detail {
+-(void)getDataWithDetail:(KRTrackDetail*)detail {
     
     //Check the cache - JBG
     NSString *songFile = [self getFilename];
@@ -103,10 +122,27 @@
                                        timeoutInterval:600];
         [self sendAsync:_request];
     } else {
-        _audioData = [NSData dataWithContentsOfFile:songFile];
+        _audioData = [[NSData dataWithContentsOfFile:songFile] mutableCopy];
         [self createPlayer];
         _audioData = nil;
     }
+}
+
+-(void)getDataWithSound:(HUHSound*)sound {
+	//Check the cache - JBG
+	NSString *songFile = [self getFilename];
+	if(![[NSFileManager defaultManager] fileExistsAtPath:songFile]) {
+		NSLog(@"REQUEST URL: %@", sound.url);
+		NSURL *originalUrl = [NSURL URLWithString:sound.url];
+		_request = [NSMutableURLRequest requestWithURL:originalUrl
+										   cachePolicy:NSURLRequestReloadIgnoringCacheData
+									   timeoutInterval:600];
+		[self sendAsync:_request];
+	} else {
+		_audioData = [[NSData dataWithContentsOfFile:songFile] mutableCopy];
+		[self createPlayer];
+		_audioData = nil;
+	}
 }
 
 -(void)createPlayer {

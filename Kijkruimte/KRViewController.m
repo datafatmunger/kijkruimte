@@ -13,6 +13,8 @@
 #import "KRMapPin.h"
 #import "KRTrackDetail.h"
 #import "KRViewController.h"
+#import "KRWalk.h"
+#import "HUHWalk.h"
 
 #define MAP_ZOOM_LEVEL 0.01
 
@@ -35,11 +37,6 @@ KRBluetoothScannerDelegate
 -(double)randomDoubleBetween:(double)smallNumber and:(double)bigNumber;
 -(void)testModeUpdate;
 -(void)testMode;
--(void)broadcastTrack:(NSNumber*)trackId
-             location:(CLLocation*)location
-        trackLocation:(CLLocation*)trackLocation
-         playPosition:(NSTimeInterval)playPosition
-               volume:(double)volume;
 
 @end
 
@@ -74,8 +71,7 @@ KRBluetoothScannerDelegate
                                                       _controls.frame.size.width,
                                                       _controls.frame.size.height);
                          
-                     }
-                     completion:^(BOOL finished){
+                     } completion:^(BOOL finished) {
                          NSLog(@"Done!");
                      }];
 	
@@ -88,12 +84,26 @@ KRBluetoothScannerDelegate
 	region.span = span;
 	region.center = _currentLocation.coordinate;
     _mapView.region = region;
-    [_mapView addOverlay:self.walk.polygon];
-    
+	
+	
+	if([self.walk isKindOfClass:[KRWalk class]]) {
+		[_mapView addOverlay:((KRWalk*)self.walk).polygon];
+	} else if([self.walk isKindOfClass:[HUHWalk class]]) {
+		HUHWalk *huhWalk = (HUHWalk*)self.walk;
+		for(id <MKOverlay> polygon in huhWalk.polygons) {
+			[_mapView addOverlay:polygon];
+		}
+	}
+	
     _locationManager = [[CLLocationManager alloc] init];
     _locationManager.delegate = self;
 	
-	[self getTracks];
+	// Is the walk legacy or not? - JBG
+	if([self.walk isKindOfClass:[KRWalk class]]) {
+		[self getTracks];
+	} else {
+		[self handleHuhTracks];
+	}
 	
 	if(self.walk.credits) {
 		_info.hidden = NO;
@@ -102,6 +112,7 @@ KRBluetoothScannerDelegate
 	if(customWalk) {
 		_doneButton.hidden = YES;
 	}
+	
 	[_button setTitle:@"Start" forState:UIControlStateNormal];
 	_button.backgroundColor = [UIColor colorWithRed:255 green:242 blue:0 alpha:1.0];
 	[_button setTitleColor:[UIColor darkTextColor] forState:UIControlStateNormal];
@@ -294,7 +305,7 @@ KRBluetoothScannerDelegate
         NSLog(@"TRACK URI: %@", track.uri);
 		
         [_tracks setObject:track forKey:track.trackId];
-        [detailAPI getTrackDetail:[NSString stringWithFormat:@"%d", [track.trackId intValue]]];
+        [detailAPI getTrackDetail:track.trackId];
         
         // Map Stuff - JBG
         KRMapPin *mp = [[KRMapPin alloc] initWithCoordinate:track.location.coordinate
@@ -329,7 +340,7 @@ KRBluetoothScannerDelegate
 -(void)handleDetail:(KRTrackDetail*)detail {
     NSLog(@"STREAM URL: %@", detail.streamUrl);
     KRTrack *track = [_tracks objectForKey:detail.trackId];
-    [track getData:detail];
+    [track getDataWithDetail:detail];
 }
 
 -(void)handleGetDetailError:(NSString*)message {
@@ -375,7 +386,7 @@ KRBluetoothScannerDelegate
 #pragma mark -
 #pragma mark KRTrackDelegate
 
--(void)trackDataLoaded:(NSNumber*)trackId {
+-(void)trackDataLoaded:(NSString*)trackId {
     [self updateTracks:_currentLocation];
     if(++_loadCount >= [_tracks count]) {
         [_actView stopAnimating];
@@ -465,37 +476,11 @@ KRBluetoothScannerDelegate
                                              repeats:YES];
 }
 
-//-(void)broadcastTrack:(NSNumber*)trackId
-//             location:(CLLocation*)location
-//        trackLocation:(CLLocation*)trackLocation
-//         playPosition:(NSTimeInterval)playPosition
-//               volume:(double)volume {
-//    NSDictionary *message = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:
-//                                                                 trackId,
-//                                                                 [NSNumber numberWithDouble:location.coordinate.latitude],
-//                                                                 [NSNumber numberWithDouble:location.coordinate.longitude],
-//                                                                 [NSNumber numberWithDouble:trackLocation.coordinate.latitude],
-//                                                                 [NSNumber numberWithDouble:trackLocation.coordinate.longitude],
-//                                                                 [NSNumber numberWithDouble:playPosition],
-//                                                                 [NSNumber numberWithDouble:volume],
-//                                                                 _guid,
-//                                                                 nil]
-//                                                        forKeys:[NSArray arrayWithObjects:
-//                                                                 @"trackId",
-//                                                                 @"latitude",
-//                                                                 @"longitude",
-//                                                                 @"trackLatitude",
-//                                                                 @"trackLongitude",
-//                                                                 @"playPosition",
-//                                                                 @"volume",
-//                                                                 @"guid",
-//                                                                 nil]];
-//}
-
 -(void)getTracks {
     SCGetUserTracks *tracksAPI = [[SCGetUserTracks alloc] init];
     tracksAPI.delegate = self;
-    [tracksAPI getTracks:self.walk.scUser];
+	KRWalk *krWalk = (KRWalk*)self.walk;
+    [tracksAPI getTracks:krWalk.scUser];
 }
 
 #pragma mark - KRBluetoothScannerDelegate <NSObject>
@@ -580,6 +565,19 @@ KRBluetoothScannerDelegate
 		
 		[alert show];
 	});
+}
+
+#pragma mark - HUH Track details
+
+- (void)handleHuhTracks {
+	HUHWalk *huhWalk = (HUHWalk*)self.walk;
+	for(HUHSound *sound in huhWalk.sounds) {
+		KRTrack *track = [[KRTrack alloc] initWithSound:sound];
+		track.delegate = self;
+		[_tracks setObject:track forKey:track.trackId];
+		[track getDataWithSound:sound];
+	}
+	[_messageLabel setText:[NSString stringWithFormat:@"Loading audio...%ld of %lu", (long)_loadCount, (unsigned long)_tracks.count]];
 }
 
 @end

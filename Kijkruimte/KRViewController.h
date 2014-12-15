@@ -14,9 +14,9 @@
 #import "KRBroadcaster.h"
 #import "KRMessageView.h"
 #import "KRTrack.h"
-#import "KRWalk.h"
 #import "SCGetUserTracks.h"
 #import "SCGetTrackDetail.h"
+#import "Walk.h"
 
 @interface KRViewController : UIViewController <
 CLLocationManagerDelegate,
@@ -55,7 +55,7 @@ KRTrackDelegate> {
 @property(nonatomic, strong)NSMutableDictionary *bleTracks;
 @property(nonatomic, strong)KRBluetoothProducer *bleProducer;
 @property(nonatomic, strong)KRBluetoothScanner *bleScanner;
-@property(nonatomic, strong)KRWalk *walk;
+@property(nonatomic, strong)Walk *walk;
 
 -(IBAction)start;
 -(IBAction)toInfo:(id)sender;

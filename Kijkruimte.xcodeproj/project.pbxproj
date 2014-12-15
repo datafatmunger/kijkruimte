@@ -86,6 +86,9 @@
 		31E05000163AE7F30044F0F8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31E04FFF163AE7F30044F0F8 /* CoreLocation.framework */; };
 		31E6D2CC1648489F00BACF3F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31E6D2CB1648489F00BACF3F /* CFNetwork.framework */; };
 		31EB851516C7A0FB0012230F /* KRInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31EB851416C7A0FB0012230F /* KRInfoViewController.m */; };
+		31F463511A3ED9F3009317FA /* HUHWalk.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F463501A3ED9F3009317FA /* HUHWalk.m */; };
+		31F463541A3EE00D009317FA /* Walk.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F463531A3EE00D009317FA /* Walk.m */; };
+		31F463571A3EE8EF009317FA /* HUHSound.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F463561A3EE8EF009317FA /* HUHSound.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -201,6 +204,12 @@
 		31E6D2CB1648489F00BACF3F /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		31EB851316C7A0FB0012230F /* KRInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRInfoViewController.h; sourceTree = "<group>"; };
 		31EB851416C7A0FB0012230F /* KRInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRInfoViewController.m; sourceTree = "<group>"; };
+		31F4634F1A3ED9F3009317FA /* HUHWalk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUHWalk.h; sourceTree = "<group>"; };
+		31F463501A3ED9F3009317FA /* HUHWalk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUHWalk.m; sourceTree = "<group>"; };
+		31F463521A3EE00D009317FA /* Walk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Walk.h; sourceTree = "<group>"; };
+		31F463531A3EE00D009317FA /* Walk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Walk.m; sourceTree = "<group>"; };
+		31F463551A3EE8EF009317FA /* HUHSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUHSound.h; sourceTree = "<group>"; };
+		31F463561A3EE8EF009317FA /* HUHSound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUHSound.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -258,6 +267,12 @@
 				31B4ECB3163A7D9F00BB5A31 /* KRTrackDetail.m */,
 				31C4EC6218CB866000A4DAD5 /* KRWalk.h */,
 				31C4EC6318CB866000A4DAD5 /* KRWalk.m */,
+				31F4634F1A3ED9F3009317FA /* HUHWalk.h */,
+				31F463501A3ED9F3009317FA /* HUHWalk.m */,
+				31F463521A3EE00D009317FA /* Walk.h */,
+				31F463531A3EE00D009317FA /* Walk.m */,
+				31F463551A3EE8EF009317FA /* HUHSound.h */,
+				31F463561A3EE8EF009317FA /* HUHSound.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -570,6 +585,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31F463511A3ED9F3009317FA /* HUHWalk.m in Sources */,
+				31F463571A3EE8EF009317FA /* HUHSound.m in Sources */,
 				31C4EC6418CB866000A4DAD5 /* KRWalk.m in Sources */,
 				31C4EC6118CB854600A4DAD5 /* KRGetWalks.m in Sources */,
 				3108FE5F1638454400A3D243 /* SCServiceRequest.m in Sources */,
@@ -587,6 +604,7 @@
 				31C4EC6718CB8AA200A4DAD5 /* KRWalkViewController.m in Sources */,
 				313FA7A719CF2ED200A0EDB5 /* KRBluetoothProducer.m in Sources */,
 				3160FB3D1664001100CD7C72 /* KRBroadcaster.m in Sources */,
+				31F463541A3EE00D009317FA /* Walk.m in Sources */,
 				3121A6F81683BF15004747B6 /* KRMessageView.m in Sources */,
 				31EB851516C7A0FB0012230F /* KRInfoViewController.m in Sources */,
 			);

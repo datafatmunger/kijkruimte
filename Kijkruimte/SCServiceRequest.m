@@ -98,7 +98,7 @@ NSString *kSCServiceAPIURL = @"http://api.soundcloud.com/";
 - (void)connection:(NSURLConnection *)connection
 didReceiveResponse:(NSURLResponse *)response {	
     _statusCode = [((NSHTTPURLResponse *)response) statusCode];
-    NSLog(@"RESPONSE RECEIVED: %d", _statusCode);
+    NSLog(@"RESPONSE RECEIVED: %d", (int)_statusCode);
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
@@ -136,7 +136,7 @@ didReceiveResponse:(NSURLResponse *)response {
         }
     } else {
         [_delegate handleError:
-         [NSString stringWithFormat:@"Server returned: %d", _statusCode]];
+         [NSString stringWithFormat:@"Server returned: %d", (int)_statusCode]];
     }
 }
 
@@ -167,7 +167,7 @@ didReceiveResponse:(NSURLResponse *)response {
     } else {
         _receivedData = [[NSMutableData alloc] initWithData:receivedData];
         _statusCode = ((NSHTTPURLResponse*)response).statusCode;
-        NSLog(@"RESPONSE RECEIVED: %d", _statusCode);
+        NSLog(@"RESPONSE RECEIVED: %d", (int)_statusCode);
         [self connectionDidFinishLoading:nil];
     }
 }
