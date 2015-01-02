@@ -31,7 +31,8 @@
 		
 		NSArray *areas = dictionary[@"areas"];
 		for(NSInteger i = 0; i < areas.count; i++) {
-			NSArray *coordinates = areas[i];
+			NSDictionary *area = areas[i];
+			NSArray *coordinates = area[@"coords"];
 			MKMapPoint points[coordinates.count / 2];
 			for(NSInteger j = 0, k = 0; j < coordinates.count; j+=2, k++) {
 				CLLocationCoordinate2D c = {[coordinates[j] doubleValue], [coordinates[j+1] doubleValue]};
