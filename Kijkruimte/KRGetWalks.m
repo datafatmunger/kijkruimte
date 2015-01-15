@@ -6,9 +6,8 @@
 //  Copyright (c) 2014 Hipstart. All rights reserved.
 //
 
-#import "HUHWalk.h"
-#import "KRGetWalks.h"
 #import "KRWalk.h"
+#import "KRGetWalks.h"
 
 @implementation KRGetWalks
 
@@ -32,13 +31,8 @@
     NSMutableArray *walks = [[NSMutableArray alloc] init];
     NSArray *walksObjs = (NSArray*)obj;
     for(NSDictionary *walkDict in walksObjs) {
-		if(walkDict[@"scUser"]) {
-			KRWalk *walk = [[KRWalk alloc] initWithDictionary:walkDict];
-			[walks addObject:walk];
-		} else {
-			HUHWalk *walk = [[HUHWalk alloc] initWithDictionary:walkDict];
-			[walks addObject:walk];
-		}
+		KRWalk *walk = [[KRWalk alloc] initWithDictionary:walkDict];
+		[walks addObject:walk];
     }
     [_delegate handleWalks:walks];
 }

@@ -10,17 +10,12 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 
-@interface KRMapPin : MKPlacemark <MKAnnotation> {
-	CLLocationCoordinate2D _coordinate;
-	NSString *_title;
-	NSString *_subtitle;
-    BOOL _isPlaying;
-}
+@interface KRMapPin : MKPlacemark <MKAnnotation>
 
-@property(nonatomic,assign)CLLocationCoordinate2D coordinate;
-@property(nonatomic,strong)NSString *title;
-@property(nonatomic,strong)NSString *subtitle;
-@property(nonatomic,assign)BOOL isPlaying;
+@property(nonatomic, assign) CLLocationCoordinate2D coordinate;
+@property(nonatomic, copy) NSString *title;
+@property(nonatomic, copy) NSString *subtitle;
+@property(nonatomic, assign) BOOL isPlaying;
 
 -(id)initWithCoordinate:(CLLocationCoordinate2D)coordinate
                   title:(NSString*)title

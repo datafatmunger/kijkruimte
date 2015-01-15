@@ -68,7 +68,7 @@
     return self;
 }
 
-- (id)initWithSound:(HUHSound*)sound {
+- (id)initWithSound:(KRSound*)sound {
 	self = [self init];
 	if (self) {
 		_trackId = sound.soundId;
@@ -128,7 +128,7 @@
     }
 }
 
--(void)getDataWithSound:(HUHSound*)sound {
+-(void)getDataWithSound:(KRSound*)sound {
 	//Check the cache - JBG
 	NSString *songFile = [self getFilename];
 	if(![[NSFileManager defaultManager] fileExistsAtPath:songFile]) {

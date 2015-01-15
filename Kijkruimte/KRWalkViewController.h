@@ -9,7 +9,7 @@
 #import <MapKit/MapKit.h>
 #import <UIKit/UIKit.h>
 #import "KRGetWalks.h"
-#import "Walk.h"
+#import "KRWalk.h"
 
 @interface KRWalkViewController : UIViewController <
 CLLocationManagerDelegate,
@@ -23,7 +23,7 @@ KRGetWalksDelegate
 
 @property (nonatomic, strong) IBOutletCollection(UIView) NSArray *controls;
 
-@property(nonatomic,strong)Walk *walk;
+@property(nonatomic,strong)KRWalk *walk;
 @property(nonatomic,strong)NSArray *walks;
 
 -(IBAction)start:(id)sender;

@@ -6,12 +6,11 @@
 //  Copyright (c) 2014 Hipstart. All rights reserved.
 //
 
-#import "HUHWalk.h"
+#import "KRWalk.h"
 #import "KRAppDelegate.h"
 #import "KRViewController.h"
 #import "KRWalkView.h"
 #import "KRWalkViewController.h"
-#import "KRWalk.h"
 
 @interface KRWalkViewController ()
 
@@ -49,7 +48,7 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-	((KRViewController*)segue.destinationViewController).walk = (KRWalk*)self.walk;
+	((KRViewController*)segue.destinationViewController).walk = self.walk;
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle{
@@ -69,13 +68,9 @@
 	region.center = self.walk.location.coordinate;
     self.mapView.region = region;
 	
-	if([self.walk isKindOfClass:[KRWalk class]]) {
-		[self.mapView addOverlay:((KRWalk*)self.walk).polygon];
-	} else if([self.walk isKindOfClass:[HUHWalk class]]) {
-		HUHWalk *huhWalk = (HUHWalk*)self.walk;
-		for(id <MKOverlay> polygon in huhWalk.polygons) {
-			[self.mapView addOverlay:polygon];
-		}
+	KRWalk *huhWalk = (KRWalk*)self.walk;
+	for(id <MKOverlay> polygon in huhWalk.polygons) {
+		[self.mapView addOverlay:polygon];
 	}
 }
 
@@ -120,7 +115,7 @@
 	}];
 	
 	for(NSInteger i = 0; i < sortedWalks.count; i++) {
-		Walk *walk = sortedWalks[i];
+		KRWalk *walk = sortedWalks[i];
 		
 		// Handle custom walk - JBG
 		if([customWalk isEqualToString:walk.title]) {
@@ -179,14 +174,11 @@
 	if(page != self.pageControl.currentPage) {
 		self.pageControl.currentPage = page;
 		
-		if([self.walk isKindOfClass:[KRWalk class]]) {
-			[self.mapView removeOverlay:((KRWalk*)self.walk).polygon];
-		} else if([self.walk isKindOfClass:[HUHWalk class]]) {
-			HUHWalk *huhWalk = (HUHWalk*)self.walk;
-			for(id <MKOverlay> polygon in huhWalk.polygons) {
-				[self.mapView removeOverlay:polygon];
-			}
+		KRWalk *huhWalk = (KRWalk*)self.walk;
+		for(id <MKOverlay> polygon in huhWalk.polygons) {
+			[self.mapView removeOverlay:polygon];
 		}
+
 		self.walk = self.walks[page];
 		[self showWalk];
 	}

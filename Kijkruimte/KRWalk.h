@@ -1,20 +1,31 @@
 //
-//  KRWalk.h
+//  HUHWalk.h
 //  Kijkruimte
 //
-//  Created by James Bryan Graves on 08-03-14.
+//  Created by James Bryan Graves on 15-12-14.
 //  Copyright (c) 2014 Hipstart. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 
-#import "Walk.h"
+@interface KRWalk : NSObject
 
-@interface KRWalk : Walk
+@property(nonatomic, strong)NSString *title;
+@property(nonatomic, strong)NSString *imageURLStr;
+@property(nonatomic, strong)NSString *credits;
+@property(nonatomic, strong)NSString *walkDescription;
+@property(nonatomic, strong)CLLocation *location;
+@property(nonatomic, assign)BOOL autoPlay;
+@property(nonatomic, assign)double radius;
 
-@property(nonatomic, strong)NSString *scUser;
-@property(nonatomic, strong)MKPolygon *polygon;
+@property(nonatomic,assign)CLLocationDegrees minLat;
+@property(nonatomic,assign)CLLocationDegrees maxLat;
+@property(nonatomic,assign)CLLocationDegrees minLng;
+@property(nonatomic,assign)CLLocationDegrees maxLng;
+
+@property(nonatomic, strong)NSMutableArray *sounds;
+@property(nonatomic, strong)NSMutableArray *polygons;
 
 -(id)initWithDictionary:(NSDictionary*)dictionary;
 

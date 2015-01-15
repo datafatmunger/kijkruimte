@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 
-@interface HUHSound : NSObject
+@interface KRSound : NSObject
 
 @property(nonatomic, strong)NSString *soundId;
 @property(nonatomic, strong)NSString *url;

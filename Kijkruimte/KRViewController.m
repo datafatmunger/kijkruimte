@@ -14,7 +14,6 @@
 #import "KRTrackDetail.h"
 #import "KRViewController.h"
 #import "KRWalk.h"
-#import "HUHWalk.h"
 
 #define MAP_ZOOM_LEVEL 0.01
 
@@ -86,24 +85,15 @@ KRBluetoothScannerDelegate
     _mapView.region = region;
 	
 	
-	if([self.walk isKindOfClass:[KRWalk class]]) {
-		[_mapView addOverlay:((KRWalk*)self.walk).polygon];
-	} else if([self.walk isKindOfClass:[HUHWalk class]]) {
-		HUHWalk *huhWalk = (HUHWalk*)self.walk;
-		for(id <MKOverlay> polygon in huhWalk.polygons) {
-			[_mapView addOverlay:polygon];
-		}
+	KRWalk *huhWalk = (KRWalk*)self.walk;
+	for(id <MKOverlay> polygon in huhWalk.polygons) {
+		[_mapView addOverlay:polygon];
 	}
 	
     _locationManager = [[CLLocationManager alloc] init];
     _locationManager.delegate = self;
 	
-	// Is the walk legacy or not? - JBG
-	if([self.walk isKindOfClass:[KRWalk class]]) {
-		[self getTracks];
-	} else {
-		[self handleHuhTracks];
-	}
+	[self handleHuhTracks];
 	
 	if(self.walk.credits) {
 		_info.hidden = NO;
@@ -294,63 +284,6 @@ KRBluetoothScannerDelegate
 }
 
 #pragma mark -
-#pragma mark SCGetUserTracksDelegate
-
--(void)handleTracks:(NSArray*)tracks {
-    SCGetTrackDetail *detailAPI = [[SCGetTrackDetail alloc] init];
-    detailAPI.delegate = self;
-    for(KRTrack *track in tracks) {
-        track.delegate = self;
-        
-        NSLog(@"TRACK URI: %@", track.uri);
-		
-        [_tracks setObject:track forKey:track.trackId];
-        [detailAPI getTrackDetail:track.trackId];
-        
-        // Map Stuff - JBG
-        KRMapPin *mp = [[KRMapPin alloc] initWithCoordinate:track.location.coordinate
-                                                      title:track.title
-                                                   subtitle:[NSString stringWithFormat:@"Volume: %f", 0.0]];
-        track.pin = mp;
-        //        [_mapView addAnnotation:track.pin];
-		
-		if(track.background) {
-			NSLog(@"Setting whisper");
-			background_ = track;
-		}
-		
-		if(track.bluetooth)
-			_enableBluetooth = YES;
-    }
-
-    [_messageLabel setText:[NSString stringWithFormat:@"Loading audio...%ld of %lu", (long)_loadCount, (unsigned long)tracks.count]];
-    
-}
-
--(void)handleGetTracksError:(NSString*)message {
-    NSLog(@"ERROR: %@", message);
-    [_actView stopAnimating];
-    [_messageLabel setText:@"FAILED to connect to SoundCloud! (Tap to retry)"];
-	_canRetry = YES;
-}
-
-#pragma mark -
-#pragma mark SCGetUserTracksDelegate
-
--(void)handleDetail:(KRTrackDetail*)detail {
-    NSLog(@"STREAM URL: %@", detail.streamUrl);
-    KRTrack *track = [_tracks objectForKey:detail.trackId];
-    [track getDataWithDetail:detail];
-}
-
--(void)handleGetDetailError:(NSString*)message {
-    NSLog(@"ERROR: %@", message);
-    [_actView stopAnimating];
-    [_messageLabel setText:@"FAILED to connect to SoundCloud! (Tap to retry)"];
-	_canRetry = YES;
-}
-
-#pragma mark -
 #pragma mark MKMapKitDelegate
 
 //-(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>) annotation {
@@ -412,9 +345,7 @@ KRBluetoothScannerDelegate
         [self testMode];
     } else {
         _currentLocation = newLocation;
-        // For testing only (location of Kijkruimte) - JBG
         [self updateTracks:_currentLocation];
-//        NSLog(@"LOCATION!!!!");
     }
 }
 
@@ -474,13 +405,6 @@ KRBluetoothScannerDelegate
                                             selector:@selector(testModeUpdate)
                                             userInfo:nil
                                              repeats:YES];
-}
-
--(void)getTracks {
-    SCGetUserTracks *tracksAPI = [[SCGetUserTracks alloc] init];
-    tracksAPI.delegate = self;
-	KRWalk *krWalk = (KRWalk*)self.walk;
-    [tracksAPI getTracks:krWalk.scUser];
 }
 
 #pragma mark - KRBluetoothScannerDelegate <NSObject>
@@ -570,8 +494,8 @@ KRBluetoothScannerDelegate
 #pragma mark - HUH Track details
 
 - (void)handleHuhTracks {
-	HUHWalk *huhWalk = (HUHWalk*)self.walk;
-	for(HUHSound *sound in huhWalk.sounds) {
+	KRWalk *huhWalk = (KRWalk*)self.walk;
+	for(KRSound *sound in huhWalk.sounds) {
 		KRTrack *track = [[KRTrack alloc] initWithSound:sound];
 		track.delegate = self;
 		[_tracks setObject:track forKey:track.trackId];

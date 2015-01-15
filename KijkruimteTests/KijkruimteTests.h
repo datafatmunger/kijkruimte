@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 Hipstart. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
-@interface KijkruimteTests : SenTestCase
+@interface KijkruimteTests : XCTestCase
 
 @end

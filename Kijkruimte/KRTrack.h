@@ -10,7 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import <Foundation/Foundation.h>
 
-#import "HUHSound.h"
+#import "KRSound.h"
 #import "KRMapPin.h"
 #import "KRTrackDetail.h"
 
@@ -52,9 +52,9 @@ NSURLConnectionDataDelegate
 @property(nonatomic,strong)id<KRTrackDelegate> delegate;
 
 -(id)initWithDictionary:(NSDictionary*)dictionary;
--(id)initWithSound:(HUHSound*)sound;
+-(id)initWithSound:(KRSound*)sound;
 -(void)getDataWithDetail:(KRTrackDetail*)detail;
--(void)getDataWithSound:(HUHSound*)sound;
+-(void)getDataWithSound:(KRSound*)sound;
 
 
 @end

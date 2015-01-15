@@ -9,9 +9,6 @@
 /* Begin PBXBuildFile section */
 		3102326119B889EC00E13EDD /* KRBluetoothScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3102326019B889EC00E13EDD /* KRBluetoothScanner.m */; };
 		3102326319B88ACD00E13EDD /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3102326219B88ACD00E13EDD /* CoreBluetooth.framework */; };
-		3108FE57163844C500A3D243 /* SCGetUserTracks.m in Sources */ = {isa = PBXBuildFile; fileRef = 3108FE56163844C500A3D243 /* SCGetUserTracks.m */; };
-		3108FE5E1638451300A3D243 /* SCServiceAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 3108FE5D1638451300A3D243 /* SCServiceAPI.m */; };
-		3108FE5F1638454400A3D243 /* SCServiceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 31AD0A9716384273000CFD7B /* SCServiceRequest.m */; };
 		3108FE691638460E00A3D243 /* KRTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 3108FE681638460E00A3D243 /* KRTrack.m */; };
 		3113F29619E9471200BC29C8 /* 2727pt.png in Resources */ = {isa = PBXBuildFile; fileRef = 3113F26C19E9471200BC29C8 /* 2727pt.png */; };
 		3113F29719E9471200BC29C8 /* 2727px.png in Resources */ = {isa = PBXBuildFile; fileRef = 3113F26D19E9471200BC29C8 /* 2727px.png */; };
@@ -62,6 +59,8 @@
 		313FA7A719CF2ED200A0EDB5 /* KRBluetoothProducer.m in Sources */ = {isa = PBXBuildFile; fileRef = 313FA7A619CF2ED200A0EDB5 /* KRBluetoothProducer.m */; };
 		3160FB3D1664001100CD7C72 /* KRBroadcaster.m in Sources */ = {isa = PBXBuildFile; fileRef = 3160FB3C1664001100CD7C72 /* KRBroadcaster.m */; };
 		31650758183977FB008EFD90 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31650757183977FB008EFD90 /* Images.xcassets */; };
+		317E4E731A67E69E0065580B /* SCServiceAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 317E4E701A67E69E0065580B /* SCServiceAPI.m */; };
+		317E4E741A67E69E0065580B /* SCServiceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 317E4E721A67E69E0065580B /* SCServiceRequest.m */; };
 		31948B84163ABB8F002B85BD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31948B83163ABB8F002B85BD /* AVFoundation.framework */; };
 		31AD0A5C1638424F000CFD7B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31AD0A5B1638424F000CFD7B /* UIKit.framework */; };
 		31AD0A5E1638424F000CFD7B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31AD0A5D1638424F000CFD7B /* Foundation.framework */; };
@@ -71,24 +70,20 @@
 		31AD0A6C1638424F000CFD7B /* KRAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 31AD0A6B1638424F000CFD7B /* KRAppDelegate.m */; };
 		31AD0A751638424F000CFD7B /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31AD0A731638424F000CFD7B /* MainStoryboard.storyboard */; };
 		31AD0A781638424F000CFD7B /* KRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31AD0A771638424F000CFD7B /* KRViewController.m */; };
-		31AD0A801638424F000CFD7B /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31AD0A7F1638424F000CFD7B /* SenTestingKit.framework */; };
 		31AD0A811638424F000CFD7B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31AD0A5B1638424F000CFD7B /* UIKit.framework */; };
 		31AD0A821638424F000CFD7B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31AD0A5D1638424F000CFD7B /* Foundation.framework */; };
 		31AD0A8A1638424F000CFD7B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 31AD0A881638424F000CFD7B /* InfoPlist.strings */; };
 		31AD0A8D1638424F000CFD7B /* KijkruimteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 31AD0A8C1638424F000CFD7B /* KijkruimteTests.m */; };
 		31B4ECB4163A7D9F00BB5A31 /* KRTrackDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B4ECB3163A7D9F00BB5A31 /* KRTrackDetail.m */; };
-		31B4ECB6163A82AF00BB5A31 /* SCGetTrackDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B4ECB5163A82AF00BB5A31 /* SCGetTrackDetail.m */; };
 		31C4EC6118CB854600A4DAD5 /* KRGetWalks.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C4EC6018CB854600A4DAD5 /* KRGetWalks.m */; };
-		31C4EC6418CB866000A4DAD5 /* KRWalk.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C4EC6318CB866000A4DAD5 /* KRWalk.m */; };
 		31C4EC6718CB8AA200A4DAD5 /* KRWalkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C4EC6618CB8AA200A4DAD5 /* KRWalkViewController.m */; };
 		31C4EC6B18CC96EE00A4DAD5 /* WalkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31C4EC6A18CC96EE00A4DAD5 /* WalkView.xib */; };
 		31C4EC6E18CC977E00A4DAD5 /* KRWalkView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C4EC6D18CC977E00A4DAD5 /* KRWalkView.m */; };
 		31E05000163AE7F30044F0F8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31E04FFF163AE7F30044F0F8 /* CoreLocation.framework */; };
 		31E6D2CC1648489F00BACF3F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31E6D2CB1648489F00BACF3F /* CFNetwork.framework */; };
 		31EB851516C7A0FB0012230F /* KRInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31EB851416C7A0FB0012230F /* KRInfoViewController.m */; };
-		31F463511A3ED9F3009317FA /* HUHWalk.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F463501A3ED9F3009317FA /* HUHWalk.m */; };
-		31F463541A3EE00D009317FA /* Walk.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F463531A3EE00D009317FA /* Walk.m */; };
-		31F463571A3EE8EF009317FA /* HUHSound.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F463561A3EE8EF009317FA /* HUHSound.m */; };
+		31F463511A3ED9F3009317FA /* KRWalk.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F463501A3ED9F3009317FA /* KRWalk.m */; };
+		31F463571A3EE8EF009317FA /* KRSound.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F463561A3EE8EF009317FA /* KRSound.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,10 +100,6 @@
 		3102325F19B889EC00E13EDD /* KRBluetoothScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRBluetoothScanner.h; sourceTree = "<group>"; };
 		3102326019B889EC00E13EDD /* KRBluetoothScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRBluetoothScanner.m; sourceTree = "<group>"; };
 		3102326219B88ACD00E13EDD /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
-		3108FE55163844C500A3D243 /* SCGetUserTracks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCGetUserTracks.h; sourceTree = "<group>"; };
-		3108FE56163844C500A3D243 /* SCGetUserTracks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCGetUserTracks.m; sourceTree = "<group>"; };
-		3108FE5C1638451300A3D243 /* SCServiceAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCServiceAPI.h; sourceTree = "<group>"; };
-		3108FE5D1638451300A3D243 /* SCServiceAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCServiceAPI.m; sourceTree = "<group>"; };
 		3108FE671638460E00A3D243 /* KRTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRTrack.h; sourceTree = "<group>"; };
 		3108FE681638460E00A3D243 /* KRTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRTrack.m; sourceTree = "<group>"; };
 		3113F26C19E9471200BC29C8 /* 2727pt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2727pt.png; sourceTree = "<group>"; };
@@ -165,6 +156,10 @@
 		3160FB3B1664001100CD7C72 /* KRBroadcaster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRBroadcaster.h; sourceTree = "<group>"; };
 		3160FB3C1664001100CD7C72 /* KRBroadcaster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRBroadcaster.m; sourceTree = "<group>"; };
 		31650757183977FB008EFD90 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		317E4E6F1A67E69E0065580B /* SCServiceAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCServiceAPI.h; sourceTree = "<group>"; };
+		317E4E701A67E69E0065580B /* SCServiceAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCServiceAPI.m; sourceTree = "<group>"; };
+		317E4E711A67E69E0065580B /* SCServiceRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCServiceRequest.h; sourceTree = "<group>"; };
+		317E4E721A67E69E0065580B /* SCServiceRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCServiceRequest.m; sourceTree = "<group>"; };
 		31948B83163ABB8F002B85BD /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		31AD0A571638424F000CFD7B /* Kijkruimte.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kijkruimte.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31AD0A5B1638424F000CFD7B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -180,21 +175,14 @@
 		31AD0A761638424F000CFD7B /* KRViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KRViewController.h; sourceTree = "<group>"; };
 		31AD0A771638424F000CFD7B /* KRViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KRViewController.m; sourceTree = "<group>"; };
 		31AD0A7E1638424F000CFD7B /* KijkruimteTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KijkruimteTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		31AD0A7F1638424F000CFD7B /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		31AD0A871638424F000CFD7B /* KijkruimteTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KijkruimteTests-Info.plist"; sourceTree = "<group>"; };
 		31AD0A891638424F000CFD7B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		31AD0A8B1638424F000CFD7B /* KijkruimteTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KijkruimteTests.h; sourceTree = "<group>"; };
 		31AD0A8C1638424F000CFD7B /* KijkruimteTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KijkruimteTests.m; sourceTree = "<group>"; };
-		31AD0A9616384273000CFD7B /* SCServiceRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCServiceRequest.h; sourceTree = "<group>"; };
-		31AD0A9716384273000CFD7B /* SCServiceRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCServiceRequest.m; sourceTree = "<group>"; };
-		31B4ECAF163A799A00BB5A31 /* SCGetTrackDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCGetTrackDetail.h; sourceTree = "<group>"; };
 		31B4ECB2163A7D9F00BB5A31 /* KRTrackDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRTrackDetail.h; sourceTree = "<group>"; };
 		31B4ECB3163A7D9F00BB5A31 /* KRTrackDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRTrackDetail.m; sourceTree = "<group>"; };
-		31B4ECB5163A82AF00BB5A31 /* SCGetTrackDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCGetTrackDetail.m; sourceTree = "<group>"; };
 		31C4EC5F18CB854600A4DAD5 /* KRGetWalks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRGetWalks.h; sourceTree = "<group>"; };
 		31C4EC6018CB854600A4DAD5 /* KRGetWalks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRGetWalks.m; sourceTree = "<group>"; };
-		31C4EC6218CB866000A4DAD5 /* KRWalk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRWalk.h; sourceTree = "<group>"; };
-		31C4EC6318CB866000A4DAD5 /* KRWalk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRWalk.m; sourceTree = "<group>"; };
 		31C4EC6518CB8AA200A4DAD5 /* KRWalkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRWalkViewController.h; sourceTree = "<group>"; };
 		31C4EC6618CB8AA200A4DAD5 /* KRWalkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRWalkViewController.m; sourceTree = "<group>"; };
 		31C4EC6A18CC96EE00A4DAD5 /* WalkView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WalkView.xib; sourceTree = "<group>"; };
@@ -204,12 +192,10 @@
 		31E6D2CB1648489F00BACF3F /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		31EB851316C7A0FB0012230F /* KRInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRInfoViewController.h; sourceTree = "<group>"; };
 		31EB851416C7A0FB0012230F /* KRInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRInfoViewController.m; sourceTree = "<group>"; };
-		31F4634F1A3ED9F3009317FA /* HUHWalk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUHWalk.h; sourceTree = "<group>"; };
-		31F463501A3ED9F3009317FA /* HUHWalk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUHWalk.m; sourceTree = "<group>"; };
-		31F463521A3EE00D009317FA /* Walk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Walk.h; sourceTree = "<group>"; };
-		31F463531A3EE00D009317FA /* Walk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Walk.m; sourceTree = "<group>"; };
-		31F463551A3EE8EF009317FA /* HUHSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUHSound.h; sourceTree = "<group>"; };
-		31F463561A3EE8EF009317FA /* HUHSound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUHSound.m; sourceTree = "<group>"; };
+		31F4634F1A3ED9F3009317FA /* KRWalk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRWalk.h; sourceTree = "<group>"; };
+		31F463501A3ED9F3009317FA /* KRWalk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRWalk.m; sourceTree = "<group>"; };
+		31F463551A3EE8EF009317FA /* KRSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRSound.h; sourceTree = "<group>"; };
+		31F463561A3EE8EF009317FA /* KRSound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRSound.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,7 +218,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				31AD0A801638424F000CFD7B /* SenTestingKit.framework in Frameworks */,
 				31AD0A811638424F000CFD7B /* UIKit.framework in Frameworks */,
 				31AD0A821638424F000CFD7B /* Foundation.framework in Frameworks */,
 			);
@@ -244,14 +229,10 @@
 		3108FE54163843FC00A3D243 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				3108FE5C1638451300A3D243 /* SCServiceAPI.h */,
-				3108FE5D1638451300A3D243 /* SCServiceAPI.m */,
-				31AD0A9616384273000CFD7B /* SCServiceRequest.h */,
-				31AD0A9716384273000CFD7B /* SCServiceRequest.m */,
-				3108FE55163844C500A3D243 /* SCGetUserTracks.h */,
-				3108FE56163844C500A3D243 /* SCGetUserTracks.m */,
-				31B4ECAF163A799A00BB5A31 /* SCGetTrackDetail.h */,
-				31B4ECB5163A82AF00BB5A31 /* SCGetTrackDetail.m */,
+				317E4E6F1A67E69E0065580B /* SCServiceAPI.h */,
+				317E4E701A67E69E0065580B /* SCServiceAPI.m */,
+				317E4E711A67E69E0065580B /* SCServiceRequest.h */,
+				317E4E721A67E69E0065580B /* SCServiceRequest.m */,
 				31C4EC5F18CB854600A4DAD5 /* KRGetWalks.h */,
 				31C4EC6018CB854600A4DAD5 /* KRGetWalks.m */,
 			);
@@ -265,14 +246,10 @@
 				3108FE681638460E00A3D243 /* KRTrack.m */,
 				31B4ECB2163A7D9F00BB5A31 /* KRTrackDetail.h */,
 				31B4ECB3163A7D9F00BB5A31 /* KRTrackDetail.m */,
-				31C4EC6218CB866000A4DAD5 /* KRWalk.h */,
-				31C4EC6318CB866000A4DAD5 /* KRWalk.m */,
-				31F4634F1A3ED9F3009317FA /* HUHWalk.h */,
-				31F463501A3ED9F3009317FA /* HUHWalk.m */,
-				31F463521A3EE00D009317FA /* Walk.h */,
-				31F463531A3EE00D009317FA /* Walk.m */,
-				31F463551A3EE8EF009317FA /* HUHSound.h */,
-				31F463561A3EE8EF009317FA /* HUHSound.m */,
+				31F4634F1A3ED9F3009317FA /* KRWalk.h */,
+				31F463501A3ED9F3009317FA /* KRWalk.m */,
+				31F463551A3EE8EF009317FA /* KRSound.h */,
+				31F463561A3EE8EF009317FA /* KRSound.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -308,7 +285,6 @@
 				31AD0A5B1638424F000CFD7B /* UIKit.framework */,
 				31AD0A5D1638424F000CFD7B /* Foundation.framework */,
 				31AD0A5F1638424F000CFD7B /* CoreGraphics.framework */,
-				31AD0A7F1638424F000CFD7B /* SenTestingKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -464,7 +440,7 @@
 			name = KijkruimteTests;
 			productName = KijkruimteTests;
 			productReference = 31AD0A7E1638424F000CFD7B /* KijkruimteTests.octest */;
-			productType = "com.apple.product-type.bundle.ocunit-test";
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -473,6 +449,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = KR;
+				LastTestingUpgradeCheck = 0610;
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = Hipstart;
 				TargetAttributes = {
@@ -585,26 +562,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				31F463511A3ED9F3009317FA /* HUHWalk.m in Sources */,
-				31F463571A3EE8EF009317FA /* HUHSound.m in Sources */,
-				31C4EC6418CB866000A4DAD5 /* KRWalk.m in Sources */,
+				31F463511A3ED9F3009317FA /* KRWalk.m in Sources */,
+				317E4E741A67E69E0065580B /* SCServiceRequest.m in Sources */,
+				31F463571A3EE8EF009317FA /* KRSound.m in Sources */,
 				31C4EC6118CB854600A4DAD5 /* KRGetWalks.m in Sources */,
-				3108FE5F1638454400A3D243 /* SCServiceRequest.m in Sources */,
 				31C4EC6E18CC977E00A4DAD5 /* KRWalkView.m in Sources */,
+				317E4E731A67E69E0065580B /* SCServiceAPI.m in Sources */,
 				31AD0A681638424F000CFD7B /* main.m in Sources */,
 				31AD0A6C1638424F000CFD7B /* KRAppDelegate.m in Sources */,
 				31AD0A781638424F000CFD7B /* KRViewController.m in Sources */,
-				3108FE57163844C500A3D243 /* SCGetUserTracks.m in Sources */,
 				3102326119B889EC00E13EDD /* KRBluetoothScanner.m in Sources */,
-				3108FE5E1638451300A3D243 /* SCServiceAPI.m in Sources */,
 				3108FE691638460E00A3D243 /* KRTrack.m in Sources */,
 				31B4ECB4163A7D9F00BB5A31 /* KRTrackDetail.m in Sources */,
-				31B4ECB6163A82AF00BB5A31 /* SCGetTrackDetail.m in Sources */,
 				313E3C8E163D9B89000165B7 /* KRMapPin.m in Sources */,
 				31C4EC6718CB8AA200A4DAD5 /* KRWalkViewController.m in Sources */,
 				313FA7A719CF2ED200A0EDB5 /* KRBluetoothProducer.m in Sources */,
 				3160FB3D1664001100CD7C72 /* KRBroadcaster.m in Sources */,
-				31F463541A3EE00D009317FA /* Walk.m in Sources */,
 				3121A6F81683BF15004747B6 /* KRMessageView.m in Sources */,
 				31EB851516C7A0FB0012230F /* KRInfoViewController.m in Sources */,
 			);
@@ -760,13 +733,13 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Kijkruimte/Kijkruimte-Prefix.pch";
 				INFOPLIST_FILE = "KijkruimteTests/KijkruimteTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
@@ -777,13 +750,13 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Kijkruimte/Kijkruimte-Prefix.pch";
 				INFOPLIST_FILE = "KijkruimteTests/KijkruimteTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};

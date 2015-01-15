@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Hipstart. All rights reserved.
 //
 
-#import "HUHSound.h"
+#import "KRSound.h"
 
-@implementation HUHSound
+@implementation KRSound
 
 -(id)initWithDictionary:(NSDictionary*)dictionary {
 	self = [super init];
