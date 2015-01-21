@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3102326119B889EC00E13EDD /* KRBluetoothScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3102326019B889EC00E13EDD /* KRBluetoothScanner.m */; };
 		3102326319B88ACD00E13EDD /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3102326219B88ACD00E13EDD /* CoreBluetooth.framework */; };
 		3108FE691638460E00A3D243 /* KRTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 3108FE681638460E00A3D243 /* KRTrack.m */; };
 		3113F29619E9471200BC29C8 /* 2727pt.png in Resources */ = {isa = PBXBuildFile; fileRef = 3113F26C19E9471200BC29C8 /* 2727pt.png */; };
@@ -56,7 +55,6 @@
 		3121D72B19E997A600DABAE6 /* AppIcon120x120.png in Resources */ = {isa = PBXBuildFile; fileRef = 3121D72A19E997A600DABAE6 /* AppIcon120x120.png */; };
 		313E3C62163D96EB000165B7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 313E3C61163D96EB000165B7 /* MapKit.framework */; };
 		313E3C8E163D9B89000165B7 /* KRMapPin.m in Sources */ = {isa = PBXBuildFile; fileRef = 313E3C8D163D9B89000165B7 /* KRMapPin.m */; };
-		313FA7A719CF2ED200A0EDB5 /* KRBluetoothProducer.m in Sources */ = {isa = PBXBuildFile; fileRef = 313FA7A619CF2ED200A0EDB5 /* KRBluetoothProducer.m */; };
 		3160FB3D1664001100CD7C72 /* KRBroadcaster.m in Sources */ = {isa = PBXBuildFile; fileRef = 3160FB3C1664001100CD7C72 /* KRBroadcaster.m */; };
 		31650758183977FB008EFD90 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31650757183977FB008EFD90 /* Images.xcassets */; };
 		317E4E731A67E69E0065580B /* SCServiceAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 317E4E701A67E69E0065580B /* SCServiceAPI.m */; };
@@ -97,8 +95,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3102325F19B889EC00E13EDD /* KRBluetoothScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRBluetoothScanner.h; sourceTree = "<group>"; };
-		3102326019B889EC00E13EDD /* KRBluetoothScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRBluetoothScanner.m; sourceTree = "<group>"; };
 		3102326219B88ACD00E13EDD /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		3108FE671638460E00A3D243 /* KRTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRTrack.h; sourceTree = "<group>"; };
 		3108FE681638460E00A3D243 /* KRTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRTrack.m; sourceTree = "<group>"; };
@@ -151,8 +147,6 @@
 		313E3C61163D96EB000165B7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		313E3C8C163D9B89000165B7 /* KRMapPin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRMapPin.h; sourceTree = "<group>"; };
 		313E3C8D163D9B89000165B7 /* KRMapPin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRMapPin.m; sourceTree = "<group>"; };
-		313FA7A619CF2ED200A0EDB5 /* KRBluetoothProducer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRBluetoothProducer.m; sourceTree = "<group>"; };
-		313FA7A819CF2F1000A0EDB5 /* KRBluetoothProducer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KRBluetoothProducer.h; sourceTree = "<group>"; };
 		3160FB3B1664001100CD7C72 /* KRBroadcaster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRBroadcaster.h; sourceTree = "<group>"; };
 		3160FB3C1664001100CD7C72 /* KRBroadcaster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRBroadcaster.m; sourceTree = "<group>"; };
 		31650757183977FB008EFD90 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -174,7 +168,7 @@
 		31AD0A741638424F000CFD7B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		31AD0A761638424F000CFD7B /* KRViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KRViewController.h; sourceTree = "<group>"; };
 		31AD0A771638424F000CFD7B /* KRViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KRViewController.m; sourceTree = "<group>"; };
-		31AD0A7E1638424F000CFD7B /* KijkruimteTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KijkruimteTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		31AD0A7E1638424F000CFD7B /* KijkruimteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KijkruimteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		31AD0A871638424F000CFD7B /* KijkruimteTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KijkruimteTests-Info.plist"; sourceTree = "<group>"; };
 		31AD0A891638424F000CFD7B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		31AD0A8B1638424F000CFD7B /* KijkruimteTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KijkruimteTests.h; sourceTree = "<group>"; };
@@ -272,7 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				31AD0A571638424F000CFD7B /* Kijkruimte.app */,
-				31AD0A7E1638424F000CFD7B /* KijkruimteTests.octest */,
+				31AD0A7E1638424F000CFD7B /* KijkruimteTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -315,10 +309,6 @@
 				31C4EC6A18CC96EE00A4DAD5 /* WalkView.xib */,
 				31C4EC6C18CC977E00A4DAD5 /* KRWalkView.h */,
 				31C4EC6D18CC977E00A4DAD5 /* KRWalkView.m */,
-				3102325F19B889EC00E13EDD /* KRBluetoothScanner.h */,
-				3102326019B889EC00E13EDD /* KRBluetoothScanner.m */,
-				313FA7A819CF2F1000A0EDB5 /* KRBluetoothProducer.h */,
-				313FA7A619CF2ED200A0EDB5 /* KRBluetoothProducer.m */,
 			);
 			path = Kijkruimte;
 			sourceTree = "<group>";
@@ -439,7 +429,7 @@
 			);
 			name = KijkruimteTests;
 			productName = KijkruimteTests;
-			productReference = 31AD0A7E1638424F000CFD7B /* KijkruimteTests.octest */;
+			productReference = 31AD0A7E1638424F000CFD7B /* KijkruimteTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -571,12 +561,10 @@
 				31AD0A681638424F000CFD7B /* main.m in Sources */,
 				31AD0A6C1638424F000CFD7B /* KRAppDelegate.m in Sources */,
 				31AD0A781638424F000CFD7B /* KRViewController.m in Sources */,
-				3102326119B889EC00E13EDD /* KRBluetoothScanner.m in Sources */,
 				3108FE691638460E00A3D243 /* KRTrack.m in Sources */,
 				31B4ECB4163A7D9F00BB5A31 /* KRTrackDetail.m in Sources */,
 				313E3C8E163D9B89000165B7 /* KRMapPin.m in Sources */,
 				31C4EC6718CB8AA200A4DAD5 /* KRWalkViewController.m in Sources */,
-				313FA7A719CF2ED200A0EDB5 /* KRBluetoothProducer.m in Sources */,
 				3160FB3D1664001100CD7C72 /* KRBroadcaster.m in Sources */,
 				3121A6F81683BF15004747B6 /* KRMessageView.m in Sources */,
 				31EB851516C7A0FB0012230F /* KRInfoViewController.m in Sources */,

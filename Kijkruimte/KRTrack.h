@@ -26,7 +26,6 @@ AVAudioPlayerDelegate,
 NSURLConnectionDataDelegate
 > {
     NSString *_trackId;
-    NSString *_uri;
     NSString *_title;
     CLLocation *_location;
     
@@ -46,15 +45,18 @@ NSURLConnectionDataDelegate
 @property(nonatomic,strong)CLLocation *location;
 @property(nonatomic, assign)double radius;
 @property(nonatomic, assign)BOOL background;
+
+@property(nonatomic,strong)NSString *uuid;
 @property(nonatomic, assign)BOOL bluetooth;
+
+
 @property(nonatomic,strong)AVAudioPlayer *audioPlayer;
 @property(nonatomic,strong)KRMapPin *pin;
 @property(nonatomic,strong)id<KRTrackDelegate> delegate;
 
--(id)initWithDictionary:(NSDictionary*)dictionary;
 -(id)initWithSound:(KRSound*)sound;
--(void)getDataWithDetail:(KRTrackDetail*)detail;
 -(void)getDataWithSound:(KRSound*)sound;
+-(void)setFilteredVolume:(double)volume;
 
 
 @end

@@ -9,9 +9,6 @@
 
 #import <MapKit/MapKit.h>
 #import <UIKit/UIKit.h>
-#import "KRBluetoothProducer.h"
-#import "KRBluetoothScanner.h"
-#import "KRBroadcaster.h"
 #import "KRMessageView.h"
 #import "KRTrack.h"
 #import "KRWalk.h"
@@ -40,18 +37,14 @@ KRTrackDelegate> {
     BOOL _isRunning;
     NSString *_guid;
 	BOOL _canRetry;
-	BOOL _enableBluetooth;
     
     NSTimer *_timer;
-    
-    KRBroadcaster *_broadcaster;
 
 }
 
 @property(nonatomic, strong)NSMutableDictionary *bleTracks;
-@property(nonatomic, strong)KRBluetoothProducer *bleProducer;
-@property(nonatomic, strong)KRBluetoothScanner *bleScanner;
 @property(nonatomic, strong)KRWalk *walk;
+@property(nonatomic, strong)KRTrack *background;
 
 -(IBAction)start;
 -(IBAction)toInfo:(id)sender;

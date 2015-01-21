@@ -132,7 +132,7 @@
 									walkView.frame.size.height);
 		walkView.titleLabel.text = walk.title;
 		walkView.textView.text = walk.walkDescription;
-		NSString *urlStr = [NSString stringWithFormat:@"http://hearushere.nl/%@", walk.imageURLStr];
+		NSString *urlStr = [NSString stringWithFormat:@"http://hearushere.nl/walks/%@", walk.imageURLStr];
 		walkView.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:urlStr]]];
 		walkView.imageView.layer.cornerRadius = walkView.imageView.frame.size.height / 2;
         walkView.imageView.layer.masksToBounds = YES;

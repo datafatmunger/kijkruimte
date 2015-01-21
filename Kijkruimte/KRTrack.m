@@ -9,6 +9,8 @@
 #import "KRTrack.h"
 #import "SCServiceRequest.h"
 
+#define FILTER_SAMPLES 5
+
 @interface KRTrack (Private)
 
 -(CLLocationDegrees)getNumber:(NSString*)tag;
@@ -16,7 +18,10 @@
 
 @end
 
-@implementation KRTrack
+@implementation KRTrack {
+	double volumes[FILTER_SAMPLES];
+	long volumeCount;
+}
 
 @synthesize location = _location;
 @synthesize trackId = _trackId;
@@ -31,41 +36,10 @@
 		_pin = nil;
 		_audioPlayer = nil;
 		_audioData = [[NSMutableData alloc] init];
+		
+		volumeCount = 0;
 	}
 	return self;
-}
-
--(id)initWithDictionary:(NSDictionary*)dictionary {
-    self = [self init];
-    if (self) {
-		
-        
-        _trackId = [dictionary objectForKey:@"id"];
-        _uri = [dictionary objectForKey:@"uri"];
-        _title = [dictionary objectForKey:@"title"];
-        
-        NSString *tagList = [dictionary objectForKey:@"tag_list"];
-        NSArray *tags = [tagList componentsSeparatedByString:@" "];
-        
-        CLLocationDegrees lat = 0.0;
-        CLLocationDegrees lng = 0.0;
-        
-        for(NSString *tag in tags) {
-            if([tag rangeOfString:@"lat"].location != NSNotFound) {
-                lat = [self getNumber:tag];
-            } else if([tag rangeOfString:@"lon"].location != NSNotFound) {
-                lng = [self getNumber:tag];
-			} else if([tag rangeOfString:@"radius"].location != NSNotFound) {
-				_radius = [self getNumber:tag];
-			} else if([tag rangeOfString:@"bluetooth"].location != NSNotFound) {
-				_bluetooth = YES;
-			} else if([tag rangeOfString:@"background"].location != NSNotFound) {
-				_background = YES;
-			}
-        }
-        _location = [[CLLocation alloc] initWithLatitude:lat longitude:lng];
-    }
-    return self;
 }
 
 - (id)initWithSound:(KRSound*)sound {
@@ -76,6 +50,7 @@
 		_radius = sound.radius;
 		_background = sound.background;
 		_bluetooth = sound.bluetooth;
+		_uuid = sound.uuid;
 	}
 	return self;
 }
@@ -100,32 +75,11 @@
 }
 
 -(NSString*)getFilename {
-    NSString *filename = [NSString stringWithFormat:@"%d.mp3", [_trackId intValue]];
+    NSString *filename = [NSString stringWithFormat:@"%@", _trackId];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *songFile = [documentsDirectory stringByAppendingPathComponent:filename];
     return songFile;
-}
-
--(void)getDataWithDetail:(KRTrackDetail*)detail {
-    
-    //Check the cache - JBG
-    NSString *songFile = [self getFilename];
-    
-    if(![[NSFileManager defaultManager] fileExistsAtPath:songFile]) {
-        NSString* resourcePath = [NSString stringWithFormat:@"%@?client_id=%@", detail.streamUrl, kSCClientId];
-        NSLog(@"REQUEST URL: %@", resourcePath);
-        NSURL *originalUrl = [NSURL URLWithString:resourcePath];
-        
-        _request = [NSMutableURLRequest requestWithURL:originalUrl
-                                           cachePolicy:NSURLRequestReloadIgnoringCacheData
-                                       timeoutInterval:600];
-        [self sendAsync:_request];
-    } else {
-        _audioData = [[NSData dataWithContentsOfFile:songFile] mutableCopy];
-        [self createPlayer];
-        _audioData = nil;
-    }
 }
 
 -(void)getDataWithSound:(KRSound*)sound {
@@ -133,7 +87,8 @@
 	NSString *songFile = [self getFilename];
 	if(![[NSFileManager defaultManager] fileExistsAtPath:songFile]) {
 		NSLog(@"REQUEST URL: %@", sound.url);
-		NSURL *originalUrl = [NSURL URLWithString:sound.url];
+		NSString *urlStr = [NSString stringWithFormat:@"http://hearushere.nl/walks/%@", sound.url];
+		NSURL *originalUrl = [NSURL URLWithString:urlStr];
 		_request = [NSMutableURLRequest requestWithURL:originalUrl
 										   cachePolicy:NSURLRequestReloadIgnoringCacheData
 									   timeoutInterval:600];
@@ -153,6 +108,17 @@
     _audioPlayer.delegate = self;
     
     [_delegate trackDataLoaded:_trackId];
+}
+
+-(void)setFilteredVolume:(double)volume {
+	volumes[volumeCount % FILTER_SAMPLES] = volume;
+	long count = volumeCount < FILTER_SAMPLES ? volumeCount : FILTER_SAMPLES;
+	double sum = 0.0;
+	for(long i = 0; i < count; i++) {
+		sum += volumes[i];
+	}
+	_audioPlayer.volume = sum / count;
+	++volumeCount;
 }
 
 #pragma mark - 

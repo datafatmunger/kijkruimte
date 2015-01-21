@@ -13,16 +13,21 @@
 -(id)initWithDictionary:(NSDictionary*)dictionary {
 	self = [super init];
 	if(self) {
-		self.soundId = [[NSUUID UUID] UUIDString];
-		self.url = dictionary[@"url"];
+		self.soundId = dictionary[@"file"];
+		self.url = dictionary[@"file"];
+		
+		self.bluetooth = dictionary[@"bluetooth"];
+		self.background = dictionary[@"background"];
+		
 		self.radius = [dictionary[@"radius"] doubleValue];
+		
 		if(dictionary[@"location"]) {
 			NSArray *location = dictionary[@"location"];
 			self.location = [[CLLocation alloc] initWithLatitude:[location[0] doubleValue]
 													   longitude:[location[1] doubleValue]];
+		} else if(self.bluetooth) {
+			self.uuid = dictionary[@"uuid"];
 		}
-		self.bluetooth = dictionary[@"bluetooth"];
-		self.background = dictionary[@"background"];
 	}
 	return self;
 }

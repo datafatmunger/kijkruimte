@@ -15,8 +15,10 @@
 @property(nonatomic, strong)NSString *url;
 @property(nonatomic, strong)CLLocation *location;
 @property(nonatomic, assign)double radius;
-@property(nonatomic, assign)BOOL bluetooth;
 @property(nonatomic, assign)BOOL background;
+
+@property(nonatomic, assign)BOOL bluetooth;
+@property(nonatomic, strong)NSString *uuid;
 
 -(id)initWithDictionary:(NSDictionary*)dictionary;
 

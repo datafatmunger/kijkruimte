@@ -17,19 +17,7 @@
 
 #define MAP_ZOOM_LEVEL 0.01
 
-dispatch_source_t ble_create_dispatch_timer(double interval, dispatch_queue_t queue, dispatch_block_t block) {
-	dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
-	if (timer) {
-		dispatch_source_set_timer(timer, dispatch_time(DISPATCH_TIME_NOW, interval * NSEC_PER_SEC), interval * NSEC_PER_SEC, (1ull * NSEC_PER_SEC) / 10);
-		dispatch_source_set_event_handler(timer, block);
-		dispatch_resume(timer);
-	}
-	return timer;
-}
-
-@interface KRViewController (Private) <
-KRBluetoothScannerDelegate
->
+@interface KRViewController (Private)
 
 -(NSString*)generateUuidString;
 -(void)getTracks;
@@ -41,7 +29,6 @@ KRBluetoothScannerDelegate
 
 @implementation KRViewController {
 	dispatch_source_t degradeTimer_;
-	KRTrack *background_;
 }
 
 -(void)viewDidLoad {
@@ -51,6 +38,7 @@ KRBluetoothScannerDelegate
     _isRunning = NO;
     _loadCount = 0;
     _tracks = [NSMutableDictionary dictionary];
+	_bleTracks = [NSMutableDictionary dictionary];
     _guid = [self generateUuidString];
     
     double x1 = 100.0, y1 = 50.0, x2 = 250.0, y2 = 70.0;
@@ -180,25 +168,16 @@ KRBluetoothScannerDelegate
             }
 			playingGeo = playingGeo || NO;
         }
-//        [self broadcastTrack:track.trackId
-//                    location:location
-//               trackLocation:track.location
-//                playPosition:track.audioPlayer.currentTime
-//                      volume:volume];
+
         track.pin.subtitle = [NSString stringWithFormat:@"Volume: %f", volume];
         [_mapView setNeedsDisplay];
     }
 	
-//	if(!playingGeo) {
-		background_.audioPlayer.volume = 1.0;
-		if(background_.audioPlayer != nil && ![background_.audioPlayer isPlaying]) {
-			[background_.audioPlayer play];
-			background_.pin.isPlaying = YES;
-		}
-//	} else {
-//		NSLog(@"STOPING BACKGROUND");
-//		background_.audioPlayer.volume = 0.0;
-//	}
+	self.background.audioPlayer.volume = 1.0;
+	if(self.background.audioPlayer != nil && ![self.background.audioPlayer isPlaying]) {
+		[self.background.audioPlayer play];
+		self.background.pin.isPlaying = YES;
+	}
 }
 
 -(IBAction)start {
@@ -218,16 +197,10 @@ KRBluetoothScannerDelegate
         _currentLocation = self.walk.location;
         [_locationManager startUpdatingLocation];
 		
-		//Bluetooth Scanner - JBG
-		if(_enableBluetooth) {
-			NSLog(@"Enabling bluetooth...");
-			self.bleTracks = [NSMutableDictionary dictionary];
-			self.bleScanner = [[KRBluetoothScanner alloc] init];
-			self.bleScanner.delegate = self;
-			[self.bleScanner scan];
-			
-			self.bleProducer = [[KRBluetoothProducer alloc] init];
-			[self.bleProducer start];
+		for(KRTrack *track in self.bleTracks.allValues) {
+			NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:track.uuid];
+			CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:uuid identifier:track.trackId];
+			[_locationManager startRangingBeaconsInRegion:region];
 		}
 		
 		[_button setTitle:@"Stop" forState:UIControlStateNormal];
@@ -240,6 +213,12 @@ KRBluetoothScannerDelegate
 
 -(void)stop {
 	[_locationManager stopUpdatingLocation];
+	for(KRTrack *track in self.bleTracks.allValues) {
+		NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:track.uuid];
+		CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:uuid identifier:track.trackId];
+		[_locationManager stopMonitoringForRegion:region];
+	}
+	
 	for(KRTrack *track in _tracks.allValues) {
 		[track.audioPlayer stop];
 		track.pin.isPlaying = NO;
@@ -247,28 +226,14 @@ KRBluetoothScannerDelegate
 		//            [_mapView addAnnotation:track.pin];
 	}
 	
+	for(KRTrack *track in self.bleTracks.allValues) {
+		[track.audioPlayer stop];
+	}
+	
 	if(_loadCount == _tracks.count)
 		_messageView.hidden = YES;
 	[_timer invalidate];
 	
-	//        for(int i = 0; i < [_tracks count]; i++) {
-	//            KRTrack *track = [[_tracks allValues] objectAtIndex:i];
-	//            [self broadcastTrack:track.trackId
-	//                        location:_currentLocation
-	//                   trackLocation:track.location
-	//                    playPosition:track.audioPlayer.currentTime
-	//                          volume:0.0f];
-	//        }
-	
-	if(_enableBluetooth) {
-		[self.bleScanner stop];
-		[self.bleProducer stop];
-	}
-	
-//	if(degradeTimer_) {
-//		dispatch_source_cancel(degradeTimer_);
-//		degradeTimer_ = nil;
-//	}
 	[_button setTitle:@"Start" forState:UIControlStateNormal];
 	_button.backgroundColor = [UIColor colorWithRed:255 green:242 blue:0 alpha:1.0];
 	[_button setTitleColor:[UIColor darkTextColor] forState:UIControlStateNormal];
@@ -321,11 +286,11 @@ KRBluetoothScannerDelegate
 
 -(void)trackDataLoaded:(NSString*)trackId {
     [self updateTracks:_currentLocation];
-    if(++_loadCount >= [_tracks count]) {
+    if(++_loadCount >= _tracks.count + self.bleTracks.count) {
         [_actView stopAnimating];
         _messageView.hidden = YES;
     }
-    [_messageLabel setText:[NSString stringWithFormat:@"Loading...%ld of %lu", (long)_loadCount, (unsigned long)_tracks.count]];
+    [_messageLabel setText:[NSString stringWithFormat:@"Loading...%ld of %lu", (long)_loadCount, (unsigned long)_tracks.count + self.bleTracks.count]];
 }
 
 -(void)trackDataError:(NSString*)message {
@@ -352,6 +317,53 @@ KRBluetoothScannerDelegate
 -(void)locationManager:(CLLocationManager *)manager
       didFailWithError:(NSError *)error {
     NSLog(@"%@", [error localizedDescription]);
+}
+
+- (void)locationManager:(CLLocationManager *)manager
+		didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region {
+	for(CLBeacon *beacon in beacons) {
+		KRTrack *track = [self.bleTracks objectForKey:beacon.proximityUUID.UUIDString];
+		double radius = track.radius > 1 ? track.radius : self.walk.radius;
+		double distance = beacon.accuracy;
+		double volume = 0.0;
+		if(distance <= radius && distance > 0.0f) {
+			volume = (log(distance/radius) * -1)/4;
+			volume = volume > 1.0 ? 1.0 : volume;
+			[track setFilteredVolume:volume];
+			if(_isRunning && track.audioPlayer != nil && ![track.audioPlayer isPlaying]) {
+				[track.audioPlayer play];
+			}
+		}
+	}
+}
+
+- (void)locationManager:(CLLocationManager *)manager
+rangingBeaconsDidFailForRegion:(CLBeaconRegion *)region
+			  withError:(NSError *)error {
+	NSLog(@"rangingBeaconsDidFailForRegion %@", [error localizedDescription]);
+}
+
+- (void)locationManager:(CLLocationManager *)manager
+		 didEnterRegion:(CLRegion *)region {
+	NSLog(@"didEnterRegion");
+	[_locationManager startRangingBeaconsInRegion:(CLBeaconRegion*)region];
+}
+
+- (void)locationManager:(CLLocationManager *)manager
+		  didExitRegion:(CLRegion *)region {
+	NSLog(@"didExitRegion");
+	[_locationManager stopRangingBeaconsInRegion:(CLBeaconRegion*)region];
+	KRTrack *track = [self.bleTracks objectForKey:((CLBeaconRegion*)region).proximityUUID.UUIDString];
+	if([track.uuid isEqualToString:((CLBeaconRegion*)region).proximityUUID.UUIDString]) {
+		track.audioPlayer.volume = 0.0;
+		[track.audioPlayer stop];
+	}
+}
+
+- (void)locationManager:(CLLocationManager *)manager
+monitoringDidFailForRegion:(CLRegion *)region
+			  withError:(NSError *)error {
+	NSLog(@"monitoringDidFailForRegion %@", [error localizedDescription]);
 }
 
 #pragma mark -
@@ -407,90 +419,6 @@ KRBluetoothScannerDelegate
                                              repeats:YES];
 }
 
-#pragma mark - KRBluetoothScannerDelegate <NSObject>
-
--(void)foundDevice:(NSString*)uuidStr RSSI:(NSNumber*)RSSI {
-	if(!_isRunning) return;
-	
-	double volume = 1.0;
-//	if(RSSI.intValue < 0) {
-//		volume = -(log(-(RSSI.doubleValue) - 40)) + 4;
-//		volume = volume > 1.0 ? 1.0 : volume;
-//		NSLog(@"RSSI: %ld, volume: %f, UUID: %@", (long)RSSI.integerValue, volume, uuidStr);
-//	}
-	
-	KRTrack *track = [self.bleTracks objectForKey:uuidStr];
-	if(!track) {
-		NSArray *array = [_tracks allKeys];
-		// Get a random track, if it's tagged "bluetooth" use it - JBG
-		do {
-			int random = arc4random()%[array count];
-			NSString *key = [array objectAtIndex:random];
-			track = [_tracks objectForKey:key];
-		} while (!track.bluetooth);
-		NSLog(@"Starting audio player...for %@, %@", uuidStr, track.title);
-		if(![track.audioPlayer isPlaying]) {
-			NSLog(@"Recycling track. . .");
-			[track.audioPlayer play];
-		}
-		[self.bleTracks setObject:track forKey:uuidStr];
-	}
-	
-	if(!isnan(volume))
-		track.audioPlayer.volume = volume;
-	
-	// This will slow degrade the audio track so devices that "disappear", don't sound forever - JBG
-//	if(!degradeTimer_) {
-//		degradeTimer_ = ble_create_dispatch_timer(0.1, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//			for(id key in [_tracks allKeys]) {
-//				KRTrack *track = [_tracks objectForKey:key];
-//				if(track.bluetooth && track.audioPlayer.volume > 0)
-//					track.audioPlayer.volume -= 0.01;
-//				
-//				NSLog(@"degrading volume to: %f", track.audioPlayer.volume);
-//			}
-//		});
-//	}
-	
-}
-
--(void)bleNotAuthorized {
-	dispatch_async(dispatch_get_main_queue(), ^{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"BlueTooth Not Authorized :("
-														message:@"Please adjust your iOS settings and try again."
-													   delegate:nil
-											  cancelButtonTitle:@"OK"
-											  otherButtonTitles:nil];
-		
-		[alert show];
-	});
-}
-
--(void)bleNotSupported {
-	dispatch_async(dispatch_get_main_queue(), ^{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"BLE Not Supported :("
-														message:@"Sorry your device does not support BlueTooth Low Energy.  You can continue using the app, but will not hear BlueTooth sounds."
-													   delegate:nil
-											  cancelButtonTitle:@"OK"
-											  otherButtonTitles:nil];
-		
-		[alert show];
-	});
-	
-}
-
--(void)bleOff {
-	dispatch_async(dispatch_get_main_queue(), ^{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"BlueTooth Off :("
-														message:@"Please adjust your iOS settings and try again."
-													   delegate:nil
-											  cancelButtonTitle:@"OK"
-											  otherButtonTitles:nil];
-		
-		[alert show];
-	});
-}
-
 #pragma mark - HUH Track details
 
 - (void)handleHuhTracks {
@@ -498,10 +426,17 @@ KRBluetoothScannerDelegate
 	for(KRSound *sound in huhWalk.sounds) {
 		KRTrack *track = [[KRTrack alloc] initWithSound:sound];
 		track.delegate = self;
-		[_tracks setObject:track forKey:track.trackId];
+		
+		if(sound.background) {
+			self.background = track;
+		} else if(sound.bluetooth) {
+			[self.bleTracks setObject:track forKey:sound.uuid];
+		} else {
+			[_tracks setObject:track forKey:track.trackId];
+		}
 		[track getDataWithSound:sound];
 	}
-	[_messageLabel setText:[NSString stringWithFormat:@"Loading audio...%ld of %lu", (long)_loadCount, (unsigned long)_tracks.count]];
+	[_messageLabel setText:[NSString stringWithFormat:@"Loading audio...%ld of %lu", (long)_loadCount, (unsigned long)_tracks.count + self.bleTracks.count]];
 }
 
 @end
