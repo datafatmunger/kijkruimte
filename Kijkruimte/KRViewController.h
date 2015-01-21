@@ -42,7 +42,7 @@ KRTrackDelegate> {
 
 }
 
-@property(nonatomic, strong)NSMutableDictionary *bleTracks;
+@property(nonatomic, strong)NSMutableArray *bleTracks;
 @property(nonatomic, strong)KRWalk *walk;
 @property(nonatomic, strong)KRTrack *background;
 

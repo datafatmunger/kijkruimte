@@ -46,11 +46,14 @@ NSURLConnectionDataDelegate
 @property(nonatomic, assign)double radius;
 @property(nonatomic, assign)BOOL background;
 
-@property(nonatomic,strong)NSString *uuid;
+@property(nonatomic, strong)NSString *uuid;
+@property(nonatomic, strong)NSNumber *major;
+@property(nonatomic, strong)NSNumber *minor;
 @property(nonatomic, assign)BOOL bluetooth;
 
 
 @property(nonatomic,strong)AVAudioPlayer *audioPlayer;
+@property(nonatomic,strong)NSMutableData *audioData;
 @property(nonatomic,strong)KRMapPin *pin;
 @property(nonatomic,strong)id<KRTrackDelegate> delegate;
 

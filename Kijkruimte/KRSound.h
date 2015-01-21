@@ -19,6 +19,8 @@
 
 @property(nonatomic, assign)BOOL bluetooth;
 @property(nonatomic, strong)NSString *uuid;
+@property(nonatomic, strong)NSNumber *major;
+@property(nonatomic, strong)NSNumber *minor;
 
 -(id)initWithDictionary:(NSDictionary*)dictionary;
 

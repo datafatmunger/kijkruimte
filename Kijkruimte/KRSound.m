@@ -27,6 +27,8 @@
 													   longitude:[location[1] doubleValue]];
 		} else if(self.bluetooth) {
 			self.uuid = dictionary[@"uuid"];
+			self.major = [NSNumber numberWithInteger: [dictionary[@"major"] integerValue]];
+			self.minor = [NSNumber numberWithInteger: [dictionary[@"minor"] integerValue]];
 		}
 	}
 	return self;

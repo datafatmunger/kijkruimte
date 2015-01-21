@@ -37,8 +37,8 @@
 	_canRetry = NO;
     _isRunning = NO;
     _loadCount = 0;
-    _tracks = [NSMutableDictionary dictionary];
-	_bleTracks = [NSMutableDictionary dictionary];
+    _tracks = [NSMutableDictionary new];
+	_bleTracks = [NSMutableArray new];
     _guid = [self generateUuidString];
     
     double x1 = 100.0, y1 = 50.0, x2 = 250.0, y2 = 70.0;
@@ -197,10 +197,14 @@
         _currentLocation = self.walk.location;
         [_locationManager startUpdatingLocation];
 		
-		for(KRTrack *track in self.bleTracks.allValues) {
+		for(KRTrack *track in self.bleTracks) {
 			NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:track.uuid];
-			CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:uuid identifier:track.trackId];
-			[_locationManager startRangingBeaconsInRegion:region];
+			CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:uuid identifier:uuid.UUIDString];
+			if(![_locationManager.monitoredRegions containsObject:region]) {
+				[_locationManager startMonitoringForRegion:region];
+			} else {
+				[_locationManager startRangingBeaconsInRegion:region];
+			}
 		}
 		
 		[_button setTitle:@"Stop" forState:UIControlStateNormal];
@@ -213,10 +217,11 @@
 
 -(void)stop {
 	[_locationManager stopUpdatingLocation];
-	for(KRTrack *track in self.bleTracks.allValues) {
+	for(KRTrack *track in self.bleTracks) {
 		NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:track.uuid];
-		CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:uuid identifier:track.trackId];
+		CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:uuid identifier:uuid.UUIDString];
 		[_locationManager stopMonitoringForRegion:region];
+		[track.audioPlayer stop];
 	}
 	
 	for(KRTrack *track in _tracks.allValues) {
@@ -224,10 +229,6 @@
 		track.pin.isPlaying = NO;
 		//            [_mapView removeAnnotation:track.pin];
 		//            [_mapView addAnnotation:track.pin];
-	}
-	
-	for(KRTrack *track in self.bleTracks.allValues) {
-		[track.audioPlayer stop];
 	}
 	
 	if(_loadCount == _tracks.count)
@@ -246,6 +247,26 @@
 -(IBAction)back:(id)sender {
 	[self stop];
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (KRTrack*)getTrackWithBeacon:(CLBeacon*)beacon {
+	for(KRTrack *track in self.bleTracks) {
+		if([track.uuid isEqualToString:beacon.proximityUUID.UUIDString] &&
+		   [track.major isEqualToNumber:beacon.major] &&
+		   [track.minor isEqualToNumber:beacon.minor]) {
+			return track;
+		}
+	}
+	return nil;
+}
+
+- (KRTrack*)getTrackWithRegion:(CLBeaconRegion*)region {
+	for(KRTrack *track in self.bleTracks) {
+		if([track.uuid isEqualToString:region.proximityUUID.UUIDString]) {
+			return track;
+		}
+	}
+	return nil;
 }
 
 #pragma mark -
@@ -321,16 +342,25 @@
 
 - (void)locationManager:(CLLocationManager *)manager
 		didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region {
+	if(!_isRunning) return;
 	for(CLBeacon *beacon in beacons) {
-		KRTrack *track = [self.bleTracks objectForKey:beacon.proximityUUID.UUIDString];
+		KRTrack *track = [self getTrackWithBeacon:beacon];
+		if(!track) return;
+		
 		double radius = track.radius > 1 ? track.radius : self.walk.radius;
 		double distance = beacon.accuracy;
+		if(distance < 0) return;
+		
 		double volume = 0.0;
 		if(distance <= radius && distance > 0.0f) {
 			volume = (log(distance/radius) * -1)/4;
 			volume = volume > 1.0 ? 1.0 : volume;
+			if(isnan(volume)) return;
+			
 			[track setFilteredVolume:volume];
-			if(_isRunning && track.audioPlayer != nil && ![track.audioPlayer isPlaying]) {
+			
+			NSLog(@"Did range %@ %ld %ld at %f, vol: %f", beacon.proximityUUID.UUIDString, (long)beacon.major.integerValue, (long)beacon.minor.integerValue, distance, track.audioPlayer.volume);
+			if(track.audioPlayer != nil && !track.audioPlayer.isPlaying) {
 				[track.audioPlayer play];
 			}
 		}
@@ -353,8 +383,9 @@ rangingBeaconsDidFailForRegion:(CLBeaconRegion *)region
 		  didExitRegion:(CLRegion *)region {
 	NSLog(@"didExitRegion");
 	[_locationManager stopRangingBeaconsInRegion:(CLBeaconRegion*)region];
-	KRTrack *track = [self.bleTracks objectForKey:((CLBeaconRegion*)region).proximityUUID.UUIDString];
-	if([track.uuid isEqualToString:((CLBeaconRegion*)region).proximityUUID.UUIDString]) {
+	
+	KRTrack *track = [self getTrackWithRegion:(CLBeaconRegion*)region];
+	if(track) {
 		track.audioPlayer.volume = 0.0;
 		[track.audioPlayer stop];
 	}
@@ -430,7 +461,7 @@ monitoringDidFailForRegion:(CLRegion *)region
 		if(sound.background) {
 			self.background = track;
 		} else if(sound.bluetooth) {
-			[self.bleTracks setObject:track forKey:sound.uuid];
+			[self.bleTracks addObject:track];
 		} else {
 			[_tracks setObject:track forKey:track.trackId];
 		}

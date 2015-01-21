@@ -28,14 +28,15 @@
 @synthesize uri = _uri;
 @synthesize title = _title;
 @synthesize audioPlayer = _audioPlayer;
+@synthesize audioData = _audioData;
 @synthesize pin = _pin;
 @synthesize delegate = _delegate;
 
 - (id)init {
 	if (self) {
-		_pin = nil;
-		_audioPlayer = nil;
-		_audioData = [[NSMutableData alloc] init];
+		self.pin = nil;
+		self.audioPlayer = nil;
+		self.audioData = [[NSMutableData alloc] init];
 		
 		volumeCount = 0;
 	}
@@ -45,12 +46,14 @@
 - (id)initWithSound:(KRSound*)sound {
 	self = [self init];
 	if (self) {
-		_trackId = sound.soundId;
-		_location = sound.location;
-		_radius = sound.radius;
-		_background = sound.background;
-		_bluetooth = sound.bluetooth;
-		_uuid = sound.uuid;
+		self.trackId = sound.soundId;
+		self.location = sound.location;
+		self.radius = sound.radius;
+		self.background = sound.background;
+		self.bluetooth = sound.bluetooth;
+		self.uuid = sound.uuid;
+		self.major = sound.major;
+		self.minor = sound.minor;
 	}
 	return self;
 }
@@ -94,30 +97,33 @@
 									   timeoutInterval:600];
 		[self sendAsync:_request];
 	} else {
-		_audioData = [[NSData dataWithContentsOfFile:songFile] mutableCopy];
+		self.audioData = [[NSData dataWithContentsOfFile:songFile] mutableCopy];
 		[self createPlayer];
-		_audioData = nil;
 	}
 }
 
 -(void)createPlayer {
     NSError *error;
-    _audioPlayer = [[AVAudioPlayer alloc] initWithData:_audioData error:&error];
-	_audioPlayer.numberOfLoops = _bluetooth ? 0 : -1;
-    _audioPlayer.volume = 1.0f;
-    _audioPlayer.delegate = self;
-    
+    self.audioPlayer = [[AVAudioPlayer alloc] initWithData:self.audioData error:&error];
+	self.audioPlayer.numberOfLoops = _bluetooth ? 0 : -1;
+    self.audioPlayer.volume = 1.0f;
+    self.audioPlayer.delegate = self;
+
     [_delegate trackDataLoaded:_trackId];
 }
 
 -(void)setFilteredVolume:(double)volume {
 	volumes[volumeCount % FILTER_SAMPLES] = volume;
 	long count = volumeCount < FILTER_SAMPLES ? volumeCount : FILTER_SAMPLES;
-	double sum = 0.0;
-	for(long i = 0; i < count; i++) {
-		sum += volumes[i];
+	double vol = volume;
+	if(count > 0) {
+		double sum = 0.0;
+		for(long i = 0; i < count; i++) {
+			sum += volumes[i];
+		}
+		vol = (double)sum / (double)count;
 	}
-	_audioPlayer.volume = sum / count;
+	self.audioPlayer.volume = vol;
 	++volumeCount;
 }
 
@@ -126,7 +132,7 @@
 
 - (void)connection:(NSURLConnection *)connection
     didReceiveData:(NSData *)data {
-    [_audioData appendData:data];
+    [self.audioData appendData:data];
 }
 
 - (void)connection:(NSURLConnection *)connection
@@ -144,14 +150,13 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     [self createPlayer];
     NSString *songFile = [self getFilename];
-    [_audioData writeToFile:songFile atomically:YES];
-    _audioData = nil;
+    [self.audioData writeToFile:songFile atomically:YES];
 }
 
 -(NSURLRequest*)connection:(NSURLConnection*)inConnection
            willSendRequest:(NSURLRequest*)inRequest
           redirectResponse:(NSURLResponse*)inRedirectResponse {
-    NSLog(@"REDIRECT: %@", [[inRequest URL] absoluteString]);
+    NSLog(@"%@", [[inRequest URL] absoluteString]);
     return inRequest;
 }
 
