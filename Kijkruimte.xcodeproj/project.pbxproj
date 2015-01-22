@@ -59,6 +59,7 @@
 		31650758183977FB008EFD90 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31650757183977FB008EFD90 /* Images.xcassets */; };
 		317E4E731A67E69E0065580B /* SCServiceAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 317E4E701A67E69E0065580B /* SCServiceAPI.m */; };
 		317E4E741A67E69E0065580B /* SCServiceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 317E4E721A67E69E0065580B /* SCServiceRequest.m */; };
+		31942B261A710C64005AD2AF /* silence.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 31942B251A710C64005AD2AF /* silence.m4a */; };
 		31948B84163ABB8F002B85BD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31948B83163ABB8F002B85BD /* AVFoundation.framework */; };
 		31AD0A5C1638424F000CFD7B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31AD0A5B1638424F000CFD7B /* UIKit.framework */; };
 		31AD0A5E1638424F000CFD7B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31AD0A5D1638424F000CFD7B /* Foundation.framework */; };
@@ -154,6 +155,7 @@
 		317E4E701A67E69E0065580B /* SCServiceAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCServiceAPI.m; sourceTree = "<group>"; };
 		317E4E711A67E69E0065580B /* SCServiceRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCServiceRequest.h; sourceTree = "<group>"; };
 		317E4E721A67E69E0065580B /* SCServiceRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCServiceRequest.m; sourceTree = "<group>"; };
+		31942B251A710C64005AD2AF /* silence.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = silence.m4a; sourceTree = "<group>"; };
 		31948B83163ABB8F002B85BD /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		31AD0A571638424F000CFD7B /* Kijkruimte.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kijkruimte.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31AD0A5B1638424F000CFD7B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -346,6 +348,7 @@
 		31E4D632163F02E300A05763 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				31942B251A710C64005AD2AF /* silence.m4a */,
 				3121D72A19E997A600DABAE6 /* AppIcon120x120.png */,
 				3121D72819E9968B00DABAE6 /* 120.png */,
 				3121D72619E9965700DABAE6 /* 152.png */,
@@ -501,6 +504,7 @@
 				3121D72719E9965700DABAE6 /* 152.png in Resources */,
 				3121D71F19E989A600DABAE6 /* Relative-Faux.otf in Resources */,
 				3113F2B919E9471200BC29C8 /* Info-Icon-black@2x.png in Resources */,
+				31942B261A710C64005AD2AF /* silence.m4a in Resources */,
 				3113F2BB19E9471200BC29C8 /* Info-Icon@2x.png in Resources */,
 				3113F2A719E9471200BC29C8 /* 114114px.png in Resources */,
 				3113F29E19E9471200BC29C8 /* 5858pt.png in Resources */,

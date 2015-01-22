@@ -58,6 +58,19 @@
 	return self;
 }
 
+- (id)initWithSilence {
+	self = [self init];
+	if (self) {
+		NSString *filePath = [[NSBundle mainBundle] pathForResource:@"silence" ofType:@"m4a"];
+		NSData *data = [NSData dataWithContentsOfFile:filePath];
+		if (data) {
+			[self.audioData appendData:data];
+		}
+		[self createPlayer];
+	}
+	return self;
+}
+
 -(CLLocationDegrees)getNumber:(NSString*)tag {
     NSMutableString *numberStr = [NSMutableString
                                   stringWithCapacity:tag.length];

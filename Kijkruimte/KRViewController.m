@@ -173,8 +173,9 @@
         [_mapView setNeedsDisplay];
     }
 	
-	self.background.audioPlayer.volume = 1.0;
+	
 	if(self.background.audioPlayer != nil && ![self.background.audioPlayer isPlaying]) {
+		self.background.audioPlayer.volume = 1.0;
 		[self.background.audioPlayer play];
 		self.background.pin.isPlaying = YES;
 	}
@@ -202,7 +203,7 @@
 			CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:uuid identifier:uuid.UUIDString];
 			if(![_locationManager.monitoredRegions containsObject:region]) {
 				[_locationManager startMonitoringForRegion:region];
-			} else {
+			} else if(![_locationManager.rangedRegions containsObject:region]) {
 				[_locationManager startRangingBeaconsInRegion:region];
 			}
 		}
@@ -467,6 +468,12 @@ monitoringDidFailForRegion:(CLRegion *)region
 		}
 		[track getDataWithSound:sound];
 	}
+	
+	// If we have bleTracks, but no background we need one play in the background - JBG
+	if(self.bleTracks.count > 0 && !self.background) {
+		self.background = [[KRTrack alloc] initWithSilence];
+	}
+	
 	[_messageLabel setText:[NSString stringWithFormat:@"Loading audio...%ld of %lu", (long)_loadCount, (unsigned long)_tracks.count + self.bleTracks.count]];
 }
 

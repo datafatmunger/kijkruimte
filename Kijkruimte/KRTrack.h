@@ -58,6 +58,7 @@ NSURLConnectionDataDelegate
 @property(nonatomic,strong)id<KRTrackDelegate> delegate;
 
 -(id)initWithSound:(KRSound*)sound;
+- (id)initWithSilence;
 -(void)getDataWithSound:(KRSound*)sound;
 -(void)setFilteredVolume:(double)volume;
 

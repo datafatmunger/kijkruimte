@@ -36,10 +36,8 @@
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>
-		<string>location</string>
 		<string>audio</string>
-		<string>bluetooth-peripheral</string>
-		<string>bluetooth-central</string>
+		<string>location</string>
 	</array>
 	<key>UIMainStoryboardFile</key>
 	<string>MainStoryboard</string>
