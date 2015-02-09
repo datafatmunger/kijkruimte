@@ -16,8 +16,8 @@
 		self.soundId = dictionary[@"file"];
 		self.url = dictionary[@"file"];
 		
-		self.bluetooth = dictionary[@"bluetooth"];
-		self.background = dictionary[@"background"];
+		self.bluetooth = [dictionary[@"bluetooth"] boolValue];
+		self.background = [dictionary[@"background"] boolValue];
 		
 		self.radius = [dictionary[@"radius"] doubleValue];
 		
