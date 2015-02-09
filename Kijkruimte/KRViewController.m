@@ -456,6 +456,7 @@ monitoringDidFailForRegion:(CLRegion *)region
 - (void)handleHuhTracks {
 	KRWalk *huhWalk = (KRWalk*)self.walk;
 	for(KRSound *sound in huhWalk.sounds) {
+		if(!sound.url) continue;
 		KRTrack *track = [[KRTrack alloc] initWithSound:sound];
 		track.delegate = self;
 		
