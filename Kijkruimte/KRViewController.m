@@ -312,7 +312,7 @@
         [_actView stopAnimating];
         _messageView.hidden = YES;
     }
-    [_messageLabel setText:[NSString stringWithFormat:@"Loading...%ld of %lu", (long)_loadCount, (unsigned long)_tracks.count + self.bleTracks.count]];
+    [_messageLabel setText:[NSString stringWithFormat:@"Loading...%ld of %lu", (long)_loadCount, (unsigned long)_tracks.count + self.bleTracks.count + (self.background ? 1 : 0)]];
 }
 
 -(void)trackDataError:(NSString*)message {
@@ -475,7 +475,8 @@ monitoringDidFailForRegion:(CLRegion *)region
 		self.background = [[KRTrack alloc] initWithSilence];
 	}
 	
-	[_messageLabel setText:[NSString stringWithFormat:@"Loading audio...%ld of %lu", (long)_loadCount, (unsigned long)_tracks.count + self.bleTracks.count]];
+	[_messageLabel setText:[NSString stringWithFormat:@"Loading audio...%ld of %lu",
+							(long)_loadCount, (unsigned long)_tracks.count + self.bleTracks.count + (self.background ? 1 : 0)]];
 }
 
 @end
