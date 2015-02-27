@@ -203,9 +203,8 @@
 			CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:uuid identifier:uuid.UUIDString];
 			if(![_locationManager.monitoredRegions containsObject:region]) {
 				[_locationManager startMonitoringForRegion:region];
-			} else if(![_locationManager.rangedRegions containsObject:region]) {
-				[_locationManager startRangingBeaconsInRegion:region];
 			}
+			[_locationManager startRangingBeaconsInRegion:region];
 		}
 		
 		[_button setTitle:@"Stop" forState:UIControlStateNormal];
@@ -219,9 +218,6 @@
 -(void)stop {
 	[_locationManager stopUpdatingLocation];
 	for(KRTrack *track in self.bleTracks) {
-		NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:track.uuid];
-		CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:uuid identifier:uuid.UUIDString];
-		[_locationManager stopMonitoringForRegion:region];
 		[track.audioPlayer stop];
 	}
 	
@@ -230,6 +226,10 @@
 		track.pin.isPlaying = NO;
 		//            [_mapView removeAnnotation:track.pin];
 		//            [_mapView addAnnotation:track.pin];
+	}
+	
+	if(self.background.audioPlayer != nil) {
+		[self.background.audioPlayer stop];
 	}
 	
 	if(_loadCount == _tracks.count)

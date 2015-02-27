@@ -688,8 +688,8 @@
 				INFOPLIST_FILE = "Kijkruimte/Kijkruimte-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "586ae6f5-9f3d-499d-8f9d-fda8b5bcf0e0";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "586ae6f5-9f3d-499d-8f9d-fda8b5bcf0e0";
+				PROVISIONING_PROFILE = "99e6b065-4eba-4a30-b45f-96b600e6cd8d";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "99e6b065-4eba-4a30-b45f-96b600e6cd8d";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -711,8 +711,8 @@
 				INFOPLIST_FILE = "Kijkruimte/Kijkruimte-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "586ae6f5-9f3d-499d-8f9d-fda8b5bcf0e0";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "586ae6f5-9f3d-499d-8f9d-fda8b5bcf0e0";
+				PROVISIONING_PROFILE = "99e6b065-4eba-4a30-b45f-96b600e6cd8d";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "99e6b065-4eba-4a30-b45f-96b600e6cd8d";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
