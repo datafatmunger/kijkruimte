@@ -15,6 +15,7 @@ NSURLConnectionDataDelegate
     NSMutableURLRequest *_request;
 }
 
++(id)sharedBroadcaster;
 -(void)broadcastTrack:(NSDictionary*)dictionary;
 
 @end

@@ -20,8 +20,7 @@ KRMessageViewDelegate,
 KRTrackDelegate> {
     
     NSMutableDictionary *_tracks;
-    
-    IBOutlet MKMapView *_mapView;
+
     IBOutlet UIActivityIndicatorView *_actView;
     IBOutlet UIView *_controls;
     IBOutlet UIButton *_button;
@@ -33,7 +32,7 @@ KRTrackDelegate> {
     NSInteger _loadCount;
     CLLocationManager *_locationManager;
     CLLocation *_currentLocation;
-    
+
     BOOL _isRunning;
     NSString *_guid;
 	BOOL _canRetry;
@@ -45,6 +44,8 @@ KRTrackDelegate> {
 @property(nonatomic, strong)NSMutableArray *bleTracks;
 @property(nonatomic, strong)KRWalk *walk;
 @property(nonatomic, strong)KRTrack *background;
+@property(nonatomic, strong)KRMapPin *userPin;
+@property(nonatomic, strong)IBOutlet MKMapView *mapView;
 
 -(IBAction)start;
 -(IBAction)toInfo:(id)sender;

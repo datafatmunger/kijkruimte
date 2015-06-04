@@ -18,6 +18,8 @@
 @property(nonatomic, strong)CLLocationManager *locationManager;
 @property(nonatomic, strong)CLLocation *currentLocation;
 
+@property(nonatomic, strong)NSString *lastNotifiedTitle;
+
 @end
 
 @implementation KRWalkViewController
@@ -25,6 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
+	self.lastNotifiedTitle = nil;
 	self.requestMade = NO;
 	
 	self.locationManager = [[CLLocationManager alloc] init];
@@ -84,6 +87,14 @@
 
 -(IBAction)toInfo:(id)sender {
     [self performSegueWithIdentifier:@"toInfo" sender:sender];
+}
+
+-(void)note:(NSString*)message {
+	UILocalNotification *note = [[UILocalNotification alloc] init];
+	note.fireDate = [NSDate date];
+	note.alertBody = message;
+	note.soundName = UILocalNotificationDefaultSoundName;
+	[[UIApplication sharedApplication] scheduleLocalNotification:note];
 }
 
 -(void)showDescription {
@@ -206,6 +217,14 @@
 	if(!self.requestMade) {
 		self.requestMade = YES;
 		[self getWalks];
+	}
+	
+	for(KRWalk *walk in self.walks) {
+		CLLocationDistance d = [newLocation distanceFromLocation: walk.location] / 1000.0f;
+		if(d < .5 && ![walk.title isEqualToString:self.lastNotifiedTitle]) {
+			[self note:[NSString stringWithFormat:@"You are only %.2fkm from %@, give it a try!", d, walk.title]];
+			self.lastNotifiedTitle = walk.title;
+		}
 	}
 	
 }

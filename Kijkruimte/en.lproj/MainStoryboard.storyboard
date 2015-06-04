@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="sfR-tX-hJg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="sfR-tX-hJg">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="Relative-Faux.otf">
@@ -35,7 +35,7 @@
                                 <color key="backgroundColor" red="1" green="0.94901960784313721" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Relative-Faux" family="Relative" pointSize="23"/>
                                 <state key="normal" title="Start">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -88,8 +88,10 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" id="tay-Eg-iP9">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <gestureRecognizers/>
                                 <connections>
                                     <outlet property="delegate" destination="2" id="GdW-og-Xkq"/>
+                                    <outletCollection property="gestureRecognizers" destination="lem-h1-Wcc" appends="YES" id="kZx-ni-FV9"/>
                                 </connections>
                             </mapView>
                             <view contentMode="scaleToFill" id="5wI-UU-KCa">
@@ -170,13 +172,18 @@
                         <outlet property="_controls" destination="5wI-UU-KCa" id="SWD-g2-xx9"/>
                         <outlet property="_doneButton" destination="MB1-lt-e8j" id="9OJ-8w-Ev3"/>
                         <outlet property="_info" destination="xTX-Jq-mf3" id="TXv-5A-DYR"/>
-                        <outlet property="_mapView" destination="tay-Eg-iP9" id="mQn-Qr-h4c"/>
                         <outlet property="_messageLabel" destination="1KW-Ej-88F" id="X9E-BL-Riw"/>
                         <outlet property="_messageView" destination="rQ2-bt-Pbn" id="7jH-Se-qre"/>
+                        <outlet property="mapView" destination="tay-Eg-iP9" id="f4E-JH-RJG"/>
                         <segue destination="Hfc-Oo-BBa" kind="modal" identifier="toInfo" modalTransitionStyle="flipHorizontal" id="iPj-bo-UR4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="lem-h1-Wcc">
+                    <connections>
+                        <action selector="manualUserLocation:" destination="2" id="uCU-xK-Ixf"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="28" y="2"/>
         </scene>

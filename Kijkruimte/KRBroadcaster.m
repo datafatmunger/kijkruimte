@@ -10,10 +10,21 @@
 
 @implementation KRBroadcaster
 
+#pragma mark Singleton Methods
+
++(id)sharedBroadcaster {
+	static KRBroadcaster *sharedBroadcaster = nil;
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		sharedBroadcaster = [[self alloc] init];
+	});
+	return sharedBroadcaster;
+}
+
 -(void)broadcastTrack:(NSDictionary*)dictionary {
     NSLog(@"Broadcasting...");
     
-    NSString* resourcePath = @"http://ec2-54-246-7-149.eu-west-1.compute.amazonaws.com/listeners";
+    NSString* resourcePath = @"http://api.hearushere.nl/listeners";
     NSURL *originalUrl = [NSURL URLWithString:resourcePath];
     
     _request = [NSMutableURLRequest requestWithURL:originalUrl

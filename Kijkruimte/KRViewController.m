@@ -9,6 +9,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <math.h>
 #import "KRAppDelegate.h"
+#import "KRBroadcaster.h"
 #import "KRInfoViewController.h"
 #import "KRMapPin.h"
 #import "KRTrackDetail.h"
@@ -66,16 +67,16 @@
 	NSLog(@"Location: %f, %f", _currentLocation.coordinate.latitude, _currentLocation.coordinate.longitude);
 	NSLog(@"Radius: %f", self.walk.radius);
 	
-    MKCoordinateRegion region = _mapView.region;
+    MKCoordinateRegion region = self.mapView.region;
     MKCoordinateSpan span = MKCoordinateSpanMake(MAP_ZOOM_LEVEL, MAP_ZOOM_LEVEL);
 	region.span = span;
 	region.center = _currentLocation.coordinate;
-    _mapView.region = region;
+    self.mapView.region = region;
 	
 	
 	KRWalk *huhWalk = (KRWalk*)self.walk;
 	for(id <MKOverlay> polygon in huhWalk.polygons) {
-		[_mapView addOverlay:polygon];
+		[self.mapView addOverlay:polygon];
 	}
 	
     _locationManager = [[CLLocationManager alloc] init];
@@ -143,9 +144,9 @@
             track.audioPlayer.volume = volume;
             if(track.audioPlayer != nil && ![track.audioPlayer isPlaying]) {
                 [track.audioPlayer play];
-                track.pin.isPlaying = YES;
-                //                [_mapView removeAnnotation:track.pin];
-                //                [_mapView addAnnotation:track.pin];
+                //track.pin.isPlaying = YES;
+                //                [self.mapView removeAnnotation:track.pin];
+                //                [self.mapView addAnnotation:track.pin];
             }
 			playingGeo = YES;
         } else if(distance <= 0.0f) {
@@ -153,31 +154,31 @@
             track.audioPlayer.volume = volume;
             if(track.audioPlayer != nil && ![track.audioPlayer isPlaying]) {
                 [track.audioPlayer play];
-                track.pin.isPlaying = YES;
-                //                [_mapView removeAnnotation:track.pin];
-                //                [_mapView addAnnotation:track.pin];
+                //track.pin.isPlaying = YES;
+                //                [self.mapView removeAnnotation:track.pin];
+                //                [self.mapView addAnnotation:track.pin];
             }
 			playingGeo = YES;
         } else {
             track.audioPlayer.volume = volume;
-            if(track.pin.isPlaying != NO) {
-                //[track.audioPlayer stop];
-                track.pin.isPlaying = NO;
-                //                [_mapView removeAnnotation:track.pin];
-                //                [_mapView addAnnotation:track.pin];
-            }
+//            if(track.pin.isPlaying != NO) {
+//                //[track.audioPlayer stop];
+//                track.pin.isPlaying = NO;
+//                //                [self.mapView removeAnnotation:track.pin];
+//                //                [self.mapView addAnnotation:track.pin];
+//            }
 			playingGeo = playingGeo || NO;
         }
 
-        track.pin.subtitle = [NSString stringWithFormat:@"Volume: %f", volume];
-        [_mapView setNeedsDisplay];
+//        track.pin.subtitle = [NSString stringWithFormat:@"Volume: %f", volume];
+        [self.mapView setNeedsDisplay];
     }
 	
 	
 	if(self.background.audioPlayer != nil && ![self.background.audioPlayer isPlaying]) {
 		self.background.audioPlayer.volume = 1.0;
 		[self.background.audioPlayer play];
-		self.background.pin.isPlaying = YES;
+//		self.background.pin.isPlaying = YES;
 	}
 }
 
@@ -185,6 +186,10 @@
     NSLog(@"Start and Stop");
 	
     _isRunning = !_isRunning;
+	
+	if(self.userPin != nil) {
+		[self.mapView removeAnnotation:self.userPin];
+	}
 	
 	if(self.walk.autoPlay) {
 		NSLog(@"AUTOPLAYING!");
@@ -223,9 +228,9 @@
 	
 	for(KRTrack *track in _tracks.allValues) {
 		[track.audioPlayer stop];
-		track.pin.isPlaying = NO;
-		//            [_mapView removeAnnotation:track.pin];
-		//            [_mapView addAnnotation:track.pin];
+//		track.pin.isPlaying = NO;
+		//            [self.mapView removeAnnotation:track.pin];
+		//            [self.mapView addAnnotation:track.pin];
 	}
 	
 	if(self.background.audioPlayer != nil) {
@@ -248,6 +253,26 @@
 -(IBAction)back:(id)sender {
 	[self stop];
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(IBAction)manualUserLocation:(UILongPressGestureRecognizer*)recognizer {
+	[_locationManager stopUpdatingLocation];
+	
+	CGPoint point = [recognizer locationInView:self.mapView];
+	CLLocationCoordinate2D coord = [self.mapView convertPoint:point toCoordinateFromView:self.mapView];
+	NSString *title = [NSString stringWithFormat:@"%f, %f", coord.latitude, coord.longitude];
+	KRMapPin *userPin = [[KRMapPin alloc] initWithCoordinates:coord placeName:title description:@""];
+	
+	if(self.userPin != nil) {
+		[self.mapView removeAnnotation:self.userPin];
+	}
+	self.userPin = userPin;
+	
+	[self.mapView addAnnotation:self.userPin];
+	CLLocation *location = [[CLLocation alloc] initWithLatitude:coord.latitude longitude:coord.longitude];
+	[self locationManager:_locationManager didUpdateLocations: @[location]];
+	
+	[self.mapView setNeedsDisplay];
 }
 
 - (KRTrack*)getTrackWithBeacon:(CLBeacon*)beacon {
@@ -273,16 +298,16 @@
 #pragma mark -
 #pragma mark MKMapKitDelegate
 
-//-(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>) annotation {
-//    MKPinAnnotationView *newAnnotation = nil;
-//    if([annotation isKindOfClass:[KRMapPin class]]) {
+-(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>) annotation {
+    MKPinAnnotationView *newAnnotation = nil;
+    if([annotation isKindOfClass:[KRMapPin class]]) {
 //        KRMapPin *pin = (KRMapPin*)annotation;
 //        if(pin.isPlaying) {
-//            newAnnotation = [[MKPinAnnotationView alloc] initWithAnnotation:annotation
-//                                                            reuseIdentifier:@"GreenPin"];
-//            newAnnotation.pinColor = MKPinAnnotationColorGreen;
-//            //newAnnotation.animatesDrop = YES;
-//            newAnnotation.canShowCallout = YES;
+            newAnnotation = [[MKPinAnnotationView alloc] initWithAnnotation:annotation
+                                                            reuseIdentifier:@"GreenPin"];
+            newAnnotation.pinColor = MKPinAnnotationColorGreen;
+            //newAnnotation.animatesDrop = YES;
+            newAnnotation.canShowCallout = YES;
 //        } else {
 //            newAnnotation = [[MKPinAnnotationView alloc] initWithAnnotation:annotation
 //                                                            reuseIdentifier:@"RedPin"];
@@ -290,9 +315,9 @@
 //            //newAnnotation.animatesDrop = YES;
 //            newAnnotation.canShowCallout = YES;
 //        }
-//    }
-//    return newAnnotation;
-//}
+    }
+    return newAnnotation;
+}
 
 -(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id <MKOverlay>)overlay {
 	MKPolygon *polygon = (MKPolygon *)overlay;
@@ -323,6 +348,14 @@
 
 #pragma mark -
 #pragma mark CLLocationManagerDelegate
+
+- (void)locationManager:(CLLocationManager *)manager
+	 didUpdateLocations:(NSArray *)locations {
+	if(locations.count > 0) {
+		_currentLocation = locations[0];
+		[self updateTracks:_currentLocation];
+	}
+}
 
 -(void)locationManager:(CLLocationManager *)manager
    didUpdateToLocation:(CLLocation *)newLocation
@@ -412,12 +445,36 @@ monitoringDidFailForRegion:(CLRegion *)region
 #pragma mark -
 #pragma mark KRViewController (Private)
 
+-(void)broadcastTrack:(NSNumber*)trackId
+             location:(CLLocation*)location
+        trackLocation:(CLLocation*)trackLocation
+         playPosition:(NSTimeInterval)playPosition
+               volume:(double)volume {
+    NSDictionary *message = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:
+                                                                 trackId,
+                                                                 [NSNumber numberWithDouble:location.coordinate.latitude],
+                                                                 [NSNumber numberWithDouble:location.coordinate.longitude],
+                                                                 [NSNumber numberWithDouble:trackLocation.coordinate.latitude],
+                                                                 [NSNumber numberWithDouble:trackLocation.coordinate.longitude],
+                                                                 [NSNumber numberWithDouble:playPosition],
+                                                                 [NSNumber numberWithDouble:volume],
+                                                                 _guid,
+                                                                 nil]
+                                                        forKeys:[NSArray arrayWithObjects:
+                                                                 @"trackId",
+                                                                 @"latitude",
+                                                                 @"longitude",
+                                                                 @"trackLatitude",
+                                                                 @"trackLongitude",
+                                                                 @"playPosition",
+                                                                 @"volume",
+                                                                 @"guid",
+                                                                 nil]];
+	[[KRBroadcaster sharedBroadcaster] broadcastTrack:message];
+}
+
 - (NSString*)generateUuidString {
-    // create a new UUID which you own
-    CFUUIDRef uuid = CFUUIDCreate(kCFAllocatorDefault);
-    // create a new CFStringRef (toll-free bridged to NSString)
-    // that you own
-    NSString *uuidString = (NSString *)CFBridgingRelease(CFUUIDCreateString(kCFAllocatorDefault, uuid));
+    NSString *uuidString = [UIDevice currentDevice].identifierForVendor.UUIDString;
     return uuidString;
 }
 

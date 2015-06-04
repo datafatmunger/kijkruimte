@@ -57,6 +57,12 @@
 		313E3C8E163D9B89000165B7 /* KRMapPin.m in Sources */ = {isa = PBXBuildFile; fileRef = 313E3C8D163D9B89000165B7 /* KRMapPin.m */; };
 		3160FB3D1664001100CD7C72 /* KRBroadcaster.m in Sources */ = {isa = PBXBuildFile; fileRef = 3160FB3C1664001100CD7C72 /* KRBroadcaster.m */; };
 		31650758183977FB008EFD90 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31650757183977FB008EFD90 /* Images.xcassets */; };
+		317B47EB1AA7033E008265AD /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 317B47E51AA7033E008265AD /* Crashlytics.framework */; };
+		317B47EC1AA7033E008265AD /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 317B47E61AA7033E008265AD /* Fabric.framework */; };
+		317B47ED1AA7033E008265AD /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 317B47E71AA7033E008265AD /* Security.framework */; };
+		317B47EE1AA7033E008265AD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 317B47E81AA7033E008265AD /* SystemConfiguration.framework */; };
+		317B47EF1AA7033E008265AD /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 317B47E91AA7033E008265AD /* libc++.dylib */; };
+		317B47F01AA7033E008265AD /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 317B47EA1AA7033E008265AD /* libz.dylib */; };
 		317E4E731A67E69E0065580B /* SCServiceAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 317E4E701A67E69E0065580B /* SCServiceAPI.m */; };
 		317E4E741A67E69E0065580B /* SCServiceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 317E4E721A67E69E0065580B /* SCServiceRequest.m */; };
 		31942B261A710C64005AD2AF /* silence.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 31942B251A710C64005AD2AF /* silence.m4a */; };
@@ -151,6 +157,12 @@
 		3160FB3B1664001100CD7C72 /* KRBroadcaster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRBroadcaster.h; sourceTree = "<group>"; };
 		3160FB3C1664001100CD7C72 /* KRBroadcaster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRBroadcaster.m; sourceTree = "<group>"; };
 		31650757183977FB008EFD90 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		317B47E51AA7033E008265AD /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		317B47E61AA7033E008265AD /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		317B47E71AA7033E008265AD /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Security.framework; sourceTree = "<group>"; };
+		317B47E81AA7033E008265AD /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SystemConfiguration.framework; sourceTree = "<group>"; };
+		317B47E91AA7033E008265AD /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libc++.dylib"; sourceTree = "<group>"; };
+		317B47EA1AA7033E008265AD /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libz.dylib; sourceTree = "<group>"; };
 		317E4E6F1A67E69E0065580B /* SCServiceAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCServiceAPI.h; sourceTree = "<group>"; };
 		317E4E701A67E69E0065580B /* SCServiceAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCServiceAPI.m; sourceTree = "<group>"; };
 		317E4E711A67E69E0065580B /* SCServiceRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCServiceRequest.h; sourceTree = "<group>"; };
@@ -200,12 +212,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				3102326319B88ACD00E13EDD /* CoreBluetooth.framework in Frameworks */,
+				317B47EC1AA7033E008265AD /* Fabric.framework in Frameworks */,
+				317B47EB1AA7033E008265AD /* Crashlytics.framework in Frameworks */,
+				317B47ED1AA7033E008265AD /* Security.framework in Frameworks */,
 				31E6D2CC1648489F00BACF3F /* CFNetwork.framework in Frameworks */,
 				313E3C62163D96EB000165B7 /* MapKit.framework in Frameworks */,
 				31E05000163AE7F30044F0F8 /* CoreLocation.framework in Frameworks */,
+				317B47EF1AA7033E008265AD /* libc++.dylib in Frameworks */,
 				31948B84163ABB8F002B85BD /* AVFoundation.framework in Frameworks */,
+				317B47F01AA7033E008265AD /* libz.dylib in Frameworks */,
 				31AD0A5C1638424F000CFD7B /* UIKit.framework in Frameworks */,
 				31AD0A5E1638424F000CFD7B /* Foundation.framework in Frameworks */,
+				317B47EE1AA7033E008265AD /* SystemConfiguration.framework in Frameworks */,
 				31AD0A601638424F000CFD7B /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -253,6 +271,12 @@
 		31AD0A4C1638424F000CFD7B = {
 			isa = PBXGroup;
 			children = (
+				317B47E51AA7033E008265AD /* Crashlytics.framework */,
+				317B47E61AA7033E008265AD /* Fabric.framework */,
+				317B47E71AA7033E008265AD /* Security.framework */,
+				317B47E81AA7033E008265AD /* SystemConfiguration.framework */,
+				317B47E91AA7033E008265AD /* libc++.dylib */,
+				317B47EA1AA7033E008265AD /* libz.dylib */,
 				31E6D2CB1648489F00BACF3F /* CFNetwork.framework */,
 				313E3C61163D96EB000165B7 /* MapKit.framework */,
 				31E04FFF163AE7F30044F0F8 /* CoreLocation.framework */,
@@ -406,6 +430,7 @@
 				31AD0A531638424F000CFD7B /* Sources */,
 				31AD0A541638424F000CFD7B /* Frameworks */,
 				31AD0A551638424F000CFD7B /* Resources */,
+				317B47E41AA70323008265AD /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -536,6 +561,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		317B47E41AA70323008265AD /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 5e32d1b5b215397ac7f8b0459db9cb1005a12833 4b0e93444682a6accef8330d3b62278eb139ab5429716ca6bb708965db085023";
+		};
 		31AD0A7C1638424F000CFD7B /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -677,19 +715,24 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Klasien van de Zandschulp (2U5PP7ARKJ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Klasien van de Zandschulp (2U5PP7ARKJ)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/jbg/Downloads/IHS-SDK-Beta-v1_90/SDK",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Kijkruimte/Kijkruimte-Prefix.pch";
 				INFOPLIST_FILE = "Kijkruimte/Kijkruimte-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "99e6b065-4eba-4a30-b45f-96b600e6cd8d";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "99e6b065-4eba-4a30-b45f-96b600e6cd8d";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -700,19 +743,24 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/jbg/Downloads/IHS-SDK-Beta-v1_90/SDK",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Kijkruimte/Kijkruimte-Prefix.pch";
 				INFOPLIST_FILE = "Kijkruimte/Kijkruimte-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "99e6b065-4eba-4a30-b45f-96b600e6cd8d";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "99e6b065-4eba-4a30-b45f-96b600e6cd8d";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

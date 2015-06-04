@@ -24,8 +24,8 @@
 		self.autoPlay = [dictionary[@"autoplay"] boolValue];
 		self.radius = [dictionary[@"radius"] doubleValue];
 		
-		self.maxLat = 0.0f;
-		self.maxLng = 0.0f;
+		self.maxLat = -FLT_MAX;
+		self.maxLng = -FLT_MAX;
 		self.minLat = FLT_MAX;
 		self.minLng = FLT_MAX;
 		
@@ -48,6 +48,8 @@
 		CLLocationDegrees medianLng = (self.maxLng + self.minLng) / 2;
 		self.location = [[CLLocation alloc] initWithLatitude:medianLat
 												   longitude:medianLng];
+		
+		NSLog(@"%@ is at: %f, %f", self.title, self.location.coordinate.latitude, self.location.coordinate.longitude);
 		
 		NSArray *sounds = dictionary[@"sounds"];
 		for(NSDictionary *soundDict in sounds) {

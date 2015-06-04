@@ -10,21 +10,18 @@
 
 @implementation KRMapPin
 
-@synthesize coordinate = _coordinate;
-@synthesize subtitle = _subtitle;
-@synthesize title = _title;
-@synthesize isPlaying = _isPlaying;
+@synthesize coordinate;
+@synthesize title;
+@synthesize subtitle;
 
--(id)initWithCoordinate:(CLLocationCoordinate2D)coordinate
-                  title:(NSString*)title
-               subtitle:(NSString *)subtitle {
-    if(self = [self init]) {
-        _isPlaying = NO;
-        _title = title;
-        _subtitle = subtitle;
-        _coordinate = coordinate;
-    }
-    return self;
+- (id)initWithCoordinates:(CLLocationCoordinate2D)location placeName:placeName description:description {
+	self = [super init];
+	if (self != nil) {
+		coordinate = location;
+		title = placeName;
+		subtitle = description;
+	}
+	return self;
 }
 
 @end
