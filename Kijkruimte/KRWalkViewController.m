@@ -90,11 +90,11 @@
 }
 
 -(void)note:(NSString*)message {
-	UILocalNotification *note = [[UILocalNotification alloc] init];
-	note.fireDate = [NSDate date];
-	note.alertBody = message;
-	note.soundName = UILocalNotificationDefaultSoundName;
-	[[UIApplication sharedApplication] scheduleLocalNotification:note];
+//	UILocalNotification *note = [[UILocalNotification alloc] init];
+//	note.fireDate = [NSDate date];
+//	note.alertBody = message;
+//	note.soundName = UILocalNotificationDefaultSoundName;
+//	[[UIApplication sharedApplication] scheduleLocalNotification:note];
 }
 
 -(void)showDescription {

@@ -8,12 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface KRBroadcaster : NSObject <
-NSURLConnectionDataDelegate
-> {
-    NSMutableData *_receivedData;
-    NSMutableURLRequest *_request;
-}
+@interface KRBroadcaster : NSObject
 
 +(id)sharedBroadcaster;
 -(void)broadcastTrack:(NSDictionary*)dictionary;

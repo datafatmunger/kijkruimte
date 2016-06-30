@@ -16,12 +16,12 @@
 -(BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
 	[Fabric with:@[CrashlyticsKit]];
-	if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
-		UIUserNotificationSettings* notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeSound categories:nil];
-		[[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
-	} else {
-		[[UIApplication sharedApplication] registerForRemoteNotificationTypes: (UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
-	}
+//	if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+//		UIUserNotificationSettings* notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeSound categories:nil];
+//		[[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
+//	} else {
+//		[[UIApplication sharedApplication] registerForRemoteNotificationTypes: (UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+//	}
 	return YES;
 }
 

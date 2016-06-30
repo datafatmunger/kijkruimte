@@ -27,10 +27,10 @@
     NSString* resourcePath = @"http://api.hearushere.nl/listeners";
     NSURL *originalUrl = [NSURL URLWithString:resourcePath];
     
-    _request = [NSMutableURLRequest requestWithURL:originalUrl
-                                       cachePolicy:NSURLRequestReloadIgnoringCacheData
-                                   timeoutInterval:600];
-    [_request setHTTPMethod:@"POST"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:originalUrl
+														   cachePolicy:NSURLRequestReloadIgnoringCacheData
+													   timeoutInterval:600];
+    [request setHTTPMethod:@"POST"];
     
     NSError *error;
     NSData *requestBody = [NSJSONSerialization dataWithJSONObject:dictionary
@@ -38,17 +38,17 @@
                                                             error:&error];
     
     NSString* byteSizeString = [NSString stringWithFormat: @"%d", (int)requestBody.bytes];
-    [_request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [_request setValue:byteSizeString forHTTPHeaderField:@"Content-Length"];
-    [_request setHTTPBody:requestBody];
-    
-    [NSURLConnection connectionWithRequest:_request
-                                  delegate:self];
-}
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:byteSizeString forHTTPHeaderField:@"Content-Length"];
+    [request setHTTPBody:requestBody];
 
-- (void)connection:(NSURLConnection *)connection
-  didFailWithError:(NSError *)error {
-    NSLog(@"REQUEST FAILED: %@", [error localizedDescription]);
+	[NSURLConnection sendAsynchronousRequest:request
+									   queue:[NSOperationQueue mainQueue]
+						   completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+							   if(error) {
+								   NSLog(@"REQUEST FAILED: %@", [error localizedDescription]);
+							   }
+						   }];
 }
 
 @end

@@ -51,7 +51,6 @@ NSURLConnectionDataDelegate
 @property(nonatomic, strong)NSNumber *minor;
 @property(nonatomic, assign)BOOL bluetooth;
 
-
 @property(nonatomic,strong)AVAudioPlayer *audioPlayer;
 @property(nonatomic,strong)NSMutableData *audioData;
 @property(nonatomic,strong)KRMapPin *pin;

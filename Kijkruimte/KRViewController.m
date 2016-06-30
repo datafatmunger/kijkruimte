@@ -169,6 +169,14 @@
 //            }
 			playingGeo = playingGeo || NO;
         }
+		
+		if(volume > 0.0) {
+			[self broadcastGPSTrack:track.trackId
+						   location:location
+					  trackLocation:track.location
+					   playPosition:track.audioPlayer.currentTime
+							 volume:volume];
+		}
 
 //        track.pin.subtitle = [NSString stringWithFormat:@"Volume: %f", volume];
         [self.mapView setNeedsDisplay];
@@ -205,13 +213,16 @@
 		
 		for(KRTrack *track in self.bleTracks) {
 			NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:track.uuid];
-			CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:uuid identifier:uuid.UUIDString];
-			if(![_locationManager.monitoredRegions containsObject:region]) {
-				[_locationManager startMonitoringForRegion:region];
+			if(uuid != nil) {
+				CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:uuid identifier:uuid.UUIDString];
+				if(region != nil) {
+					if(![_locationManager.monitoredRegions containsObject:region]) {
+						[_locationManager startMonitoringForRegion:region];
+					}
+					[_locationManager startRangingBeaconsInRegion:region];
+				}
 			}
-			[_locationManager startRangingBeaconsInRegion:region];
 		}
-		
 		[_button setTitle:@"Stop" forState:UIControlStateNormal];
 		_button.backgroundColor = [UIColor darkTextColor];
 		[_button setTitleColor:[UIColor colorWithRed:255 green:242 blue:0 alpha:1] forState:UIControlStateNormal];
@@ -378,10 +389,11 @@
 		didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region {
 	if(!_isRunning) return;
 	for(CLBeacon *beacon in beacons) {
+		NSLog(@"Did range %@ %ld %ld", beacon.proximityUUID.UUIDString, (long)beacon.major.integerValue, (long)beacon.minor.integerValue);
 		KRTrack *track = [self getTrackWithBeacon:beacon];
 		if(!track) return;
 		
-		double radius = track.radius > 1 ? track.radius : self.walk.radius;
+		double radius = track.radius > 0 ? track.radius : self.walk.radius;
 		double distance = beacon.accuracy;
 		if(distance < 0) return;
 		
@@ -397,6 +409,13 @@
 			if(track.audioPlayer != nil && !track.audioPlayer.isPlaying) {
 				[track.audioPlayer play];
 			}
+		}
+		
+		if(volume > 0.0) {
+			[self broadcastBeaconTrack:track.trackId
+								beacon:beacon
+						  playPosition:track.audioPlayer.currentTime
+								volume:volume];
 		}
 	}
 }
@@ -445,31 +464,36 @@ monitoringDidFailForRegion:(CLRegion *)region
 #pragma mark -
 #pragma mark KRViewController (Private)
 
--(void)broadcastTrack:(NSNumber*)trackId
+-(void)broadcastGPSTrack:(NSString*)trackId
              location:(CLLocation*)location
         trackLocation:(CLLocation*)trackLocation
          playPosition:(NSTimeInterval)playPosition
                volume:(double)volume {
-    NSDictionary *message = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:
-                                                                 trackId,
-                                                                 [NSNumber numberWithDouble:location.coordinate.latitude],
-                                                                 [NSNumber numberWithDouble:location.coordinate.longitude],
-                                                                 [NSNumber numberWithDouble:trackLocation.coordinate.latitude],
-                                                                 [NSNumber numberWithDouble:trackLocation.coordinate.longitude],
-                                                                 [NSNumber numberWithDouble:playPosition],
-                                                                 [NSNumber numberWithDouble:volume],
-                                                                 _guid,
-                                                                 nil]
-                                                        forKeys:[NSArray arrayWithObjects:
-                                                                 @"trackId",
-                                                                 @"latitude",
-                                                                 @"longitude",
-                                                                 @"trackLatitude",
-                                                                 @"trackLongitude",
-                                                                 @"playPosition",
-                                                                 @"volume",
-                                                                 @"guid",
-                                                                 nil]];
+	NSDictionary *message = @{
+	  @"trackId": trackId,
+	  @"latitude": [NSNumber numberWithDouble:location.coordinate.latitude],
+	  @"longitude": [NSNumber numberWithDouble:location.coordinate.longitude],
+	  @"playPosition": [NSNumber numberWithDouble:playPosition],
+	  @"volume": [NSNumber numberWithDouble:volume],
+	  @"guid": _guid,
+	};
+	[[KRBroadcaster sharedBroadcaster] broadcastTrack:message];
+}
+
+-(void)broadcastBeaconTrack:(NSString*)trackId
+				beacon:(CLBeacon*)beacon
+			playPosition:(NSTimeInterval)playPosition
+				  volume:(double)volume {
+	NSDictionary *message = @{
+	  @"trackId": trackId,
+	  @"uuid": beacon.proximityUUID.UUIDString,
+	  @"major": beacon.major,
+	  @"minor": beacon.minor,
+	  @"rssi": [NSNumber numberWithInteger:beacon.rssi],
+	  @"playPosition": [NSNumber numberWithDouble:playPosition],
+	  @"volume": [NSNumber numberWithDouble:volume],
+	  @"guid": _guid,
+	};
 	[[KRBroadcaster sharedBroadcaster] broadcastTrack:message];
 }
 
@@ -486,7 +510,7 @@ monitoringDidFailForRegion:(CLRegion *)region
 -(void)testModeUpdate {
     double randLat = [self randomDoubleBetween:self.walk.minLat and:self.walk.maxLat];
     double randLng = [self randomDoubleBetween:self.walk.minLng and:self.walk.maxLng];
-    
+	
     _currentLocation = [[CLLocation alloc] initWithLatitude:randLat longitude:randLng];
     [_messageLabel setText:[NSString stringWithFormat:@"You are too far away! Using random location: %f, %f",
                             _currentLocation.coordinate.latitude,
