@@ -12,17 +12,11 @@
 #import "KRWalk.h"
 
 @interface KRWalkViewController : UIViewController <
-CLLocationManagerDelegate,
 KRGetWalksDelegate
 >
 
 @property(nonatomic,weak)IBOutlet UIActivityIndicatorView *actView;
-@property(nonatomic,weak)IBOutlet UIPageControl *pageControl;
-@property(nonatomic,weak)IBOutlet UIScrollView *scrollView;
-@property(nonatomic,weak)IBOutlet MKMapView *mapView;
-
-@property (nonatomic, strong) IBOutletCollection(UIView) NSArray *controls;
-
+@property(nonatomic,weak)IBOutlet UIButton *startButton;
 @property(nonatomic,strong)KRWalk *walk;
 @property(nonatomic,strong)NSArray *walks;
 

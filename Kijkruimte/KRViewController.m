@@ -16,7 +16,7 @@
 #import "KRViewController.h"
 #import "KRWalk.h"
 
-#define MAP_ZOOM_LEVEL 0.01
+#define MAP_ZOOM_LEVEL 0.03
 
 @interface KRViewController (Private)
 
@@ -92,9 +92,7 @@
 		_doneButton.hidden = YES;
 	}
 	
-	[_button setTitle:@"Start" forState:UIControlStateNormal];
-	_button.backgroundColor = [UIColor colorWithRed:255 green:242 blue:0 alpha:1.0];
-	[_button setTitleColor:[UIColor darkTextColor] forState:UIControlStateNormal];
+	[_button setTitle:@"START" forState:UIControlStateNormal];
 }
 
 -(void)didReceiveMemoryWarning {
@@ -223,9 +221,7 @@
 				}
 			}
 		}
-		[_button setTitle:@"Stop" forState:UIControlStateNormal];
-		_button.backgroundColor = [UIColor darkTextColor];
-		[_button setTitleColor:[UIColor colorWithRed:255 green:242 blue:0 alpha:1] forState:UIControlStateNormal];
+		[_button setTitle:@"STOP" forState:UIControlStateNormal];
     } else {
 		[self stop];
     }
@@ -252,9 +248,7 @@
 		_messageView.hidden = YES;
 	[_timer invalidate];
 	
-	[_button setTitle:@"Start" forState:UIControlStateNormal];
-	_button.backgroundColor = [UIColor colorWithRed:255 green:242 blue:0 alpha:1.0];
-	[_button setTitleColor:[UIColor darkTextColor] forState:UIControlStateNormal];
+	[_button setTitle:@"START" forState:UIControlStateNormal];
 }
 
 -(IBAction)toInfo:(id)sender {
@@ -333,7 +327,7 @@
 -(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id <MKOverlay>)overlay {
 	MKPolygon *polygon = (MKPolygon *)overlay;
 	MKPolygonRenderer *renderer = [[MKPolygonRenderer alloc] initWithPolygon:polygon];
-	renderer.fillColor = [UIColor colorWithRed:253.0f/255 green:232.0f/255 blue:17.0f/255 alpha:0.33f];
+	renderer.fillColor = [UIColor colorWithRed:225.0f/255 green:119.0f/255 blue:0.0f/255 alpha:0.33f];
 	renderer.strokeColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.9];
 	renderer.lineWidth = 3;
 	return renderer;
